@@ -1,0 +1,18 @@
+# Scratch and temporary folders
+design-extract/
+design-extract-output/
+mockupshi/
+scratch/
+node_modules/
+
+# Duplicate root media files
+Appsee Polish SaaS Explainer.mp4
+Elyxir SaaS Promo Video.mp4
+LakAI SaaS Feature Video.mp4
+WhatsApp Image 2026-05-25 at 9.38.56 PM.jpeg
+
+# Logs and environment files
+*.log
+.env
+.DS_Store
+Thumbs.db

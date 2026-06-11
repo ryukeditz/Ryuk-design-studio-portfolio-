@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Ryuk Design Studio — Project Case Study" />
+    <title>Project — Ryuk® Design Studio</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Antonio:wght@400;700&family=Bebas+Neue&family=Barlow+Condensed:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <!-- Reuse same style tokens -->
+    <link rel="stylesheet" href="style.css?v=22" />
+    <link rel="stylesheet" href="project.css?v=22" />
+  </head>
+  <body>
+    <!-- Grain + Cursor -->
+    <div class="grain" aria-hidden="true"></div>
+    <div class="cursor" id="cursor"></div>
+    <div class="curtain" id="curtain"></div>
+
+    <!-- ── NAV ────────────────────────────────────────────────────────────── -->
+    <div class="nav-container-floating">
+      <nav class="nav-floating" id="nav">
+        <a href="index.html" class="nav-logo-custom">
+          <span class="logo-text">RYUK<span class="logo-reg">®</span></span>
+        </a>
+        <div class="nav-links-custom" id="navLinks">
+          <a href="index.html#hero" class="nav-link-custom">/Home</a>
+          <a href="index.html#works" class="nav-link-custom">/Portfolio</a>
+          <a href="index.html#about" class="nav-link-custom">/About</a>
+          <a href="index.html#contact" class="nav-link-custom">/Contact</a>
+        </div>
+        <div class="nav-cta-wrapper">
+          <a href="index.html#contact" class="nav-cta-btn">Get Started</a>
+          <button class="nav-burger-custom" id="navBurger" aria-label="Menu"><span></span><span></span></button>
+        </div>
+      </nav>
+    </div>
+
+    <!-- ── MOBILE MENU ─────────────────────────────────────────────────────── -->
+    <div class="mob-menu" id="mobMenu">
+      <a href="index.html#hero" class="mob-link">/Home</a>
+      <a href="index.html#works" class="mob-link">/Portfolio</a>
+      <a href="index.html#about" class="mob-link">/About</a>
+      <a href="index.html#contact" class="mob-link">/Contact</a>
+      <div class="mob-footer">
+        <span>hello@ryukstudio.com</span>
+        <span>©<span class="js-year">25</span> Ryuk<span class="logo-reg">®</span></span>
+      </div>
+    </div>
+
+    <!-- PROJECT HERO -->
+    <section class="proj-hero" id="projHero">
+      <div class="proj-hero-inner">
+        <div class="proj-meta-top">
+          <span class="section-tag" id="projCategory">FASHION — BRAND IDENTITY</span>
+          <span class="section-tag" id="projYear">2025</span>
+          <a href="#" class="proj-live-badge" id="projLiveHeroLink" target="_blank">LIVE SITE ↗</a>
+        </div>
+        <div class="proj-title-wrap">
+          <div class="overflow-clip">
+            <h1 class="proj-title js-reveal" id="projTitle">VIPER®</h1>
+          </div>
+        </div>
+        <p class="proj-tagline js-reveal-up" id="projTagline">
+          Redefining the intersection of sport and luxury fashion through bold visual identity.
+        </p>
+      </div>
+    </section>
+
+    <!-- COVER IMAGE -->
+    <div class="proj-cover">
+      <img id="projCoverImg" src="images/viper_model_black.png" alt="Project Cover" class="proj-cover-img" />
+      <div class="proj-cover-scrim"></div>
+    </div>
+
+    <!-- PROJECT INFO -->
+    <section class="proj-info-section">
+      <div class="proj-info-inner">
+        <div class="proj-info-col">
+          <div class="pi-item">
+            <span class="pi-label">CLIENT</span>
+            <span class="pi-val" id="projClient">Viper™</span>
+          </div>
+          <div class="pi-item">
+            <span class="pi-label">SERVICES</span>
+            <div class="pi-val" id="projServices">Brand Identity, UI/UX, Motion</div>
+          </div>
+          <div class="pi-item">
+            <span class="pi-label">YEAR</span>
+            <span class="pi-val" id="projYearInfo">2025</span>
+          </div>
+          <div class="pi-item">
+            <span class="pi-label">DELIVERABLES</span>
+            <div class="pi-val" id="projDeliverables">Logo System, Brand Guidelines, Website</div>
+          </div>
+          <div class="pi-item">
+            <span class="pi-label">LIVE SITE</span>
+            <a
+              href="#"
+              class="pi-val accent-hover"
+              id="projLiveLink"
+              target="_blank"
+              style="font-weight: 700; color: var(--accent)"
+              >VISIT WEBSITE ↗</a
+            >
+          </div>
+        </div>
+        <div class="proj-overview-col">
+          <h2 class="proj-overview-title js-big-reveal">OVERVIEW</h2>
+          <p class="proj-overview-body js-reveal-up" id="projOverview">
+            Viper approached us to build a complete visual identity system from the ground up. The challenge was to
+            create a brand that felt simultaneously premium and street-ready — bridging the gap between haute couture
+            and streetwear culture.
+            <br /><br />
+            We developed a comprehensive system including logotype, typography hierarchy, color palette, and motion
+            guidelines — designed to scale across digital and physical touchpoints.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- IMAGE GRID -->
+    <section class="proj-gallery">
+      <div class="proj-gallery-inner">
+        <div class="proj-gallery-row proj-gallery-row--full">
+          <img src="images/viper_model_black.png" alt="" class="proj-gallery-img js-gallery-img" />
+        </div>
+        <div class="proj-gallery-row proj-gallery-row--half">
+          <img src="images/portfolio_branding.png" alt="" class="proj-gallery-img js-gallery-img" />
+          <img src="images/portfolio_fashion.png" alt="" class="proj-gallery-img js-gallery-img" />
+        </div>
+        <div class="proj-gallery-row proj-gallery-row--full" id="proj3rdImg">
+          <img src="images/abstract_art1.png" alt="" class="proj-gallery-img js-gallery-img" />
+        </div>
+      </div>
+    </section>
+
+    <!-- NEXT PROJECT -->
+    <section class="proj-next">
+      <a href="#" class="proj-next-inner" id="projNextLink">
+        <span class="pn-label">NEXT PROJECT</span>
+        <div class="overflow-clip">
+          <div class="pn-title js-reveal" id="projNextTitle">AXIOM PAY®</div>
+        </div>
+        <span class="pn-arrow">→</span>
+      </a>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-wordmark-container">
+        <div class="footer-wordmark" aria-hidden="true">Ryuk<span class="logo-reg">®</span></div>
+      </div>
+      <div class="footer-bar">
+        <div class="footer-bar-inner">
+          <span>©<span class="js-year">25</span> Ryuk Studio. All rights reserved.</span>
+          <button class="back-top" id="backTop">BACK TO TOP ↑</button>
+        </div>
+      </div>
+    </footer>
+
+    <script src="project.js?v=22"></script>
+    <script src="app.js?v=22"></script>
+  </body>
+</html>
