@@ -2247,26 +2247,6 @@ function initVideoGallery() {
     card.setAttribute("data-filtered-index", idx);
   });
 
-  // Helper to play only videos currently in the viewport
-  const playVisibleVideos = () => {
-    cards.forEach((c) => {
-      const v = c.querySelector("video");
-      if (!v) return;
-
-      const rect = c.getBoundingClientRect();
-      const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
-
-      if (isVisible && (!modal || !modal.classList.contains("active"))) {
-        const playPromise = v.play();
-        if (playPromise !== undefined) {
-          playPromise.catch(() => {});
-        }
-      } else {
-        v.pause();
-      }
-    });
-  };
-
   // 2. LIGHTBOX LAUNCH
   const openVideo = (card) => {
     const vimeoId = card.getAttribute("data-vimeo-id");
@@ -2282,54 +2262,13 @@ function initVideoGallery() {
       if (window.__lenis) {
         window.__lenis.stop();
       }
-
-      // Pause all card previews while lightbox is open
-      cards.forEach((c) => {
-        const v = c.querySelector("video");
-        if (v) v.pause();
-      });
     }
   };
 
+  // Bind click on each card to open in lightbox
   cards.forEach((card) => {
     card.addEventListener("click", () => openVideo(card));
   });
-
-  // 2.5. HIGH-PERFORMANCE CONCURRENT AUTOPLAY (VIEWPORT OBSERVATION)
-  if ("IntersectionObserver" in window) {
-    const videoObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          const video = entry.target.querySelector("video");
-          if (!video) return;
-
-          if (entry.isIntersecting && (!modal || !modal.classList.contains("active"))) {
-            const playPromise = video.play();
-            if (playPromise !== undefined) {
-              playPromise.catch(() => {});
-            }
-          } else {
-            video.pause();
-          }
-        });
-      },
-      {
-        root: null,
-        rootMargin: "0px",
-        threshold: 0.1, // trigger when 10% visible
-      }
-    );
-
-    cards.forEach((card) => {
-      videoObserver.observe(card);
-    });
-  } else {
-    // Fallback: simple scrolling listener
-    window.addEventListener("scroll", playVisibleVideos);
-    window.addEventListener("resize", playVisibleVideos);
-    // Initial run
-    playVisibleVideos();
-  }
 
   const closeModal = () => {
     modal.classList.remove("active");
@@ -2339,9 +2278,6 @@ function initVideoGallery() {
     if (window.__lenis) {
       window.__lenis.start();
     }
-
-    // Resume playing preview videos in viewport
-    playVisibleVideos();
   };
 
   if (modalClose) modalClose.addEventListener("click", closeModal);
