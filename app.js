@@ -1138,7 +1138,7 @@ class Animations {
             stagger: 0.012, // Fast premium stagger
             scrollTrigger: {
               trigger: ".voice-section",
-              start: "top 35%",
+              start: "top 75%",
               toggleActions: "play none none none",
             },
           }
@@ -1157,36 +1157,36 @@ class Animations {
             ease: "power3.out",
             scrollTrigger: {
               trigger: ".voice-section",
-              start: "top 25%",
+              start: "top 70%",
               toggleActions: "play none none none",
             },
           }
         );
       }
 
-      if (window.innerWidth > 809) {
-        const wrappers = qq(".gallery-img-wrapper");
-        wrappers.forEach((wrap, index) => {
-          // 1. Inner image scale & translation parallax
-          const img = wrap.querySelector("img");
-          if (img) {
-            gsap.fromTo(
-              img,
-              { scale: 1.25, yPercent: -6 },
-              {
-                scale: 1.25,
-                yPercent: 6,
-                scrollTrigger: {
-                  trigger: wrap,
-                  start: "top bottom",
-                  end: "bottom top",
-                  scrub: true,
-                },
-              }
-            );
-          }
+      const wrappers = qq(".gallery-img-wrapper");
+      wrappers.forEach((wrap, index) => {
+        // 1. Inner image scale & translation parallax (completely safe for all screens including mobile)
+        const img = wrap.querySelector("img");
+        if (img) {
+          gsap.fromTo(
+            img,
+            { scale: 1.25, yPercent: -6 },
+            {
+              scale: 1.25,
+              yPercent: 6,
+              scrollTrigger: {
+                trigger: wrap,
+                start: "top bottom",
+                end: "bottom top",
+                scrub: true,
+              },
+            }
+          );
+        }
 
-          // 2. Outer wrapper staggered vertical translation parallax for depth
+        // 2. Outer wrapper staggered vertical translation parallax for depth (desktop only to prevent mobile grid overlap glitches)
+        if (window.innerWidth > 809) {
           const isEven = index % 2 === 0;
           const yStart = isEven ? 50 : -50;
           const yEnd = isEven ? -50 : 50;
@@ -1204,8 +1204,8 @@ class Animations {
               },
             }
           );
-        });
-      }
+        }
+      });
     }
   }
 
@@ -2504,50 +2504,45 @@ const AppController = {
         window.__liquidShaderInstance = null;
       }
 
-      const isMobile = window.innerWidth <= 809;
       if (shaderCanvas) {
-        if (isMobile) {
-          shaderCanvas.style.display = "none";
-        } else {
-          shaderCanvas.style.display = "";
-          // Recreate canvas to completely bypass browser context reuse limits after loseContext()
-          const newCanvas = shaderCanvas.cloneNode(true);
-          shaderCanvas.parentNode.replaceChild(newCanvas, shaderCanvas);
-          shaderCanvas = newCanvas;
+        shaderCanvas.style.display = "";
+        // Recreate canvas to completely bypass browser context reuse limits after loseContext()
+        const newCanvas = shaderCanvas.cloneNode(true);
+        shaderCanvas.parentNode.replaceChild(newCanvas, shaderCanvas);
+        shaderCanvas = newCanvas;
 
-          const liquidShader = new LiquidShader(shaderCanvas);
-          window.__liquidShaderInstance = liquidShader;
+        const liquidShader = new LiquidShader(shaderCanvas);
+        window.__liquidShaderInstance = liquidShader;
 
-          const animateShader = (time) => {
-            if (window.__liquidShaderInstance !== liquidShader) {
-              return;
-            }
-            liquidShader.render(time);
-            window.__shaderAnimationFrameId = requestAnimationFrame(animateShader);
-          };
-
-          // IntersectionObserver to pause rendering when hero is out of view
-          const heroEl = document.getElementById("hero");
-          if (heroEl) {
-            const observer = new IntersectionObserver((entries) => {
-              const [entry] = entries;
-              if (entry.isIntersecting) {
-                // Resume loop if not running
-                if (!window.__shaderAnimationFrameId && window.__liquidShaderInstance === liquidShader) {
-                  window.__shaderAnimationFrameId = requestAnimationFrame(animateShader);
-                }
-              } else {
-                // Pause loop
-                if (window.__shaderAnimationFrameId) {
-                  cancelAnimationFrame(window.__shaderAnimationFrameId);
-                  window.__shaderAnimationFrameId = null;
-                }
-              }
-            }, { threshold: 0.02 });
-            observer.observe(heroEl);
-          } else {
-            window.__shaderAnimationFrameId = requestAnimationFrame(animateShader);
+        const animateShader = (time) => {
+          if (window.__liquidShaderInstance !== liquidShader) {
+            return;
           }
+          liquidShader.render(time);
+          window.__shaderAnimationFrameId = requestAnimationFrame(animateShader);
+        };
+
+        // IntersectionObserver to pause rendering when hero is out of view
+        const heroEl = document.getElementById("hero");
+        if (heroEl) {
+          const observer = new IntersectionObserver((entries) => {
+            const [entry] = entries;
+            if (entry.isIntersecting) {
+              // Resume loop if not running
+              if (!window.__shaderAnimationFrameId && window.__liquidShaderInstance === liquidShader) {
+                window.__shaderAnimationFrameId = requestAnimationFrame(animateShader);
+              }
+            } else {
+              // Pause loop
+              if (window.__shaderAnimationFrameId) {
+                cancelAnimationFrame(window.__shaderAnimationFrameId);
+                window.__shaderAnimationFrameId = null;
+              }
+            }
+          }, { threshold: 0.02 });
+          observer.observe(heroEl);
+        } else {
+          window.__shaderAnimationFrameId = requestAnimationFrame(animateShader);
         }
       }
 
