@@ -2381,6 +2381,34 @@ function initFooterClock() {
   window.__footerClockInterval = setInterval(updateClock, 1000);
 }
 
+// ── FOOTER FAQ ACCORDION ────────────────────────────────────────────────
+function initFooterFAQ() {
+  const items = document.querySelectorAll(".footer-faq-item");
+  if (!items.length) return;
+
+  items.forEach((item) => {
+    const btn = item.querySelector(".footer-faq-question");
+    if (!btn) return;
+
+    btn.addEventListener("click", () => {
+      const isOpen = item.classList.contains("is-open");
+
+      // Close all items first
+      items.forEach((other) => {
+        other.classList.remove("is-open");
+        const otherBtn = other.querySelector(".footer-faq-question");
+        if (otherBtn) otherBtn.setAttribute("aria-expanded", "false");
+      });
+
+      // If it was closed, open it
+      if (!isOpen) {
+        item.classList.add("is-open");
+        btn.setAttribute("aria-expanded", "true");
+      }
+    });
+  });
+}
+
 // ── MAIN CONTROLLER ─────────────────────────────────────────────────────
 const AppController = {
   afterLoad(isProjectPage) {
@@ -2424,6 +2452,9 @@ const AppController = {
 
       // Initialize footer clock
       initFooterClock();
+
+      // Initialize footer FAQ accordion
+      initFooterFAQ();
 
       // Initialize liquid gradient shader
       let shaderCanvas = document.getElementById("shaderCanvas");
