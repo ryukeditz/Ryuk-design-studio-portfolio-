@@ -2320,40 +2320,29 @@ function initVideoGallery() {
   document.addEventListener("keydown", window.__videoGalleryKeydownHandler);
 }
 
-// ── LAZY-LOAD VIMEO THUMBNAILS VIA OEMBED ────────────────────────────────
-function initVimeoThumbnails() {
-  const cards = document.querySelectorAll(".video-card-wrapper");
-  const fallbackPosterMap = {
-    "1203870359": "images/works/lakai/poster.jpg",
-    "1203870364": "images/works/appsee/poster.jpg",
-    "1203870358": "images/works/appsee/poster.jpg",
-    "1203870360": "images/works/appsee/poster.jpg",
-    "1203866870": "images/works/elyxir/poster.jpg"
-  };
+// ── OBSERVE AND PLAY/PAUSE NATIVE PREVIEW VIDEOS ────────────────────────
+function initPreviewVideosObserver() {
+  const videos = document.querySelectorAll(".card-preview-video");
+  if (!videos.length) return;
 
-  cards.forEach((card) => {
-    const vimeoId = card.getAttribute("data-vimeo-id");
-    const img = card.querySelector(".video-poster-img");
-    if (!vimeoId || !img) return;
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      const video = entry.target;
+      if (entry.isIntersecting) {
+        // Play video when visible
+        video.play().catch((err) => {
+          console.warn("Preview video play failed/blocked:", err);
+        });
+      } else {
+        // Pause video when out of viewport
+        video.pause();
+      }
+    });
+  }, { threshold: 0.05 });
 
-    // Fetch from public oEmbed API
-    fetch(`https://vimeo.com/api/oembed.json?url=https://vimeo.com/${vimeoId}&width=640`)
-      .then((res) => res.json())
-      .then((data) => {
-        if (data && data.thumbnail_url) {
-          img.src = data.thumbnail_url;
-        } else if (fallbackPosterMap[vimeoId]) {
-          img.src = fallbackPosterMap[vimeoId];
-        }
-      })
-      .catch((err) => {
-        console.warn(`oEmbed failed for vimeo ID ${vimeoId}, using fallback poster:`, err);
-        if (fallbackPosterMap[vimeoId]) {
-          img.src = fallbackPosterMap[vimeoId];
-        }
-      });
-  });
+  videos.forEach((video) => observer.observe(video));
 }
+
 
 // ── CONTACT FORM TO WHATSAPP ────────────────────────────────────────────
 function initContactForm() {
@@ -2483,7 +2472,7 @@ const AppController = {
     if (!isProjectPage) {
       // Initialize video gallery
       initVideoGallery();
-      initVimeoThumbnails();
+      initPreviewVideosObserver();
 
       // Initialize contact form
       initContactForm();
