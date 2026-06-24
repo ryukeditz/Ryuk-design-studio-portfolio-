@@ -2522,6 +2522,7 @@ button {
   display: none !important;
 }
 
+
 .video-card {
   display: flex;
   flex-direction: column;
@@ -2538,8 +2539,14 @@ button {
   background-color: #000;
 }
 
-.video-card video,
-.vimeo-bg-iframe {
+.video-poster-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.video-poster-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -2547,21 +2554,53 @@ button {
   transition: transform 0.6s var(--ease-out);
 }
 
-/* Vimeo background iframe — fills container like a video */
-.vimeo-bg-iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border: 0;
-  pointer-events: none; /* clicks pass through to the card, not the iframe */
-  transition: transform 0.6s var(--ease-out);
+.video-card:hover .video-poster-img {
+  transform: scale(1.05);
 }
 
-.video-card:hover video,
-.video-card:hover .vimeo-bg-iframe {
-  transform: scale(1.03);
+.video-play-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.25);
+  transition: background-color 0.4s var(--ease-out);
+  pointer-events: none;
+}
+
+.video-card:hover .video-play-overlay {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.video-play-btn-circle {
+  width: clamp(48px, 5vw, 64px);
+  height: clamp(48px, 5vw, 64px);
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: 
+    transform 0.4s var(--ease-out), 
+    background-color 0.4s var(--ease-out), 
+    border-color 0.4s var(--ease-out);
+}
+
+.video-card:hover .video-play-btn-circle {
+  transform: scale(1.1);
+  background-color: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.6);
+}
+
+.play-svg-icon {
+  width: 18px;
+  height: 18px;
+  margin-left: 2px; /* optical centering */
 }
 
 .video-info {

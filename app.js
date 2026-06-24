@@ -84,7 +84,7 @@ class LiquidShader {
       return;
     }
 
-    this.pixelRatio = window.devicePixelRatio || 1;
+    this.pixelRatio = Math.min(window.devicePixelRatio || 1, 1.5);
     this.resize();
 
     // Shader parameter defaults matching voltra
@@ -2320,6 +2320,41 @@ function initVideoGallery() {
   document.addEventListener("keydown", window.__videoGalleryKeydownHandler);
 }
 
+// ── LAZY-LOAD VIMEO THUMBNAILS VIA OEMBED ────────────────────────────────
+function initVimeoThumbnails() {
+  const cards = document.querySelectorAll(".video-card-wrapper");
+  const fallbackPosterMap = {
+    "1203870359": "images/works/lakai/poster.jpg",
+    "1203870364": "images/works/appsee/poster.jpg",
+    "1203870358": "images/works/appsee/poster.jpg",
+    "1203870360": "images/works/appsee/poster.jpg",
+    "1203866870": "images/works/elyxir/poster.jpg"
+  };
+
+  cards.forEach((card) => {
+    const vimeoId = card.getAttribute("data-vimeo-id");
+    const img = card.querySelector(".video-poster-img");
+    if (!vimeoId || !img) return;
+
+    // Fetch from public oEmbed API
+    fetch(`https://vimeo.com/api/oembed.json?url=https://vimeo.com/${vimeoId}&width=640`)
+      .then((res) => res.json())
+      .then((data) => {
+        if (data && data.thumbnail_url) {
+          img.src = data.thumbnail_url;
+        } else if (fallbackPosterMap[vimeoId]) {
+          img.src = fallbackPosterMap[vimeoId];
+        }
+      })
+      .catch((err) => {
+        console.warn(`oEmbed failed for vimeo ID ${vimeoId}, using fallback poster:`, err);
+        if (fallbackPosterMap[vimeoId]) {
+          img.src = fallbackPosterMap[vimeoId];
+        }
+      });
+  });
+}
+
 // ── CONTACT FORM TO WHATSAPP ────────────────────────────────────────────
 function initContactForm() {
   const whatsappForm = document.getElementById("whatsappForm");
@@ -2448,6 +2483,7 @@ const AppController = {
     if (!isProjectPage) {
       // Initialize video gallery
       initVideoGallery();
+      initVimeoThumbnails();
 
       // Initialize contact form
       initContactForm();
@@ -2495,13 +2531,34 @@ const AppController = {
 
           const animateShader = (time) => {
             if (window.__liquidShaderInstance !== liquidShader) {
-              // Stop this animation loop if it's an old instance
               return;
             }
             liquidShader.render(time);
             window.__shaderAnimationFrameId = requestAnimationFrame(animateShader);
           };
-          window.__shaderAnimationFrameId = requestAnimationFrame(animateShader);
+
+          // IntersectionObserver to pause rendering when hero is out of view
+          const heroEl = document.getElementById("hero");
+          if (heroEl) {
+            const observer = new IntersectionObserver((entries) => {
+              const [entry] = entries;
+              if (entry.isIntersecting) {
+                // Resume loop if not running
+                if (!window.__shaderAnimationFrameId && window.__liquidShaderInstance === liquidShader) {
+                  window.__shaderAnimationFrameId = requestAnimationFrame(animateShader);
+                }
+              } else {
+                // Pause loop
+                if (window.__shaderAnimationFrameId) {
+                  cancelAnimationFrame(window.__shaderAnimationFrameId);
+                  window.__shaderAnimationFrameId = null;
+                }
+              }
+            }, { threshold: 0.02 });
+            observer.observe(heroEl);
+          } else {
+            window.__shaderAnimationFrameId = requestAnimationFrame(animateShader);
+          }
         }
       }
 

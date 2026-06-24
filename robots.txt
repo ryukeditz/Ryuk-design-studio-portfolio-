@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ryukeditz.github.io/Ryuk-design-studio-portfolio-/sitemap.xml

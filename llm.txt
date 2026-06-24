@@ -1,0 +1,40 @@
+# Ryuk Design Studio
+
+Ryuk Design Studio is a premium design and motion agency specializing in high-end motion design, interactive web development, branding, and video production for high-growth ventures and Y Combinator-backed startups.
+
+## Contact Information
+
+- **Email**: ryukdesignstudio@zohomail.in
+- **WhatsApp / Phone**: +91 6289059806
+- **Contra**: https://contra.com/roshan_kumar4
+- **LinkedIn**: https://www.linkedin.com/in/ryuk-design-studio-643504419/
+- **X (formerly Twitter)**: https://x.com/ryuk__editzz
+- **Instagram**: https://www.instagram.com/ryukdesign.studio/
+
+## Services Offered
+
+- **Motion Design & Animation**: High-end advertising videos, product walkthroughs, spec ads, and social media reels.
+- **Web Design & Development**: Premium, highly interactive portfolio and marketing websites (utilizing custom WebGL, GSAP animations, and tailored CSS layouts).
+- **Brand Identity & Graphic Design**: Logos, color systems, typography styling, and visual asset packages.
+
+## Budget & Turnaround Time
+
+- **Standard Projects**: Budgets generally start from **$1,500 – $2,000**.
+- **Services Included**: Detailed content research, copywriting, scripting, storyboarding, design, premium animation, revision rounds, and final delivery.
+- **Turnaround Time**: Standard project timelines range between **3 to 6 weeks** from start to finish, depending on project complexity.
+
+## Key Projects
+
+1. **Lakai** — High-energy motion graphics and product showcases.
+2. **Gemini Spec Ad** — Cutting-edge visual spec ad conceptualization.
+3. **Appsee (Walkthrough & Features)** — Multi-part interface walkthrough and feature-rich product demonstration videos.
+4. **Elyxir** — Smooth, premium product and SaaS motion showcase.
+5. **Nestora** — Brand identity and spatial/architectural design overview.
+6. **The Room** — Immersive interior design showcase.
+
+## Website Navigation
+
+- **Home Page**: [index.html](https://ryukeditz.github.io/Ryuk-design-studio-portfolio-/index.html)
+- **Nestora Case Study**: [nestora.html](https://ryukeditz.github.io/Ryuk-design-studio-portfolio-/nestora.html)
+- **The Room Case Study**: [theroom.html](https://ryukeditz.github.io/Ryuk-design-studio-portfolio-/theroom.html)
+- **General Projects Grid**: [project.html](https://ryukeditz.github.io/Ryuk-design-studio-portfolio-/project.html)
