@@ -2352,15 +2352,13 @@ button {
     white-space: normal;
   }
 
-  .voice-char {
-    opacity: 1 !important;
-    transform: none !important;
+  .voice-signature {
+    width: 90px;
   }
 
-  .voice-signature {
-    opacity: 1 !important;
-    transform: none !important;
-    width: 90px;
+  .gallery-img-wrapper,
+  .gallery-img-wrapper img {
+    transition: none !important;
   }
 
   .voice-right {
