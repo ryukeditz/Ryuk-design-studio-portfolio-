@@ -2309,8 +2309,11 @@ button {
   aspect-ratio: 0.7 / 1;
 }
 
-/* Responsive collapse on mobile */
 @media (max-width: 809px) {
+  .hero-shader-wrapper {
+    background: radial-gradient(circle at 50% 50%, rgba(20, 20, 20, 0.95) 0%, rgba(0, 0, 0, 1) 100%);
+  }
+
   .voice-section {
     padding: 80px 20px 0;
   }

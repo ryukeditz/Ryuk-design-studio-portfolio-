@@ -34,7 +34,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
-    <link rel="stylesheet" href="style.css?v=32" />
+    <link rel="stylesheet" href="style.css?v=33" />
   </head>
   <body class="is-loading">
     <!-- ── PRELOADER ──────────────────────────────────────────────────────── -->
@@ -552,6 +552,64 @@
           <!-- Divider -->
           <div class="trionn-footer-divider"></div>
 
+          <!-- ── FAQ SECTION ──────────────────────────────────────────────── -->
+          <div class="footer-faq-section" style="border-top: none; margin-top: 0; padding-top: 0; margin-bottom: clamp(40px, 7vw, 80px);">
+            <div class="footer-faq-header">
+              <span class="footer-faq-label font-mono">FREQUENTLY ASKED</span>
+              <h3 class="footer-faq-title">Common Questions</h3>
+            </div>
+            <div class="footer-faq-list">
+
+              <!-- Q1 -->
+              <div class="footer-faq-item" id="faq-1">
+                <button class="footer-faq-question" aria-expanded="false" aria-controls="faq-answer-1">
+                  <span>How much do motion projects cost?</span>
+                  <span class="footer-faq-icon" aria-hidden="true"></span>
+                </button>
+                <div class="footer-faq-answer" id="faq-answer-1" role="region">
+                  <p>Most projects start from <strong>$1,500 to $2,000</strong>, which is where clients generally start. This includes content research, scripting, storyboarding, animation, revisions, and final delivery. Every project is individually quoted depending on its complexity and timeline.</p>
+                </div>
+              </div>
+
+              <!-- Q2 -->
+              <div class="footer-faq-item" id="faq-2">
+                <button class="footer-faq-question" aria-expanded="false" aria-controls="faq-answer-2">
+                  <span>How long does a project take?</span>
+                  <span class="footer-faq-icon" aria-hidden="true"></span>
+                </button>
+                <div class="footer-faq-answer" id="faq-answer-2" role="region">
+                  <p>Our standard turnaround is <strong>3 to 6 weeks</strong> from start to finish, covering research, scripting, storyboarding, design, animation, revisions, and final delivery. Timelines may vary depending on project complexity, scope, and feedback rounds.</p>
+                </div>
+              </div>
+
+              <!-- Q3 -->
+              <div class="footer-faq-item" id="faq-3">
+                <button class="footer-faq-question" aria-expanded="false" aria-controls="faq-answer-3">
+                  <span>How many revision rounds are included?</span>
+                  <span class="footer-faq-icon" aria-hidden="true"></span>
+                </button>
+                <div class="footer-faq-answer" id="faq-answer-3" role="region">
+                  <p><strong>3 free revision rounds</strong> are included with every project for your complete satisfaction. Additional rounds beyond that are available at a fair extra charge, depending on complexity.</p>
+                </div>
+              </div>
+
+              <!-- Q4 -->
+              <div class="footer-faq-item" id="faq-4">
+                <button class="footer-faq-question" aria-expanded="false" aria-controls="faq-answer-4">
+                  <span>How does the payment work?</span>
+                  <span class="footer-faq-icon" aria-hidden="true"></span>
+                </button>
+                <div class="footer-faq-answer" id="faq-answer-4" role="region">
+                  <p>Payment is split into two milestones: <strong>50% upfront</strong> to kick off the project, and the <strong>remaining 50% upon completion</strong> before final file delivery.</p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Divider between FAQ and Form -->
+          <div class="trionn-footer-divider" style="margin-bottom: clamp(40px, 7vw, 80px);"></div>
+
           <!-- Main Grid -->
           <div class="trionn-footer-grid">
             <!-- Left Column: Bold Title + Copyright & Hover instructions -->
@@ -606,7 +664,7 @@
                       <select id="form-budget" required class="trionn-form-select">
                         <option value="" disabled selected></option>
                         <option value="$500 - $1,000">$500 – $1,000</option>
-                        <option value="$1,500 - $2,500">$1,500 – $2,500</option>
+                        <option value="$1,500 - $2,000">$1,500 – $2,000</option>
                         <option value="$5,000+">$5,000+</option>
                       </select>
                     </div>
@@ -659,61 +717,6 @@
             </div>
           </div>
 
-          <!-- ── FAQ SECTION ──────────────────────────────────────────────── -->
-          <div class="footer-faq-section">
-            <div class="footer-faq-header">
-              <span class="footer-faq-label font-mono">FREQUENTLY ASKED</span>
-              <h3 class="footer-faq-title">Common Questions</h3>
-            </div>
-            <div class="footer-faq-list">
-
-              <!-- Q1 -->
-              <div class="footer-faq-item" id="faq-1">
-                <button class="footer-faq-question" aria-expanded="false" aria-controls="faq-answer-1">
-                  <span>How much do motion projects cost?</span>
-                  <span class="footer-faq-icon" aria-hidden="true"></span>
-                </button>
-                <div class="footer-faq-answer" id="faq-answer-1" role="region">
-                  <p>Most projects start from <strong>$1,000 to $2,500</strong>, which includes content research, scripting, storyboarding, animation, revisions, and final delivery. Every project is individually quoted depending on its complexity and timeline.</p>
-                </div>
-              </div>
-
-              <!-- Q2 -->
-              <div class="footer-faq-item" id="faq-2">
-                <button class="footer-faq-question" aria-expanded="false" aria-controls="faq-answer-2">
-                  <span>How long does a project take?</span>
-                  <span class="footer-faq-icon" aria-hidden="true"></span>
-                </button>
-                <div class="footer-faq-answer" id="faq-answer-2" role="region">
-                  <p>Our standard turnaround is <strong>3 to 6 weeks</strong> from start to finish, covering research, scripting, storyboarding, design, animation, revisions, and final delivery. Timelines may vary depending on project complexity, scope, and feedback rounds.</p>
-                </div>
-              </div>
-
-              <!-- Q3 -->
-              <div class="footer-faq-item" id="faq-3">
-                <button class="footer-faq-question" aria-expanded="false" aria-controls="faq-answer-3">
-                  <span>How many revision rounds are included?</span>
-                  <span class="footer-faq-icon" aria-hidden="true"></span>
-                </button>
-                <div class="footer-faq-answer" id="faq-answer-3" role="region">
-                  <p><strong>3 free revision rounds</strong> are included with every project for your complete satisfaction. Additional rounds beyond that are available at a fair extra charge, depending on complexity.</p>
-                </div>
-              </div>
-
-              <!-- Q4 -->
-              <div class="footer-faq-item" id="faq-4">
-                <button class="footer-faq-question" aria-expanded="false" aria-controls="faq-answer-4">
-                  <span>How does the payment work?</span>
-                  <span class="footer-faq-icon" aria-hidden="true"></span>
-                </button>
-                <div class="footer-faq-answer" id="faq-answer-4" role="region">
-                  <p>Payment is split into two milestones: <strong>50% upfront</strong> to kick off the project, and the <strong>remaining 50% upon completion</strong> before final file delivery.</p>
-                </div>
-              </div>
-
-            </div>
-          </div>
-
           <!-- Huge Lined Wordmark at Bottom -->
           <div class="trionn-wordmark-container">
             <h2 class="trionn-lined-wordmark font-title" id="footerWordmark">RYUK</h2>
@@ -736,6 +739,6 @@
       </div>
     </div>
 
-    <script src="app.js?v=32"></script>
+    <script src="app.js?v=33"></script>
   </body>
 </html>

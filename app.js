@@ -1164,17 +1164,38 @@ class Animations {
         );
       }
 
-      const wrappers = qq(".gallery-img-wrapper");
-      wrappers.forEach((wrap, index) => {
-        // 1. Inner image scale & translation parallax
-        const img = wrap.querySelector("img");
-        if (img) {
+      if (window.innerWidth > 809) {
+        const wrappers = qq(".gallery-img-wrapper");
+        wrappers.forEach((wrap, index) => {
+          // 1. Inner image scale & translation parallax
+          const img = wrap.querySelector("img");
+          if (img) {
+            gsap.fromTo(
+              img,
+              { scale: 1.25, yPercent: -6 },
+              {
+                scale: 1.25,
+                yPercent: 6,
+                scrollTrigger: {
+                  trigger: wrap,
+                  start: "top bottom",
+                  end: "bottom top",
+                  scrub: true,
+                },
+              }
+            );
+          }
+
+          // 2. Outer wrapper staggered vertical translation parallax for depth
+          const isEven = index % 2 === 0;
+          const yStart = isEven ? 50 : -50;
+          const yEnd = isEven ? -50 : 50;
+
           gsap.fromTo(
-            img,
-            { scale: 1.25, yPercent: -6 },
+            wrap,
+            { y: yStart },
             {
-              scale: 1.25,
-              yPercent: 6,
+              y: yEnd,
               scrollTrigger: {
                 trigger: wrap,
                 start: "top bottom",
@@ -1183,27 +1204,8 @@ class Animations {
               },
             }
           );
-        }
-
-        // 2. Outer wrapper staggered vertical translation parallax for depth
-        const isEven = index % 2 === 0;
-        const yStart = isEven ? 50 : -50;
-        const yEnd = isEven ? -50 : 50;
-
-        gsap.fromTo(
-          wrap,
-          { y: yStart },
-          {
-            y: yEnd,
-            scrollTrigger: {
-              trigger: wrap,
-              start: "top bottom",
-              end: "bottom top",
-              scrub: true,
-            },
-          }
-        );
-      });
+        });
+      }
     }
   }
 
@@ -2477,24 +2479,30 @@ const AppController = {
         window.__liquidShaderInstance = null;
       }
 
+      const isMobile = window.innerWidth <= 809;
       if (shaderCanvas) {
-        // Recreate canvas to completely bypass browser context reuse limits after loseContext()
-        const newCanvas = shaderCanvas.cloneNode(true);
-        shaderCanvas.parentNode.replaceChild(newCanvas, shaderCanvas);
-        shaderCanvas = newCanvas;
+        if (isMobile) {
+          shaderCanvas.style.display = "none";
+        } else {
+          shaderCanvas.style.display = "";
+          // Recreate canvas to completely bypass browser context reuse limits after loseContext()
+          const newCanvas = shaderCanvas.cloneNode(true);
+          shaderCanvas.parentNode.replaceChild(newCanvas, shaderCanvas);
+          shaderCanvas = newCanvas;
 
-        const liquidShader = new LiquidShader(shaderCanvas);
-        window.__liquidShaderInstance = liquidShader;
+          const liquidShader = new LiquidShader(shaderCanvas);
+          window.__liquidShaderInstance = liquidShader;
 
-        const animateShader = (time) => {
-          if (window.__liquidShaderInstance !== liquidShader) {
-            // Stop this animation loop if it's an old instance
-            return;
-          }
-          liquidShader.render(time);
+          const animateShader = (time) => {
+            if (window.__liquidShaderInstance !== liquidShader) {
+              // Stop this animation loop if it's an old instance
+              return;
+            }
+            liquidShader.render(time);
+            window.__shaderAnimationFrameId = requestAnimationFrame(animateShader);
+          };
           window.__shaderAnimationFrameId = requestAnimationFrame(animateShader);
-        };
-        window.__shaderAnimationFrameId = requestAnimationFrame(animateShader);
+        }
       }
 
       const worksEl = document.getElementById("works");
