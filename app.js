@@ -675,8 +675,10 @@ class Nav {
     this.nav = q("#nav");
     this.burger = q("#navBurger");
     this.mob = q("#mobMenu");
+    this.navLinksContainer = q(".nav-links-custom");
     this.open = false;
     this.init();
+    this.initFloatingUnderline();
   }
 
   init() {
@@ -686,7 +688,7 @@ class Nav {
     }
 
     // Close mob on link click
-    qq(".mob-link, .nav-link").forEach((a) => a.addEventListener("click", () => this.closeMob()));
+    qq(".mob-link, .nav-link-custom").forEach((a) => a.addEventListener("click", () => this.closeMob()));
 
     // Scroll-based nav bg intensify
     if (this.nav) {
@@ -696,6 +698,125 @@ class Nav {
         onLeaveBack: () => this.nav.classList.remove("scrolled"),
       });
     }
+  }
+
+  initFloatingUnderline() {
+    if (!this.navLinksContainer) return;
+
+    let underline = this.navLinksContainer.querySelector(".nav-underline-floating");
+    if (!underline) {
+      underline = document.createElement("div");
+      underline.className = "nav-underline-floating";
+      this.navLinksContainer.appendChild(underline);
+    }
+
+    const links = this.navLinksContainer.querySelectorAll(".nav-link-custom");
+
+    const update = (link) => {
+      if (!link) {
+        underline.style.opacity = "0";
+        underline.style.width = "0px";
+        return;
+      }
+      const parentRect = this.navLinksContainer.getBoundingClientRect();
+      const linkRect = link.getBoundingClientRect();
+      const left = linkRect.left - parentRect.left;
+      underline.style.left = `${left}px`;
+      underline.style.width = `${linkRect.width}px`;
+      underline.style.opacity = "1";
+    };
+
+    links.forEach((link) => {
+      link.addEventListener("mouseenter", () => update(link));
+    });
+
+    this.navLinksContainer.addEventListener("mouseleave", () => {
+      const activeLink = this.getActiveLink();
+      update(activeLink);
+    });
+
+    window.addEventListener("resize", () => {
+      const activeLink = this.getActiveLink();
+      update(activeLink);
+    });
+
+    // Scroll active section observer on homepage
+    const currentPath = window.location.pathname;
+    const isHome = currentPath.endsWith("index.html") || currentPath === "/" || currentPath.endsWith("/");
+
+    if (isHome) {
+      const sections = ["hero", "works", "about", "contact"];
+      const observerOptions = {
+        root: null,
+        rootMargin: "-45% 0px -45% 0px",
+        threshold: 0,
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const id = entry.target.id;
+            links.forEach((link) => {
+              const href = link.getAttribute("href");
+              if (href === `#${id}` || href.endsWith(`#${id}`)) {
+                links.forEach((l) => l.classList.remove("active"));
+                link.classList.add("active");
+                // Only update position if mouse is not currently hovering over the links container
+                const isHovered = this.navLinksContainer.matches(":hover");
+                if (!isHovered) {
+                  update(link);
+                }
+              }
+            });
+          }
+        });
+      }, observerOptions);
+
+      sections.forEach((id) => {
+        const el = document.getElementById(id);
+        if (el) observer.observe(el);
+      });
+    }
+
+    // Set initial position
+    setTimeout(() => {
+      const activeLink = this.getActiveLink();
+      update(activeLink);
+    }, 150);
+  }
+
+  getActiveLink() {
+    if (!this.navLinksContainer) return null;
+    const links = this.navLinksContainer.querySelectorAll(".nav-link-custom");
+    const currentPath = window.location.pathname;
+    const currentHash = window.location.hash;
+
+    const isHome = currentPath.endsWith("index.html") || currentPath === "/" || currentPath.endsWith("/");
+
+    if (isHome) {
+      for (const link of links) {
+        if (link.classList.contains("active")) {
+          return link;
+        }
+      }
+      if (currentHash) {
+        for (const link of links) {
+          const href = link.getAttribute("href");
+          if (href === currentHash || href.endsWith(currentHash)) {
+            return link;
+          }
+        }
+      }
+      return links[0]; // fallback to Home
+    } else {
+      for (const link of links) {
+        const href = link.getAttribute("href");
+        if (href && !href.startsWith("#") && currentPath.includes(href)) {
+          return link;
+        }
+      }
+    }
+    return null;
   }
 
   toggleMob() {
@@ -978,18 +1099,29 @@ class Animations {
         lines.forEach((line) => {
           const text = line.textContent.trim();
           line.innerHTML = "";
-          for (let i = 0; i < text.length; i++) {
-            const char = text[i];
-            const span = document.createElement("span");
-            if (char === " ") {
-              span.innerHTML = "&nbsp;";
-              span.className = "voice-char-space";
-            } else {
+
+          const words = text.split(" ");
+          words.forEach((word, wordIdx) => {
+            const wordSpan = document.createElement("span");
+            wordSpan.style.display = "inline-block";
+            wordSpan.style.whiteSpace = "nowrap";
+
+            for (let i = 0; i < word.length; i++) {
+              const char = word[i];
+              const span = document.createElement("span");
               span.textContent = char;
               span.className = "voice-char";
+              wordSpan.appendChild(span);
             }
-            line.appendChild(span);
-          }
+            line.appendChild(wordSpan);
+
+            if (wordIdx < words.length - 1) {
+              const spaceSpan = document.createElement("span");
+              spaceSpan.innerHTML = "&nbsp;";
+              spaceSpan.className = "voice-char-space";
+              line.appendChild(spaceSpan);
+            }
+          });
         });
       }
 
@@ -1486,50 +1618,183 @@ function initHero3DParallax() {
 // ── PAGE TRANSITIONS ────────────────────────────────────────────────────
 class PageTransition {
   constructor(skipReveal) {
-    this.curtain = q("#curtain");
     this.init(skipReveal);
   }
 
   init(skipReveal) {
-    // Reveal page on load by scaling down curtain
-    if (this.curtain) {
-      if (skipReveal) {
-        gsap.set(this.curtain, { scaleY: 0 });
-      } else {
-        gsap.set(this.curtain, { scaleY: 1 });
-        gsap.to(this.curtain, {
-          scaleY: 0,
-          transformOrigin: "top center",
-          duration: 0.75,
-          ease: "expo.out",
-        });
-      }
+    const pageContent = q("#pageContent");
+    if (pageContent && !skipReveal) {
+      // Entrance animation: fade in and slide up
+      gsap.fromTo(
+        pageContent,
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.65,
+          ease: "power3.out",
+          clearProps: "transform,opacity",
+        }
+      );
     }
 
-    // Intercept internal links
-    qq('a[href^="project.html"], a[href^="index.html"]').forEach((a) => {
-      a.addEventListener("click", (e) => {
+    // Intercept internal links using event delegation
+    if (!window.__pjaxClickBound) {
+      document.addEventListener("click", (e) => {
+        const a = e.target.closest("a");
+        if (!a) return;
         const href = a.getAttribute("href");
-        e.preventDefault();
-        this.leave(href);
+
+        if (href && !href.startsWith("mailto:") && !href.startsWith("tel:") && a.getAttribute("target") !== "_blank") {
+          // Check if it's an internal link
+          try {
+            const url = new URL(href, window.location.href);
+            const isSamePage = url.pathname === window.location.pathname && url.search === window.location.search;
+            const isInternal = url.origin === window.location.origin;
+
+            if (isInternal) {
+              if (!isSamePage) {
+                // Different page -> Load page via PJAX transition
+                e.preventDefault();
+                this.loadPage(href, true);
+              } else if (url.hash) {
+                // Same page with hash -> Smooth scroll using Lenis if possible
+                const target = document.querySelector(url.hash);
+                if (target) {
+                  e.preventDefault();
+                  if (window.__lenis) {
+                    window.__lenis.scrollTo(target, { duration: 1.2, offset: -72 });
+                  } else {
+                    target.scrollIntoView({ behavior: "smooth" });
+                  }
+                }
+              }
+            }
+          } catch (err) {
+            // Invalid URL -> Let native browser action take place
+          }
+        }
       });
-    });
+      window.__pjaxClickBound = true;
+    }
+
+    // Handle back/forward buttons
+    if (!window.__popstateBound) {
+      window.addEventListener("popstate", () => {
+        this.loadPage(window.location.href, false);
+      });
+      window.__popstateBound = true;
+    }
   }
 
-  leave(href) {
+  async loadPage(href, push = true) {
+    const pageContent = q("#pageContent");
+    if (!pageContent) {
+      window.location.href = href;
+      return;
+    }
+
     // Hide hover reveal card instantly
     const reveal = q(".hover-reveal");
     if (reveal) reveal.style.opacity = "0";
 
-    gsap.to(this.curtain, {
-      scaleY: 1,
-      transformOrigin: "bottom center",
-      duration: 0.65,
-      ease: "expo.inOut",
-      onComplete: () => {
+    try {
+      // 1. Parallel fetch and exit animation for extreme responsiveness
+      const fetchPromise = fetch(href).then((res) => res.text());
+
+      const exitAnimPromise = gsap.to(pageContent, {
+        opacity: 0,
+        y: -30,
+        duration: 0.35,
+        ease: "power2.inOut",
+      });
+
+      // Wait for both the fetch and the animation to finish
+      const [htmlText] = await Promise.all([fetchPromise, exitAnimPromise]);
+
+      // 2. Parse HTML
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(htmlText, "text/html");
+      const newContent = doc.querySelector("#pageContent");
+
+      if (!newContent) {
         window.location.href = href;
-      },
-    });
+        return;
+      }
+
+      // 3. Swap content and update path
+      pageContent.innerHTML = newContent.innerHTML;
+      document.title = doc.title;
+      document.body.className = doc.body.className;
+
+      if (push) {
+        history.pushState(null, "", href);
+      }
+
+      // 4. Kill previous ScrollTrigger instances and Lenis instance
+      if (window.ScrollTrigger) {
+        ScrollTrigger.getAll().forEach((t) => t.kill());
+      }
+      if (window.__lenis) {
+        window.__lenis.destroy();
+      }
+
+      // 5. Extract and execute inline scripts on the new page
+      const scriptTags = doc.querySelectorAll("script:not([src])");
+      scriptTags.forEach((s) => {
+        const newScript = document.createElement("script");
+        newScript.textContent = s.textContent;
+        document.body.appendChild(newScript);
+        newScript.remove();
+      });
+
+      // Determine page type
+      const isProjectPage = href.includes("project") || href.includes("nestora") || href.includes("theroom");
+
+      // 6. Re-initialize all global modules (Lenis, ScrollTrigger, Nav, cursor, magnetic, tilt, etc.)
+      AppController.afterLoad(isProjectPage);
+
+      // Execute project-specific animations
+      setTimeout(() => {
+        if (typeof window.__projectInit === "function") {
+          window.__projectInit();
+        } else if (typeof initProjectAnimations === "function") {
+          initProjectAnimations();
+        }
+      }, 50);
+
+      // 7. Extract the hash from URL to scroll if present
+      const url = new URL(href, window.location.href);
+      const hash = url.hash;
+      if (hash) {
+        setTimeout(() => {
+          const target = document.querySelector(hash);
+          if (target && window.__lenis) {
+            window.__lenis.scrollTo(target, { duration: 1.2, offset: -72 });
+          } else if (target) {
+            target.scrollIntoView({ behavior: "smooth" });
+          }
+        }, 150);
+      } else {
+        window.scrollTo(0, 0);
+      }
+
+      // 8. Entrance animation: fade in and slide up
+      gsap.fromTo(
+        pageContent,
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.6,
+          ease: "power3.out",
+          clearProps: "transform,opacity",
+        }
+      );
+    } catch (err) {
+      console.error("PJAX navigation failed, falling back to reload:", err);
+      window.location.href = href;
+    }
   }
 }
 
@@ -1646,7 +1911,7 @@ const tt = [
         alt: "Nestora Studio Interior Design",
         count: 5,
         title: "Nestora Studio / Interior Design",
-        url: "project.html?project=nestora",
+        url: "nestora.html",
         format: "jpg",
       },
       {
@@ -1655,7 +1920,7 @@ const tt = [
         alt: "The Room Luxury Restaurant",
         count: 5,
         title: "The Room / Luxury Restaurant",
-        url: "project.html?project=theroom",
+        url: "theroom.html",
         format: "jpg",
       },
     ],
@@ -1748,7 +2013,7 @@ class ProjectsGrid extends SectionComponent {
 
         const link = document.createElement("a");
         link.href = n.url;
-        if (n.url !== "#") {
+        if (n.url.startsWith("http")) {
           link.target = "_blank";
           link.rel = "noopener noreferrer";
         }
@@ -1934,6 +2199,252 @@ class ProjectsGrid extends SectionComponent {
   }
 }
 
+// ── VIDEO GALLERY LIGHTBOX ──────────────────────────────────────────────
+function initVideoGallery() {
+  const filterBtns = document.querySelectorAll(".filter-btn");
+  const cards = document.querySelectorAll(".video-card-wrapper");
+  const modal = document.getElementById("lightboxModal");
+  const videoContainer = document.getElementById("lightboxVideoContainer");
+  const modalClose = document.getElementById("lightboxClose");
+  const modalOverlay = document.getElementById("lightboxOverlay");
+  const modalTitle = document.getElementById("lightboxTitle");
+  const btnPrev = document.getElementById("lightboxPrev");
+  const btnNext = document.getElementById("lightboxNext");
+
+  if (!cards.length || !modal || !videoContainer) return;
+
+  let activeIndex = 0;
+  let visibleCards = Array.from(cards);
+
+  // 1. FILTER FUNCTIONALITY
+  filterBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      filterBtns.forEach((b) => b.classList.remove("active"));
+      btn.classList.add("active");
+
+      const filterValue = btn.getAttribute("data-filter");
+      visibleCards = [];
+
+      cards.forEach((card) => {
+        const category = card.getAttribute("data-category");
+        if (filterValue === "all" || category === filterValue) {
+          card.style.display = "block";
+          visibleCards.push(card);
+        } else {
+          card.style.display = "none";
+        }
+      });
+
+      // Update data-index dynamically on filtered list for navigation purposes
+      visibleCards.forEach((card, idx) => {
+        card.setAttribute("data-filtered-index", idx);
+      });
+    });
+  });
+
+  // Initialize filtered index on boot
+  cards.forEach((card, idx) => {
+    card.setAttribute("data-filtered-index", idx);
+  });
+
+  // Helper to play only videos currently in the viewport
+  const playVisibleVideos = () => {
+    cards.forEach((c) => {
+      const v = c.querySelector("video");
+      if (!v) return;
+
+      const rect = c.getBoundingClientRect();
+      const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
+
+      if (isVisible && (!modal || !modal.classList.contains("active"))) {
+        const playPromise = v.play();
+        if (playPromise !== undefined) {
+          playPromise.catch(() => {});
+        }
+      } else {
+        v.pause();
+      }
+    });
+  };
+
+  // 2. LIGHTBOX LAUNCH
+  const openVideo = (card) => {
+    const vimeoId = card.getAttribute("data-vimeo-id");
+    const title = card.getAttribute("data-title");
+    activeIndex = parseInt(card.getAttribute("data-filtered-index"), 10);
+
+    if (vimeoId) {
+      videoContainer.innerHTML = `<iframe src="https://player.vimeo.com/video/${vimeoId}?autoplay=1&badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="${title}"></iframe>`;
+      if (modalTitle) modalTitle.textContent = title;
+      modal.classList.add("active");
+
+      // Pause Lenis smooth scroll
+      if (window.__lenis) {
+        window.__lenis.stop();
+      }
+
+      // Pause all card previews while lightbox is open
+      cards.forEach((c) => {
+        const v = c.querySelector("video");
+        if (v) v.pause();
+      });
+    }
+  };
+
+  cards.forEach((card) => {
+    card.addEventListener("click", () => openVideo(card));
+  });
+
+  // 2.5. HIGH-PERFORMANCE CONCURRENT AUTOPLAY (VIEWPORT OBSERVATION)
+  if ("IntersectionObserver" in window) {
+    const videoObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const video = entry.target.querySelector("video");
+          if (!video) return;
+
+          if (entry.isIntersecting && (!modal || !modal.classList.contains("active"))) {
+            const playPromise = video.play();
+            if (playPromise !== undefined) {
+              playPromise.catch(() => {});
+            }
+          } else {
+            video.pause();
+          }
+        });
+      },
+      {
+        root: null,
+        rootMargin: "0px",
+        threshold: 0.1, // trigger when 10% visible
+      }
+    );
+
+    cards.forEach((card) => {
+      videoObserver.observe(card);
+    });
+  } else {
+    // Fallback: simple scrolling listener
+    window.addEventListener("scroll", playVisibleVideos);
+    window.addEventListener("resize", playVisibleVideos);
+    // Initial run
+    playVisibleVideos();
+  }
+
+  const closeModal = () => {
+    modal.classList.remove("active");
+    videoContainer.innerHTML = ""; // Stop video playback
+
+    // Resume Lenis smooth scroll
+    if (window.__lenis) {
+      window.__lenis.start();
+    }
+
+    // Resume playing preview videos in viewport
+    playVisibleVideos();
+  };
+
+  if (modalClose) modalClose.addEventListener("click", closeModal);
+  if (modalOverlay) modalOverlay.addEventListener("click", closeModal);
+
+  // 3. NAVIGATION (PREV/NEXT)
+  const navigate = (direction) => {
+    if (!visibleCards.length) return;
+    if (direction === "next") {
+      activeIndex = (activeIndex + 1) % visibleCards.length;
+    } else {
+      activeIndex = (activeIndex - 1 + visibleCards.length) % visibleCards.length;
+    }
+    const nextCard = visibleCards[activeIndex];
+    openVideo(nextCard);
+  };
+
+  if (btnPrev) btnPrev.addEventListener("click", () => navigate("prev"));
+  if (btnNext) btnNext.addEventListener("click", () => navigate("next"));
+
+  // Bind Escape and arrow keys globally, cleaning up the old listener if it exists
+  if (window.__videoGalleryKeydownHandler) {
+    document.removeEventListener("keydown", window.__videoGalleryKeydownHandler);
+  }
+
+  window.__videoGalleryKeydownHandler = (e) => {
+    const activeModal = document.getElementById("lightboxModal");
+    if (!activeModal || !activeModal.classList.contains("active")) return;
+    if (e.key === "Escape") {
+      closeModal();
+    } else if (e.key === "ArrowRight") {
+      navigate("next");
+    } else if (e.key === "ArrowLeft") {
+      navigate("prev");
+    }
+  };
+
+  document.addEventListener("keydown", window.__videoGalleryKeydownHandler);
+}
+
+// ── CONTACT FORM TO WHATSAPP ────────────────────────────────────────────
+function initContactForm() {
+  const whatsappForm = document.getElementById("whatsappForm");
+  if (!whatsappForm) return;
+
+  whatsappForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const name = document.getElementById("form-name").value.trim();
+    const phone = document.getElementById("form-phone").value.trim();
+    const email = document.getElementById("form-email").value.trim();
+    const budget = document.getElementById("form-budget").value;
+    const brief = document.getElementById("form-brief").value.trim();
+
+    const whatsappNumber = "916289059806";
+    const message = `Hi Ryuk Design Studio,
+
+I want to query about a project:
+
+• Name: ${name}
+• Phone: ${phone}
+• Email: ${email}
+• Budget: ${budget}
+• Brief: ${brief}`;
+
+    const encodedMessage = encodeURIComponent(message);
+    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+
+    window.open(whatsappUrl, "_blank");
+  });
+}
+
+// ── FOOTER DYNAMIC CLOCK ────────────────────────────────────────────────
+function initFooterClock() {
+  const clockEl = document.getElementById("footerClock");
+  if (!clockEl) return;
+
+  function updateClock() {
+    const options = {
+      timeZone: "Asia/Kolkata",
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: false
+    };
+    try {
+      const formatter = new Intl.DateTimeFormat("en-US", options);
+      const timeStr = formatter.format(new Date());
+      clockEl.textContent = `IST → ${timeStr}`;
+    } catch (e) {
+      const now = new Date();
+      const hh = String(now.getHours()).padStart(2, "0");
+      const mm = String(now.getMinutes()).padStart(2, "0");
+      clockEl.textContent = `IST → ${hh}:${mm}`;
+    }
+  }
+
+  updateClock();
+  if (window.__footerClockInterval) {
+    clearInterval(window.__footerClockInterval);
+  }
+  window.__footerClockInterval = setInterval(updateClock, 1000);
+}
+
 // ── MAIN CONTROLLER ─────────────────────────────────────────────────────
 const AppController = {
   afterLoad(isProjectPage) {
@@ -1969,15 +2480,54 @@ const AppController = {
     new PageTransition(!isProjectPage);
     // Initialize works components
     if (!isProjectPage) {
+      // Initialize video gallery
+      initVideoGallery();
+
+      // Initialize contact form
+      initContactForm();
+
+      // Initialize footer clock
+      initFooterClock();
+
       // Initialize liquid gradient shader
-      const shaderCanvas = document.getElementById("shaderCanvas");
+      let shaderCanvas = document.getElementById("shaderCanvas");
+
+      // Clean up previous WebGL shader instance and animation loop to prevent context leaks
+      if (window.__shaderAnimationFrameId) {
+        cancelAnimationFrame(window.__shaderAnimationFrameId);
+        window.__shaderAnimationFrameId = null;
+      }
+      if (window.__liquidShaderInstance) {
+        try {
+          const gl = window.__liquidShaderInstance.gl;
+          if (gl) {
+            const ext = gl.getExtension("WEBGL_lose_context");
+            if (ext) ext.loseContext();
+          }
+        } catch (e) {
+          console.warn("WebGL cleanup error:", e);
+        }
+        window.__liquidShaderInstance = null;
+      }
+
       if (shaderCanvas) {
+        // Recreate canvas to completely bypass browser context reuse limits after loseContext()
+        const newCanvas = shaderCanvas.cloneNode(true);
+        shaderCanvas.parentNode.replaceChild(newCanvas, shaderCanvas);
+        shaderCanvas = newCanvas;
+
         const liquidShader = new LiquidShader(shaderCanvas);
+        window.__liquidShaderInstance = liquidShader;
+
         const animateShader = (time) => {
+          if (window.__liquidShaderInstance !== liquidShader) {
+            // Stop this animation loop if it's an old instance
+            return;
+          }
           liquidShader.render(time);
-          requestAnimationFrame(animateShader);
+          window.__shaderAnimationFrameId = requestAnimationFrame(animateShader);
         };
-        requestAnimationFrame(animateShader);
+        window.__shaderAnimationFrameId = requestAnimationFrame(animateShader);
       }
 
       const worksEl = document.getElementById("works");
@@ -2007,7 +2557,11 @@ window.addEventListener("DOMContentLoaded", () => {
   // Cursor (always on)
   new Cursor();
 
-  const isProjectPage = window.location.pathname.includes("project") || window.location.search.includes("project=");
+  const isProjectPage =
+    window.location.pathname.includes("project") ||
+    window.location.search.includes("project=") ||
+    window.location.pathname.includes("nestora") ||
+    window.location.pathname.includes("theroom");
 
   if (isProjectPage) {
     // On project page: skip preloader, init directly
@@ -2020,6 +2574,19 @@ window.addEventListener("DOMContentLoaded", () => {
     if (window.__animationsInstance) {
       window.__animationsInstance.triggerSiteReveal();
     }
+
+    // FAQ Accordion toggles
+    document.querySelectorAll(".faq-item").forEach((item) => {
+      item.addEventListener("click", () => {
+        const isActive = item.classList.contains("active");
+        document.querySelectorAll(".faq-item").forEach((other) => {
+          other.classList.remove("active");
+        });
+        if (!isActive) {
+          item.classList.add("active");
+        }
+      });
+    });
 
     // Run project-specific animations
     setTimeout(() => {

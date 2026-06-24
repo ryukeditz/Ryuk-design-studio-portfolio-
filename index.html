@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Ryuk Design Studio — Creative developer & designer crafting premium digital experiences, motion, and brand identities."
+      content="Ryuk Design Studio — Motion design agency crafting premium brand identities and commercial visuals."
     />
     <meta property="og:title" content="Ryuk® Design Studio" />
     <meta
@@ -13,7 +13,7 @@
       content="Bespoke digital experiences, motion design, and brand identities for brands that refuse to be ordinary."
     />
     <meta property="og:type" content="website" />
-    <title>Ryuk® Design Studio — Creative Developer & Designer</title>
+    <title>Ryuk® Design Studio — Motion Design Agency</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -26,6 +26,7 @@
       href="https://fonts.googleapis.com/css2?family=Antonio:wght@400;700&family=Bebas+Neue&family=Barlow+Condensed:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
+    <link href="https://api.fontshare.com/v2/css?f[]=clash-display@300,400,500,600,700&display=swap" rel="stylesheet" />
 
     <!-- Lenis Smooth Scroll -->
     <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
@@ -33,7 +34,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
-    <link rel="stylesheet" href="style.css?v=23" />
+    <link rel="stylesheet" href="style.css?v=30" />
   </head>
   <body class="is-loading">
     <!-- ── PRELOADER ──────────────────────────────────────────────────────── -->
@@ -41,9 +42,9 @@
       <section class="loading">
         <nav>
           <div class="brand font-mono">
-            <span>Ryuk® is a design &amp; technology</span>
-            <span>practice specializing in high-end</span>
-            <span>digital experiences, interaction, and motion.</span>
+            <span>Ryuk® is a motion design agency</span>
+            <span>crafting premium brand identities</span>
+            <span>and commercial visual content.</span>
           </div>
 
           <div class="year font-mono">
@@ -95,7 +96,7 @@
       <a href="#about" class="mob-link">/About</a>
       <a href="#contact" class="mob-link">/Contact</a>
       <div class="mob-footer">
-        <span>hello@ryukstudio.com</span>
+        <span>ryukdesignstudio@zohomail.in</span>
         <span>©<span class="js-year">25</span> Ryuk<span class="logo-reg">®</span></span>
       </div>
     </div>
@@ -104,291 +105,516 @@
     <!--  MAIN CONTENT                                                        -->
     <!-- ════════════════════════════════════════════════════════════════════ -->
 
-    <!-- ── HERO ───────────────────────────────────────────────────────────── -->
-    <section class="hero hero-section" id="hero">
-      <!-- WebGL shader canvas background -->
-      <div class="hero-shader-wrapper">
-        <canvas id="shaderCanvas" class="hero-shader-canvas"></canvas>
-        <div class="hero-shader-overlay"></div>
-      </div>
-
-      <div class="hero-voltra-container">
-        <!-- Left side address -->
-        <div class="hero-left-address js-reveal-up">
-          <div class="address-text font-inter">
-            United States<br />
-            New York City, NY<br />
-            10013, Manhattan
-          </div>
-          <a href="#about" class="address-link font-mono">visit.</a>
+    <main id="pageContent">
+      <!-- ── HERO ───────────────────────────────────────────────────────────── -->
+      <section class="hero hero-section" id="hero">
+        <!-- WebGL shader canvas background -->
+        <div class="hero-shader-wrapper">
+          <canvas id="shaderCanvas" class="hero-shader-canvas"></canvas>
+          <div class="hero-shader-overlay"></div>
         </div>
 
-        <!-- Center block -->
-        <div class="hero-center-group">
-          <div class="hero-year-badge font-inter js-reveal-up">©2026</div>
-          <h1 class="hero-title font-jost">RYUK®</h1>
-          <div class="hero-services-row js-reveal-up">
-            <div class="service-item-pill"><span class="service-num-small">(01)</span> Branding</div>
-            <div class="service-item-pill"><span class="service-num-small">(02)</span> Design</div>
-            <div class="service-item-pill"><span class="service-num-small">(03)</span> Development</div>
-          </div>
-        </div>
-
-        <!-- Right side established -->
-        <div class="hero-right-established js-reveal-up">
-          <div class="est-year font-inter">2025</div>
-          <div class="est-label font-inter">Established since.</div>
-        </div>
-
-        <!-- Bottom left description paragraph -->
-        <div class="hero-bottom-desc js-reveal-up">
-          <div class="desc-angle-decorator">┐</div>
-          <p class="desc-text font-inter">
-            We partner with startups and visionaries<br />
-            to craft brand identities, digital<br />
-            experiences and narratives that resonate.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ── OUR PROCESS ────────────────────────────────────────────────────── -->
-    <section class="process-section" id="process">
-      <div class="process-inner">
-        <!-- Header Row -->
-        <div class="process-header-row">
-          <div class="process-label font-mono">• (03) Our Process</div>
-          <h2 class="process-main-title"><span class="dimmed">A Thoughtful Process </span>Behind Our Work</h2>
-          <div class="process-sub-caption font-inter">Built through understanding and thoughtful collaboration.</div>
-        </div>
-
-        <!-- Cards Row -->
-        <div class="process-cards-row">
-          <!-- Step 1: Think -->
-          <div class="process-card">
-            <div class="process-card-header">
-              <span class="process-card-num">(01)</span>
-              <h3 class="process-card-title">Think</h3>
+        <div class="hero-voltra-container">
+          <!-- Left side address -->
+          <div class="hero-left-address js-reveal-up">
+            <div class="address-text font-inter">
+              India<br />
+              West Bengal<br />
+              Kolkata
             </div>
-            <div class="process-card-body">
-              <div class="process-card-body-inner">
-                <div class="process-card-image-wrap">
-                  <img src="images/process_think.png" alt="Think" class="process-card-img" />
+            <a href="#about" class="address-link font-mono">visit.</a>
+          </div>
+
+          <!-- Center block -->
+          <div class="hero-center-group">
+            <div class="hero-year-badge font-inter js-reveal-up">©2026</div>
+            <h1 class="hero-title font-jost">RYUK®</h1>
+            <div class="hero-services-row js-reveal-up">
+              <div class="service-item-pill"><span class="service-num-small">(01)</span> Branding</div>
+              <div class="service-item-pill"><span class="service-num-small">(02)</span> Motion Design</div>
+            </div>
+          </div>
+
+          <!-- Right side established -->
+          <div class="hero-right-established js-reveal-up">
+            <div class="est-year font-inter">2025</div>
+            <div class="est-label font-inter">Established since.</div>
+          </div>
+
+          <!-- Bottom left description paragraph -->
+          <div class="hero-bottom-desc js-reveal-up">
+            <div class="desc-angle-decorator">┐</div>
+            <p class="desc-text font-inter">
+              We engineer high-impact VSL commercials<br />
+              and cinematic motion design that captures<br />
+              attention and drives high-intent conversions.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── OUR PROCESS ────────────────────────────────────────────────────── -->
+      <section class="process-section" id="process">
+        <div class="process-inner">
+          <!-- Header Row -->
+          <div class="process-header-row">
+            <div class="process-label font-mono">• (03) Our Process</div>
+            <h2 class="process-main-title"><span class="dimmed">A Thoughtful Process </span>Behind Our Work</h2>
+            <div class="process-sub-caption font-inter">Built through understanding and thoughtful collaboration.</div>
+          </div>
+
+          <!-- Cards Row -->
+          <div class="process-cards-row">
+            <!-- Step 1: Think -->
+            <div class="process-card">
+              <div class="process-card-header">
+                <span class="process-card-num">(01)</span>
+                <h3 class="process-card-title">Think</h3>
+              </div>
+              <div class="process-card-body">
+                <div class="process-card-body-inner">
+                  <div class="process-card-image-wrap">
+                    <img src="images/process_think.png" alt="Think" class="process-card-img" />
+                  </div>
+                  <p class="process-card-desc font-inter">
+                    Every project starts with understanding. We listen, ask questions, and grasp the business, product,
+                    and people. Clear context leads to better decisions.
+                  </p>
                 </div>
-                <p class="process-card-desc font-inter">
-                  Every project starts with understanding. We listen, ask questions, and grasp the business, product,
-                  and people. Clear context leads to better decisions.
-                </p>
+              </div>
+            </div>
+
+            <!-- Step 2: Define -->
+            <div class="process-card">
+              <div class="process-card-header">
+                <span class="process-card-num">(02)</span>
+                <h3 class="process-card-title">Define</h3>
+              </div>
+              <div class="process-card-body">
+                <div class="process-card-body-inner">
+                  <div class="process-card-image-wrap">
+                    <img src="images/process_define.png" alt="Define" class="process-card-img" />
+                  </div>
+                  <p class="process-card-desc font-inter">
+                    Ideas take form. We explore concepts, craft experiences, and build thoughtful solutions. Good design
+                    connects function with feeling.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 3: Design -->
+            <div class="process-card">
+              <div class="process-card-header">
+                <span class="process-card-num">(03)</span>
+                <h3 class="process-card-title">Design</h3>
+              </div>
+              <div class="process-card-body">
+                <div class="process-card-body-inner">
+                  <div class="process-card-image-wrap">
+                    <img src="images/process_design.jpg" alt="Design" class="process-card-img" />
+                  </div>
+                  <p class="process-card-desc font-inter">
+                    Concepts become reality. We build visual systems, refine interface elements, and craft interactive
+                    prototypes. Every detail serves a purpose, balancing aesthetic with utility.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 4: Refine -->
+            <div class="process-card">
+              <div class="process-card-header">
+                <span class="process-card-num">(04)</span>
+                <h3 class="process-card-title">Refine</h3>
+              </div>
+              <div class="process-card-body">
+                <div class="process-card-body-inner">
+                  <div class="process-card-image-wrap">
+                    <img src="images/process_refine.jpg" alt="Refine" class="process-card-img" />
+                  </div>
+                  <p class="process-card-desc font-inter">
+                    Details make the difference. We test, iterate, and improve continuously. Each adjustment brings us
+                    closer to excellence.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 5: Deliver -->
+            <div class="process-card">
+              <div class="process-card-header">
+                <span class="process-card-num">(05)</span>
+                <h3 class="process-card-title">Deliver</h3>
+              </div>
+              <div class="process-card-body">
+                <div class="process-card-body-inner">
+                  <div class="process-card-image-wrap">
+                    <img src="images/process_deliver.jpg" alt="Deliver" class="process-card-img" />
+                  </div>
+                  <p class="process-card-desc font-inter">
+                    Execution brings it all together. We launch with confidence, ensuring quality and impact. The result
+                    is work that performs and lasts.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
-
-          <!-- Step 2: Define -->
-          <div class="process-card">
-            <div class="process-card-header">
-              <span class="process-card-num">(02)</span>
-              <h3 class="process-card-title">Define</h3>
-            </div>
-            <div class="process-card-body">
-              <div class="process-card-body-inner">
-                <div class="process-card-image-wrap">
-                  <img src="images/process_define.png" alt="Define" class="process-card-img" />
-                </div>
-                <p class="process-card-desc font-inter">
-                  Ideas take form. We explore concepts, craft experiences, and build thoughtful solutions. Good design
-                  connects function with feeling.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Step 3: Design -->
-          <div class="process-card">
-            <div class="process-card-header">
-              <span class="process-card-num">(03)</span>
-              <h3 class="process-card-title">Design</h3>
-            </div>
-            <div class="process-card-body">
-              <div class="process-card-body-inner">
-                <div class="process-card-image-wrap">
-                  <img src="images/process_design.jpg" alt="Design" class="process-card-img" />
-                </div>
-                <p class="process-card-desc font-inter">
-                  Concepts become reality. We build visual systems, refine interface elements, and craft interactive
-                  prototypes. Every detail serves a purpose, balancing aesthetic with utility.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Step 4: Refine -->
-          <div class="process-card">
-            <div class="process-card-header">
-              <span class="process-card-num">(04)</span>
-              <h3 class="process-card-title">Refine</h3>
-            </div>
-            <div class="process-card-body">
-              <div class="process-card-body-inner">
-                <div class="process-card-image-wrap">
-                  <img src="images/process_refine.jpg" alt="Refine" class="process-card-img" />
-                </div>
-                <p class="process-card-desc font-inter">
-                  Details make the difference. We test, iterate, and improve continuously. Each adjustment brings us
-                  closer to excellence.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Step 5: Deliver -->
-          <div class="process-card">
-            <div class="process-card-header">
-              <span class="process-card-num">(05)</span>
-              <h3 class="process-card-title">Deliver</h3>
-            </div>
-            <div class="process-card-body">
-              <div class="process-card-body-inner">
-                <div class="process-card-image-wrap">
-                  <img src="images/process_deliver.jpg" alt="Deliver" class="process-card-img" />
-                </div>
-                <p class="process-card-desc font-inter">
-                  Execution brings it all together. We launch with confidence, ensuring quality and impact. The result
-                  is work that performs and lasts.
-                </p>
-              </div>
-            </div>
-          </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- ══════════════════════════════════════════════════════
+      <!-- ══════════════════════════════════════════════════════
        WORKS SLAB — Exact Ylli Ramadani pattern
        Individual letters inside overflow:hidden flex rows
        Wrapper gets pinned; letters rise on scroll
        ══════════════════════════════════════════════════════ -->
-    <div class="works-wrapper">
-      <section id="works" class="works">
-        <div class="works-large">
-          <!-- Row 1: "Selected" — each letter is a span -->
-          <div class="works-flex">
-            <span class="works-letters">S</span>
-            <span class="works-letters">e</span>
-            <span class="works-letters">l</span>
-            <span class="works-letters">e</span>
-            <span class="works-letters">c</span>
-            <span class="works-letters">t</span>
-            <span class="works-letters">e</span>
-            <span class="works-letters">d</span>
+      <div class="works-wrapper">
+        <section id="works" class="works">
+          <div class="works-large">
+            <!-- Row 1: "Selected" — each letter is a span -->
+            <div class="works-flex">
+              <span class="works-letters">S</span>
+              <span class="works-letters">e</span>
+              <span class="works-letters">l</span>
+              <span class="works-letters">e</span>
+              <span class="works-letters">c</span>
+              <span class="works-letters">t</span>
+              <span class="works-letters">e</span>
+              <span class="works-letters">d</span>
+            </div>
+
+            <!-- Row 2: "(Works)" -->
+            <div class="works-flex">
+              <span class="works-letters">(</span>
+              <span class="works-letters">W</span>
+              <span class="works-letters">o</span>
+              <span class="works-letters">r</span>
+              <span class="works-letters">k</span>
+              <span class="works-letters">s</span>
+              <span class="works-letters">)</span>
+            </div>
+
+            <!-- Row 3: year line -->
+            <div class="works-flex">
+              <span class="works-letters">2</span>
+              <span class="works-letters">3</span>
+              <span class="works-letters">‘</span>
+              <span class="works-letters">2</span>
+              <span class="works-letters">5</span>
+            </div>
           </div>
 
-          <!-- Row 2: "(Works)" -->
-          <div class="works-flex">
-            <span class="works-letters">(</span>
-            <span class="works-letters">W</span>
-            <span class="works-letters">o</span>
-            <span class="works-letters">r</span>
-            <span class="works-letters">k</span>
-            <span class="works-letters">s</span>
-            <span class="works-letters">)</span>
+          <!-- Bottom: keep scrolling -->
+          <div class="works-small">
+            <span class="underline">Keep Scrolling</span>
+            <span>+</span>
+          </div>
+        </section>
+      </div>
+
+      <!-- ── VIDEO GALLERY ────────────────────────────────────────────────── -->
+      <section class="video-gallery-section" id="works-gallery">
+        <div class="gallery-container">
+          <!-- Category Filters (from the VFX reference layout style) -->
+          <div class="gallery-filters-row js-reveal-up">
+            <button class="filter-btn active" data-filter="all">ALL (5) <span class="filter-plus">+</span></button>
+            <button class="filter-btn" data-filter="saas-explainer">
+              SAAS EXPLAINER VIDEO (3) <span class="filter-plus">+</span>
+            </button>
+            <button class="filter-btn" data-filter="product-demo">
+              PRODUCT DEMO VIDEO (1) <span class="filter-plus">+</span>
+            </button>
+            <button class="filter-btn" data-filter="video-vsl">VIDEO VSL (1) <span class="filter-plus">+</span></button>
           </div>
 
-          <!-- Row 3: year line -->
-          <div class="works-flex">
-            <span class="works-letters">2</span>
-            <span class="works-letters">3</span>
-            <span class="works-letters">‘</span>
-            <span class="works-letters">2</span>
-            <span class="works-letters">5</span>
-          </div>
-        </div>
+          <!-- Video Grid with Plus intersections -->
+          <div class="video-grid">
+            <!-- Video 1 -->
+            <div
+              class="video-card-wrapper js-reveal-up"
+              data-category="saas-explainer"
+              data-index="0"
+              data-vimeo-id="1203870359"
+              data-title="Lakai"
+            >
+              <div class="video-card">
+                <div class="video-wrapper">
+                  <video src="LAKAI%20SAAS%20VIDEO.mp4" autoplay muted loop playsinline preload="metadata"></video>
+                </div>
+                <div class="video-info">
+                  <h3 class="video-title">Lakai</h3>
+                  <span class="video-category-tag">SaaS Explainer Video</span>
+                </div>
+              </div>
+              <div class="grid-plus">+</div>
+            </div>
 
-        <!-- Bottom: keep scrolling -->
-        <div class="works-small">
-          <span class="underline">Keep Scrolling</span>
-          <span>+</span>
+            <!-- Video 2 -->
+            <div
+              class="video-card-wrapper js-reveal-up"
+              data-category="product-demo"
+              data-index="1"
+              data-vimeo-id="1203870364"
+              data-title="Gemini Spec Ad"
+            >
+              <div class="video-card">
+                <div class="video-wrapper">
+                  <video src="Gemini%20Spec%20ad.mp4" autoplay muted loop playsinline preload="metadata"></video>
+                </div>
+                <div class="video-info">
+                  <h3 class="video-title">Gemini Spec Ad</h3>
+                  <span class="video-category-tag">Product Demo Video</span>
+                </div>
+              </div>
+              <div class="grid-plus">+</div>
+            </div>
+
+            <!-- Video 3 -->
+            <div
+              class="video-card-wrapper js-reveal-up"
+              data-category="saas-explainer"
+              data-index="2"
+              data-vimeo-id="1203870358"
+              data-title="Appsee — Walkthrough"
+            >
+              <div class="video-card">
+                <div class="video-wrapper">
+                  <video src="Appsee%201.mp4" autoplay muted loop playsinline preload="metadata"></video>
+                </div>
+                <div class="video-info">
+                  <h3 class="video-title">Appsee — Walkthrough</h3>
+                  <span class="video-category-tag">SaaS Explainer Video</span>
+                </div>
+              </div>
+              <div class="grid-plus">+</div>
+            </div>
+
+            <!-- Video 4 -->
+            <div
+              class="video-card-wrapper js-reveal-up"
+              data-category="saas-explainer"
+              data-index="3"
+              data-vimeo-id="1203870360"
+              data-title="Appsee — Features"
+            >
+              <div class="video-card">
+                <div class="video-wrapper">
+                  <video src="Appsee%202.mp4" autoplay muted loop playsinline preload="metadata"></video>
+                </div>
+                <div class="video-info">
+                  <h3 class="video-title">Appsee — Features</h3>
+                  <span class="video-category-tag">SaaS Explainer Video</span>
+                </div>
+              </div>
+              <div class="grid-plus">+</div>
+            </div>
+
+            <!-- Video 5 -->
+            <div
+              class="video-card-wrapper js-reveal-up"
+              data-category="video-vsl"
+              data-index="4"
+              data-vimeo-id="1203866870"
+              data-title="Elyxir"
+            >
+              <div class="video-card">
+                <div class="video-wrapper">
+                  <video src="Elyxir.mp4" autoplay muted loop playsinline preload="metadata"></video>
+                </div>
+                <div class="video-info">
+                  <h3 class="video-title">Elyxir</h3>
+                  <span class="video-category-tag">Video VSL</span>
+                </div>
+              </div>
+              <div class="grid-plus">+</div>
+            </div>
+          </div>
         </div>
       </section>
-      <section class="projects-top"></section>
+
+      <!-- ── VOICE OF RYUK ────────────────────────────────────────────────── -->
+      <section class="voice-section" id="about">
+        <div class="voice-header">
+          <div class="voice-header-sep"></div>
+          <div class="voice-header-content">
+            <span class="voice-num">05</span>
+            <span class="voice-title">//Voice Of Ryuk®</span>
+            <span class="voice-year">Since 2025</span>
+          </div>
+        </div>
+
+        <div class="voice-container">
+          <!-- Left Sticky column (Text + Signature) -->
+          <div class="voice-left">
+            <div class="voice-content-wrap">
+              <p class="voice-desc" id="voiceDesc">
+                <span class="voice-line">We build high-impact commercial animations and cinematic VSLs</span>
+                <span class="voice-line">designed to capture instant attention, explain complex products,</span>
+                <span class="voice-line">and turn passive viewers into high-value customers.</span>
+                <span class="voice-line">This is visual psychology engineered for maximum conversions.</span>
+              </p>
+              <div class="voice-signature" id="voiceSignature">
+                <img src="images/voice/sig.png" alt="Signature" />
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Scrolling column (Staggered gallery) -->
+          <div class="voice-right">
+            <div class="gallery-grid">
+              <!-- Row 1: side-by-side -->
+              <div class="gallery-row gallery-row-2">
+                <div class="gallery-img-wrapper img-1">
+                  <img src="images/voice/image1.jpg" alt="Voice Image 1" />
+                </div>
+                <div class="gallery-img-wrapper img-2">
+                  <img src="images/voice/image2.jpg" alt="Voice Image 2" />
+                </div>
+              </div>
+
+              <!-- Row 2: centered large image -->
+              <div class="gallery-row gallery-row-1">
+                <div class="gallery-img-wrapper img-3">
+                  <img src="images/voice/image3.jpg" alt="Voice Image 3" />
+                </div>
+              </div>
+
+              <!-- Row 3: side-by-side -->
+              <div class="gallery-row gallery-row-2">
+                <div class="gallery-img-wrapper img-4">
+                  <img src="images/voice/image4.jpg" alt="Voice Image 4" />
+                </div>
+                <div class="gallery-img-wrapper img-5">
+                  <img src="images/voice/image5.jpg" alt="Voice Image 5" />
+                </div>
+              </div>
+
+              <!-- Row 4: centered large image -->
+              <div class="gallery-row gallery-row-1">
+                <div class="gallery-img-wrapper img-6">
+                  <img src="images/voice/image6.jpg" alt="Voice Image 6" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── AGENCY FOOTER & CONTACT FORM ─────────────────────────────────── -->
+      <footer class="trionn-footer" id="contact">
+        <div class="trionn-footer-container">
+          <!-- Top Row: Inspires + Timezone -->
+          <div class="trionn-footer-top-row">
+            <span class="trionn-footer-top-left font-mono">LET'S BUILD WORK THAT INSPIRES.</span>
+            <span class="trionn-footer-top-right font-mono" id="footerClock">IST → 00:00</span>
+          </div>
+
+          <!-- Divider -->
+          <div class="trionn-footer-divider"></div>
+
+          <!-- Main Grid -->
+          <div class="trionn-footer-grid">
+            <!-- Left Column: Bold Title + Copyright & Hover instructions -->
+            <div class="trionn-footer-left-col">
+              <h2 class="trionn-footer-heading">Ready to build<br>something bold?</h2>
+              <div class="trionn-footer-left-bottom">
+                <span class="trionn-footer-copy font-mono">©RYUK® 2026</span>
+                <span class="trionn-footer-hover-note font-mono">CINEMATIC COMMERCIAL PRODUCTION.</span>
+              </div>
+            </div>
+
+            <!-- Right Column: Form + Contact Info + Socials -->
+            <div class="trionn-footer-right-col">
+              <!-- Contact Form -->
+              <form class="trionn-contact-form" id="whatsappForm">
+                <div class="trionn-form-grid">
+                  <div class="trionn-form-group">
+                    <label for="form-name" class="trionn-form-label font-mono">01/ Name</label>
+                    <input type="text" id="form-name" placeholder="Your Name" required class="trionn-form-input font-body" />
+                  </div>
+                  <div class="trionn-form-group">
+                    <label for="form-phone" class="trionn-form-label font-mono">02/ Phone Number</label>
+                    <input type="tel" id="form-phone" placeholder="+91 62890 59806" required class="trionn-form-input font-body" />
+                  </div>
+                  <div class="trionn-form-group">
+                    <label for="form-email" class="trionn-form-label font-mono">03/ Email Address</label>
+                    <input type="email" id="form-email" placeholder="you@brand.com" required class="trionn-form-input font-body" />
+                  </div>
+                  <div class="trionn-form-group">
+                    <label for="form-budget" class="trionn-form-label font-mono">04/ Project Budget</label>
+                    <div class="trionn-select-wrapper">
+                      <select id="form-budget" required class="trionn-form-select font-body">
+                        <option value="" disabled selected>Select budget range</option>
+                        <option value="$500 - $1,000">$500 - $1,000</option>
+                        <option value="$1,000 - $1,500">$1,000 - $1,500</option>
+                        <option value="$1,500 - $2,500">$1,500 - $2,500</option>
+                        <option value="$2,500+">$2,500+</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="trionn-form-group trionn-form-group-full">
+                    <label for="form-brief" class="trionn-form-label font-mono">05/ Project Brief</label>
+                    <textarea id="form-brief" placeholder="Tell us about your project brief, goals, and timeline..." required class="trionn-form-input font-body" rows="3"></textarea>
+                  </div>
+                </div>
+
+                <!-- Submit Button Pill (styled as a premium underlined link) -->
+                <div class="trionn-submit-wrap">
+                  <button type="submit" class="trionn-submit-btn font-mono">
+                    LET'S COLLABORATE <span class="trionn-submit-arrow">→</span>
+                  </button>
+                </div>
+              </form>
+
+              <!-- Directory Info (Business Enquiry + Socials) -->
+              <div class="trionn-directory-grid">
+                <!-- Business Enquiry Column -->
+                <div class="trionn-dir-col">
+                  <span class="trionn-dir-title font-mono">BUSINESS ENQUIRY</span>
+                  <a href="mailto:ryukdesignstudio@zohomail.in" class="trionn-dir-link">EMAIL: ryukdesignstudio@zohomail.in</a>
+                  <a href="tel:+916289059806" class="trionn-dir-link">PHONE: +91 62890 59806</a>
+                </div>
+
+                <!-- Socials Column -->
+                <div class="trionn-dir-col">
+                  <span class="trionn-dir-title font-mono">SOCIAL</span>
+                  <div class="trionn-social-links-grid">
+                    <div class="trionn-social-subcol">
+                      <a href="https://contra.com/roshan_kumar4?referralExperimentNid=DEFAULT_REFERRAL_PROGRAM&referrerUsername=roshan_kumar4" target="_blank" rel="noopener" class="trionn-dir-link">Contra</a>
+                      <a href="https://www.linkedin.com/in/ryuk-design-studio-643504419/?skipRedirect=true" target="_blank" rel="noopener" class="trionn-dir-link">LinkedIn</a>
+                    </div>
+                    <div class="trionn-social-subcol">
+                      <a href="https://x.com/ryuk__editzz" target="_blank" rel="noopener" class="trionn-dir-link">X</a>
+                      <a href="https://www.instagram.com/ryukdesign.studio/?__pwa=1" target="_blank" rel="noopener" class="trionn-dir-link">Instagram</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Huge Lined Wordmark at Bottom -->
+          <div class="trionn-wordmark-container">
+            <h2 class="trionn-lined-wordmark font-title" id="footerWordmark">RYUK</h2>
+          </div>
+        </div>
+      </footer>
+    </main>
+
+    <!-- ── LIGHTBOX MODAL ────────────────────────────────────────────────── -->
+    <div class="lightbox-modal" id="lightboxModal">
+      <div class="lightbox-overlay" id="lightboxOverlay"></div>
+      <div class="lightbox-content">
+        <button class="lightbox-close" id="lightboxClose" aria-label="Close video">&times;</button>
+        <button class="lightbox-nav lightbox-prev" id="lightboxPrev" aria-label="Previous video">&#10216;</button>
+        <div class="lightbox-video-container" id="lightboxVideoContainer">
+          <!-- Vimeo iframe injected here dynamically -->
+        </div>
+        <button class="lightbox-nav lightbox-next" id="lightboxNext" aria-label="Next video">&#10217;</button>
+        <div class="lightbox-title-bar" id="lightboxTitle">Video Title</div>
+      </div>
     </div>
 
-    <section class="projects-middle"></section>
-    <section class="projects-bottom"></section>
-
-    <!-- ── VOICE OF RYUK ────────────────────────────────────────────────── -->
-    <section class="voice-section" id="about">
-      <div class="voice-header">
-        <div class="voice-header-sep"></div>
-        <div class="voice-header-content">
-          <span class="voice-num">05</span>
-          <span class="voice-title">//Voice Of Ryuk®</span>
-          <span class="voice-year">Since 2025</span>
-        </div>
-      </div>
-
-      <div class="voice-container">
-        <!-- Left Sticky column (Text + Signature) -->
-        <div class="voice-left">
-          <div class="voice-content-wrap">
-            <p class="voice-desc" id="voiceDesc">
-              <span class="voice-line"
-                >Ryuk Design Studio is an independent practice shaping the digital benchmark.</span
-              >
-              <span class="voice-line">We collaborate with forward-thinking brands and visionaries globally,</span>
-              <span class="voice-line"
-                >specializing in the seamless union of bold aesthetics and high-end technology</span
-              >
-              <span class="voice-line"
-                >to create immersive digital platforms, cinematic motion, and bespoke experiences.</span
-              >
-            </p>
-            <div class="voice-signature" id="voiceSignature">
-              <img src="images/voice/sig.png" alt="Signature" />
-            </div>
-          </div>
-        </div>
-
-        <!-- Right Scrolling column (Staggered gallery) -->
-        <div class="voice-right">
-          <div class="gallery-grid">
-            <!-- Row 1: side-by-side -->
-            <div class="gallery-row gallery-row-2">
-              <div class="gallery-img-wrapper img-1">
-                <img src="images/voice/image1.jpg" alt="Voice Image 1" />
-              </div>
-              <div class="gallery-img-wrapper img-2">
-                <img src="images/voice/image2.jpg" alt="Voice Image 2" />
-              </div>
-            </div>
-
-            <!-- Row 2: centered large image -->
-            <div class="gallery-row gallery-row-1">
-              <div class="gallery-img-wrapper img-3">
-                <img src="images/voice/image3.jpg" alt="Voice Image 3" />
-              </div>
-            </div>
-
-            <!-- Row 3: side-by-side -->
-            <div class="gallery-row gallery-row-2">
-              <div class="gallery-img-wrapper img-4">
-                <img src="images/voice/image4.jpg" alt="Voice Image 4" />
-              </div>
-              <div class="gallery-img-wrapper img-5">
-                <img src="images/voice/image5.jpg" alt="Voice Image 5" />
-              </div>
-            </div>
-
-            <!-- Row 4: centered large image -->
-            <div class="gallery-row gallery-row-1">
-              <div class="gallery-img-wrapper img-6">
-                <img src="images/voice/image6.jpg" alt="Voice Image 6" />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <script src="app.js?v=23"></script>
+    <script src="app.js?v=30"></script>
   </body>
 </html>

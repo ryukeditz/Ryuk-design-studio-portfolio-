@@ -1,0 +1,411 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="The Room® Case Study — Premium Uzbek fusion dining and luxury lounge brand experience by Ryuk Design Studio."
+    />
+    <title>The Room® — Ryuk® Design Studio</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Antonio:wght@400;700&family=Bebas+Neue&family=Barlow+Condensed:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link href="https://api.fontshare.com/v2/css?f[]=clash-display@300,400,500,600,700&display=swap" rel="stylesheet" />
+
+    <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <!-- Style tokens -->
+    <link rel="stylesheet" href="style.css?v=29" />
+    <link rel="stylesheet" href="project.css?v=29" />
+  </head>
+  <body>
+    <!-- Grain + Cursor -->
+    <div class="grain" aria-hidden="true"></div>
+    <div class="cursor" id="cursor"></div>
+    <div class="curtain" id="curtain"></div>
+
+    <!-- ── NAV ────────────────────────────────────────────────────────────── -->
+    <div class="nav-container-floating">
+      <nav class="nav-floating" id="nav">
+        <a href="index.html" class="nav-logo-custom">
+          <span class="logo-text">RYUK<span class="logo-reg">®</span></span>
+        </a>
+        <div class="nav-links-custom" id="navLinks">
+          <a href="index.html#hero" class="nav-link-custom">/Home</a>
+          <a href="index.html#works" class="nav-link-custom">/Portfolio</a>
+          <a href="index.html#about" class="nav-link-custom">/About</a>
+          <a href="index.html#contact" class="nav-link-custom">/Contact</a>
+        </div>
+        <div class="nav-cta-wrapper">
+          <a href="index.html#contact" class="nav-cta-btn">Get Started</a>
+          <button class="nav-burger-custom" id="navBurger" aria-label="Menu"><span></span><span></span></button>
+        </div>
+      </nav>
+    </div>
+
+    <!-- ── MOBILE MENU ─────────────────────────────────────────────────────── -->
+    <div class="mob-menu" id="mobMenu">
+      <a href="index.html#hero" class="mob-link">/Home</a>
+      <a href="index.html#works" class="mob-link">/Portfolio</a>
+      <a href="index.html#about" class="mob-link">/About</a>
+      <a href="index.html#contact" class="mob-link">/Contact</a>
+      <div class="mob-footer">
+        <span>ryukdesignstudio@zohomail.in</span>
+        <span>©<span class="js-year">25</span> Ryuk<span class="logo-reg">®</span></span>
+      </div>
+    </div>
+
+    <main id="pageContent">
+      <!-- PROJECT HERO -->
+      <section class="proj-hero" id="projHero">
+        <div class="proj-hero-inner">
+          <div class="proj-meta-top">
+            <span class="section-tag" id="projCategory">EDITORIAL DESIGN & BRAND EXPERIENCE</span>
+            <span class="section-tag-divider">//</span>
+            <span class="section-tag" id="projYear">2025</span>
+          </div>
+          <div class="proj-title-wrap">
+            <div class="overflow-clip">
+              <h1 class="proj-title js-reveal" id="projTitle">THE ROOM®</h1>
+            </div>
+          </div>
+          <p class="proj-tagline js-reveal-up" id="projTagline">
+            The Room is a premium Uzbek fusion dining and karaoke lounge. We translated the warm, immersive atmosphere
+            and rich cultural flavor of their culinary space into a distinct, high-contrast, edge-to-edge brand
+            experience.
+            <br /><br />
+            Features a customized interactive showcase and atmospheric photography layouts designed to evoke sensory
+            connection and high engagement.
+          </p>
+          <div class="proj-live-btn-wrap js-reveal-up">
+            <a
+              href="https://theroom-green.vercel.app/"
+              class="proj-live-btn"
+              id="projLiveHeroLink"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span>LIVE PREVIEW</span>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M7 17L17 7M17 7H9M17 7V15"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- COVER IMAGE -->
+      <div class="proj-cover">
+        <img id="projCoverImg" src="images/works/theroom/large/1.jpg" alt="The Room Cover" class="proj-cover-img" />
+        <div class="proj-cover-scrim"></div>
+      </div>
+
+      <!-- PROJECT INFO -->
+      <section class="proj-info-section">
+        <div class="proj-info-inner">
+          <div class="proj-meta-grid">
+            <div class="pm-item">
+              <span class="pm-label">CLIENT</span>
+              <span class="pm-val" id="projClient">The Room Lounge</span>
+            </div>
+            <div class="pm-item">
+              <span class="pm-label">SERVICES</span>
+              <span class="pm-val" id="projServices">Uzbek Fusion Dining, Brand Identity, Motion Design</span>
+            </div>
+            <div class="pm-item">
+              <span class="pm-label">YEAR</span>
+              <span class="pm-val" id="projYearInfo">2025</span>
+            </div>
+            <div class="pm-item">
+              <span class="pm-label">DURATION</span>
+              <span class="pm-val" id="projDeliverables">3 - 4 Weeks</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PROCESS SECTION -->
+      <section class="proj-process-section">
+        <div class="proj-process-inner">
+          <div class="proj-process-grid">
+            <!-- Research -->
+            <div class="process-col">
+              <span class="pc-num">(01) Research</span>
+              <h4 class="pc-title">Sensory & Culture</h4>
+              <p class="pc-desc">
+                We explored the intersection of high-end dining, visual aesthetics, and cultural heritage. We researched
+                premium dark UI patterns and immersive luxury spaces to understand how to translate the physical
+                atmosphere of a lounge into a digital screen.
+              </p>
+            </div>
+            <!-- Design -->
+            <div class="process-col">
+              <span class="pc-num">(02) Design</span>
+              <h4 class="pc-title">Dark Elegance</h4>
+              <p class="pc-desc">
+                The visual identity utilizes high-contrast design, deep dark hues, and vibrant warm accents that mirror
+                the mood lighting of the restaurant. We created a bespoke identity layout with rich food typography and
+                fluid visual transitions.
+              </p>
+            </div>
+            <!-- Motion Design -->
+            <div class="process-col">
+              <span class="pc-num">(03) Motion Design</span>
+              <h4 class="pc-title">Cinematic Flow</h4>
+              <p class="pc-desc">
+                We integrated GSAP scroll animations and high-fidelity video triggers to bring the brand experience to
+                life. The fluid motion layers ensure that the story unfolds dynamically and elegantly on any screen
+                size.
+              </p>
+            </div>
+            <!-- Concept -->
+            <div class="process-col">
+              <span class="pc-num">(04) Concept</span>
+              <h4 class="pc-title">Sensory Experience</h4>
+              <p class="pc-desc">
+                Under the concept "Sensory Atmosphere," the branding evokes the physical feelings of dining and lounge
+                acoustics. The dark UI, elegant typography, and cinematic motion graphics work in harmony to transport
+                visitors directly into the brand story.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- IMAGE GRID -->
+      <section class="proj-gallery">
+        <div class="proj-gallery-inner">
+          <div class="proj-gallery-row proj-gallery-row--full">
+            <img
+              src="images/works/theroom/large/2.jpg"
+              alt="The Room Screenshot 1"
+              class="proj-gallery-img js-gallery-img"
+            />
+          </div>
+          <div class="proj-gallery-row proj-gallery-row--half">
+            <img
+              src="images/works/theroom/large/3.jpg"
+              alt="The Room Screenshot 2"
+              class="proj-gallery-img js-gallery-img"
+            />
+            <img
+              src="images/works/theroom/large/4.jpg"
+              alt="The Room Screenshot 3"
+              class="proj-gallery-img js-gallery-img"
+            />
+          </div>
+          <div class="proj-gallery-row proj-gallery-row--full">
+            <img
+              src="images/works/theroom/large/5.jpg"
+              alt="The Room Screenshot 4"
+              class="proj-gallery-img js-gallery-img"
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- VIEW LIVE SITE CTA SECTION -->
+      <section class="proj-live-cta-section">
+        <div class="proj-live-cta-inner">
+          <div class="proj-live-cta-content js-reveal-up">
+            <span class="proj-live-cta-tag">// EXPERIENCE IT LIVE</span>
+            <h2 class="proj-live-cta-heading">Ready to see the live production site?</h2>
+            <p class="proj-live-cta-text">
+              Explore the fully interactive, production-ready website with complete animations, custom page layouts, and
+              optimized front-end speed.
+            </p>
+          </div>
+          <div class="proj-live-cta-btn-wrap js-reveal-up">
+            <a
+              href="https://theroom-green.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="proj-live-cta-link"
+            >
+              <span class="btn-text">LAUNCH WEBSITE</span>
+              <span class="btn-arrow">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M7 17L17 7M17 7H9M17 7V15"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ SECTION -->
+      <section class="proj-faq-section">
+        <div class="proj-faq-inner">
+          <div class="faq-left">
+            <span class="faq-label">//FAQ</span>
+            <h3 class="faq-title">Frequently<br />Asked Questions</h3>
+          </div>
+          <div class="faq-right">
+            <!-- Item 1 -->
+            <div class="faq-item">
+              <div class="faq-question-row">
+                <span class="faq-question">How long does a typical project take?</span>
+                <div class="faq-icon"></div>
+              </div>
+              <p class="faq-answer">
+                Typically, our branding and motion projects range from 3 to 6 weeks depending on scope, complexity, and
+                animation requirements. We prioritize detail and craft at every stage.
+              </p>
+            </div>
+            <!-- Item 2 -->
+            <div class="faq-item">
+              <div class="faq-question-row">
+                <span class="faq-question">What is your motion design process?</span>
+                <div class="faq-icon"></div>
+              </div>
+              <p class="faq-answer">
+                We follow a structured five-step process: Think, Define, Design, Refine, and Deliver. This ensures we
+                align on strategic goals, define visual directions, design detailed storyboard/styleframes, animate with
+                polish, and deliver high-fidelity outputs.
+              </p>
+            </div>
+            <!-- Item 3 -->
+            <div class="faq-item">
+              <div class="faq-question-row">
+                <span class="faq-question">Do you specialize in branding or motion design?</span>
+                <div class="faq-icon"></div>
+              </div>
+              <p class="faq-answer">
+                We specialize in both. We believe motion and brand identity are deeply connected. We design
+                comprehensive visual identity systems and bring them to life through bespoke motion design and
+                commercial animation.
+              </p>
+            </div>
+            <!-- Item 4 -->
+            <div class="faq-item">
+              <div class="faq-question-row">
+                <span class="faq-question">How do we collaborate during the project?</span>
+                <div class="faq-icon"></div>
+              </div>
+              <p class="faq-answer">
+                We communicate asynchronously via Slack, Figma, and weekly progress syncs. We believe in collaborative
+                transparency, sharing regular storyboards, styleframes, and motion tests so you can see progress in real
+                time.
+              </p>
+            </div>
+            <!-- Item 5 -->
+            <div class="faq-item">
+              <div class="faq-question-row">
+                <span class="faq-question">Do you offer support after delivery?</span>
+                <div class="faq-icon"></div>
+              </div>
+              <p class="faq-answer">
+                Yes, we provide post-delivery support for file format conversions and minor adjustments. We also offer
+                monthly retainer packages for ongoing motion design support and campaign assets.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- NEXT PROJECT -->
+      <section class="proj-next">
+        <a href="nestora.html" class="proj-next-inner" id="projNextLink">
+          <span class="pn-label">NEXT PROJECT</span>
+          <div class="overflow-clip">
+            <div class="pn-title js-reveal" id="projNextTitle">NESTORA STUDIO®</div>
+          </div>
+          <span class="pn-arrow">→</span>
+        </a>
+      </section>
+
+      <!-- Footer -->
+      <footer class="footer">
+        <div class="footer-wordmark-container">
+          <div class="footer-wordmark" aria-hidden="true">Ryuk<span class="logo-reg">®</span></div>
+        </div>
+        <div class="footer-bar">
+          <div class="footer-bar-inner">
+            <span>©<span class="js-year">25</span> Ryuk Studio. All rights reserved.</span>
+            <button class="back-top" id="backTop">BACK TO TOP ↑</button>
+          </div>
+        </div>
+      </footer>
+    </main>
+
+    <script>
+      // Initialize layout specific animations (parallaxes)
+      function initProjectAnimations() {
+        gsap.registerPlugin(ScrollTrigger);
+
+        const coverImg = document.querySelector(".proj-cover-img");
+        if (coverImg) {
+          gsap.to(coverImg, {
+            y: 80,
+            ease: "none",
+            scrollTrigger: {
+              trigger: ".proj-cover",
+              start: "top top",
+              end: "bottom top",
+              scrub: true,
+            },
+          });
+        }
+
+        document.querySelectorAll(".js-gallery-img").forEach((img, i) => {
+          gsap.fromTo(
+            img.parentElement,
+            { opacity: 0, y: 48 },
+            {
+              opacity: 1,
+              y: 0,
+              duration: 0.9,
+              delay: i * 0.05,
+              ease: "expo.out",
+              scrollTrigger: {
+                trigger: img.parentElement,
+                start: "top 88%",
+              },
+            }
+          );
+        });
+
+        document.querySelectorAll(".js-reveal").forEach((el) => {
+          gsap.fromTo(
+            el,
+            { y: "105%" },
+            {
+              y: "0%",
+              duration: 1.2,
+              ease: "power4.out",
+              scrollTrigger: {
+                trigger: el.parentElement,
+                start: "top 90%",
+              },
+            }
+          );
+        });
+      }
+      window.__projectInit = initProjectAnimations;
+    </script>
+    <script src="app.js?v=29"></script>
+  </body>
+</html>
