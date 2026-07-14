@@ -3035,7 +3035,7 @@ button {
 
 .trionn-directory-grid {
   display: grid;
-  grid-template-columns: 1fr 1.25fr;
+  grid-template-columns: 1.2fr 1fr 1.5fr;
   gap: clamp(32px, 6vw, 64px);
   margin-top: clamp(48px, 8vw, 80px);
   border-top: 1px solid rgba(255, 255, 255, 0.1);
