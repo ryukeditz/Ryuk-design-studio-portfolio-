@@ -3355,6 +3355,15 @@ button {
 
 .testimonials-title {
   text-align: left;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 1.5rem;
+  font-style: italic;
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0.02em;
+  color: #ffffff;
+  position: relative;
+  top: -2px;
 }
 
 .testimonials-tag {
