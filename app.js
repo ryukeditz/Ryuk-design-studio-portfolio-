@@ -2328,6 +2328,7 @@ function initPreviewVideosObserver() {
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       const video = entry.target;
+      if (video.tagName !== "VIDEO") return;
       if (entry.isIntersecting) {
         // Play video when visible
         video.play().catch((err) => {
