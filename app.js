@@ -2666,4 +2666,14 @@ window.addEventListener("DOMContentLoaded", () => {
     // Index: run preloader flow
     new PreloaderController();
   }
+
+  // PWA Service Worker Registration
+  if ("serviceWorker" in navigator && window.location.protocol === "https:") {
+    window.addEventListener("load", () => {
+      navigator.serviceWorker.register("/sw.js").then(
+        (reg) => console.log("PWA ServiceWorker registered with scope:", reg.scope),
+        (err) => console.warn("PWA ServiceWorker registration failed:", err)
+      );
+    });
+  }
 });

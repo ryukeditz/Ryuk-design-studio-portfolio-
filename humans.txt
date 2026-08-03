@@ -1,0 +1,13 @@
+/* TEAM */
+  Creative Director & Lead Motion Designer: Roshan Kumar
+  Email: roshan@ryukdesignstudio.com
+  Studio: Ryuk Design Studio
+  Location: Kolkata, India
+
+/* THANKS */
+  Clients: Node Prime Studios, Achx Studio, Presalesforce.ai, Appsee, Lakai, Elyxir
+
+/* SITE */
+  Last update: 2026/08/04
+  Standards: HTML5, CSS3, ES6+, WebGL, GLSL, W3C WCAG 2.2 AA
+  Components: GSAP, Lenis, Custom WebGL LiquidShader

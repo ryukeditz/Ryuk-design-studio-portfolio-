@@ -1,33 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset 
+  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+  xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+
+  <!-- Homepage -->
   <url>
     <loc>https://ryukdesignstudio.com/</loc>
     <lastmod>2026-08-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://ryukdesignstudio.com/images/logo.png</image:loc>
+      <image:title>Ryuk Design Studio Logo</image:title>
+    </image:image>
+    <video:video>
+      <video:thumbnail_loc>https://ryukdesignstudio.com/images/works/lakai/poster.jpg</video:thumbnail_loc>
+      <video:title>Lakai — B2B Product Launch Video</video:title>
+      <video:description>High-converting SaaS product launch video engineered by Ryuk Design Studio.</video:description>
+      <video:content_loc>https://ryukdesignstudio.com/images/works/lakai/video.mp4</video:content_loc>
+    </video:video>
   </url>
+
+  <!-- Insights Article -->
   <url>
     <loc>https://ryukdesignstudio.com/how-motion-design-boosts-startup-conversions.html</loc>
     <lastmod>2026-08-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+
+  <!-- Portfolio Project: Nestora -->
   <url>
     <loc>https://ryukdesignstudio.com/nestora.html</loc>
     <lastmod>2026-08-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+
+  <!-- Portfolio Project: The Room -->
   <url>
     <loc>https://ryukdesignstudio.com/theroom.html</loc>
     <lastmod>2026-08-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+
+  <!-- Portfolio Showcase -->
   <url>
     <loc>https://ryukdesignstudio.com/project.html</loc>
     <lastmod>2026-08-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+  </url>
+
+  <!-- HTML Sitemap -->
+  <url>
+    <loc>https://ryukdesignstudio.com/html-sitemap.html</loc>
+    <lastmod>2026-08-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
 </urlset>

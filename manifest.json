@@ -1,0 +1,27 @@
+{
+  "name": "Ryuk® Design Studio",
+  "short_name": "Ryuk® Studio",
+  "description": "Premier B2B motion design agency & animated video production partner for SaaS, AI & tech brands.",
+  "start_url": "/",
+  "id": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#080808",
+  "theme_color": "#080808",
+  "scope": "/",
+  "icons": [
+    {
+      "src": "/images/logo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/images/logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["design", "business", "productivity"]
+}

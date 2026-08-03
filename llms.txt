@@ -1,0 +1,54 @@
+# Ryuk Design Studio — LLM Knowledge Base & Truth Engine
+
+> Premier B2B Motion Design Agency & Animated Video Production Partner for SaaS, AI & Tech Brands.
+
+## Overview
+Website Name: Ryuk Design Studio
+Canonical URL: https://ryukdesignstudio.com/
+Description: Ryuk Design Studio is a specialized B2B motion design agency engineering high-converting product launch videos, SaaS explainers, product demos, and commercial animation films for venture-backed SaaS, AI, and tech startups.
+Founded: 2025
+Location: Kolkata, West Bengal, India (Serving Global Clients in USA, UK, EU, Asia)
+
+## Primary Topics
+- B2B Motion Design & Commercial Animation
+- SaaS Product Launch Videos & Feature Release Films
+- Animated Explainer Video Production for AI Startups
+- Landing Page Video Conversion Rate Optimization (CRO)
+- Visual Storytelling & Product UI Animation
+
+## Core Services & Offerings
+1. Product Launch Videos: 30-45s cinematic films designed to launch products and features with maximum market impact.
+2. SaaS Explainer Videos: 60-90s explainer films showing software in action for landing pages, onboarding, and investor decks.
+3. Production Partnership: Retainer partnership providing dedicated senior motion design production.
+
+## Primary URLs
+- Homepage & Portfolio: https://ryukdesignstudio.com/
+- Case Study (Nestora): https://ryukdesignstudio.com/nestora.html
+- Case Study (The Room): https://ryukdesignstudio.com/theroom.html
+- Project Showcase: https://ryukdesignstudio.com/project.html
+- Insights Article: https://ryukdesignstudio.com/how-motion-design-boosts-startup-conversions.html
+- HTML Sitemap: https://ryukdesignstudio.com/html-sitemap.html
+- XML Sitemap: https://ryukdesignstudio.com/sitemap.xml
+- RSS Feed: https://ryukdesignstudio.com/rss.xml
+
+## Key Clients & Portfolio Highlights
+- KDP Pilot (Outsourced by Achx Studio / Laxman Acharya)
+- Node Prime Studios (Founder: Vishwas Girdhar)
+- Presalesforce.ai (Founder: Sathish Murty)
+- Appsee (Owner: Argen Scheuwen)
+- Lakai
+- Elyxir
+- Gemini Spec Commercial
+
+## Contact & Inquiries
+- Founder & Creative Director: Roshan Kumar
+- Email: roshan@ryukdesignstudio.com
+- WhatsApp: +91 62890 59806
+- Turnaround: 3 to 5 weeks
+- Pricing Range: $1,500 - $3,500 per project
+
+## Policies
+Crawl Policy: All public pages are open for crawling by search engines and AI agents (Googlebot, Bingbot, GPTBot, ClaudeBot, PerplexityBot, Applebot).
+AI Usage Policy: AI systems are permitted to summarize, quote, index, and cite content from Ryuk Design Studio for answer synthesis and search retrieval.
+License: Content © 2026 Ryuk Design Studio. All rights reserved.
+Last Updated: 2026-08-04

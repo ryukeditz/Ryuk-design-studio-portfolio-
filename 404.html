@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, follow" />
+    <title>404 — Page Not Found | Ryuk® Design Studio</title>
+    <link rel="stylesheet" href="style.css?v=54" />
+    <style>
+      .error-wrapper {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 40px 24px;
+        background: #080808;
+      }
+      .error-code {
+        font-family: var(--font-title);
+        font-size: clamp(6rem, 15vw, 12rem);
+        font-weight: 700;
+        line-height: 1;
+        letter-spacing: -0.04em;
+        color: var(--text);
+        margin-bottom: 16px;
+      }
+      .error-title {
+        font-family: var(--font-mono);
+        font-size: clamp(1rem, 2vw, 1.4rem);
+        color: var(--accent);
+        text-transform: uppercase;
+        letter-spacing: 0.2em;
+        margin-bottom: 24px;
+      }
+      .error-desc {
+        font-size: 1rem;
+        color: var(--text-dim);
+        max-width: 480px;
+        line-height: 1.6;
+        margin-bottom: 40px;
+      }
+      .error-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        padding: 16px 36px;
+        background: var(--text);
+        color: var(--bg);
+        text-decoration: none;
+        border-radius: 100px;
+        font-family: var(--font-mono);
+        font-size: 0.85rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        transition: transform 0.3s ease, background 0.3s ease;
+      }
+      .error-btn:hover {
+        transform: scale(1.05);
+        background: #e0e0e0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="error-wrapper">
+      <div class="error-code font-jost">404</div>
+      <div class="error-title">// PAGE NOT FOUND</div>
+      <p class="error-desc font-inter">
+        The page you are looking for doesn't exist or has been moved. Return to our portfolio to explore our product launch videos.
+      </p>
+      <a href="/" class="error-btn">Return to Homepage →</a>
+    </div>
+  </body>
+</html>

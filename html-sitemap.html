@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="HTML Sitemap for Ryuk Design Studio — Index of all pages, case studies, and insights." />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://ryukdesignstudio.com/html-sitemap.html" />
+    <title>HTML Sitemap — Ryuk® Design Studio</title>
+    <link rel="stylesheet" href="style.css?v=54" />
+    <style>
+      .sitemap-hero {
+        padding: clamp(120px, 15vw, 180px) var(--pad) clamp(60px, 8vw, 100px);
+        max-width: 1100px;
+        margin: 0 auto;
+      }
+      .sitemap-title {
+        font-family: var(--font-title);
+        font-size: clamp(2.5rem, 5vw, 4.5rem);
+        margin-bottom: 24px;
+        color: var(--text);
+      }
+      .sitemap-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 40px;
+        margin-top: 60px;
+      }
+      .sitemap-card {
+        background: #111;
+        padding: 32px;
+        border-radius: 16px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+      }
+      .sitemap-card h2 {
+        font-size: 1.2rem;
+        color: var(--accent);
+        margin-bottom: 20px;
+        font-family: var(--font-mono);
+      }
+      .sitemap-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      .sitemap-list li {
+        margin-bottom: 12px;
+      }
+      .sitemap-list a {
+        color: var(--text-dim);
+        text-decoration: none;
+        font-size: 0.95rem;
+        transition: color 0.3s;
+      }
+      .sitemap-list a:hover {
+        color: var(--text);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="sitemap-hero">
+      <a href="/" class="font-mono" style="color: var(--text-dimmer); text-decoration: none;">← Back to Home</a>
+      <h1 class="sitemap-title">HTML Sitemap</h1>
+      <p style="color: var(--text-dim); font-size: 1.1rem; max-width: 600px;">
+        Complete index of all public pages, case studies, and insights published by Ryuk Design Studio.
+      </p>
+
+      <div class="sitemap-grid">
+        <div class="sitemap-card">
+          <h2>Main Pages</h2>
+          <ul class="sitemap-list">
+            <li><a href="/">Homepage &amp; Portfolio</a></li>
+            <li><a href="/#works">Selected Works</a></li>
+            <li><a href="/#about">About / Voice of Ryuk</a></li>
+            <li><a href="/#contact">Contact &amp; Discovery Call</a></li>
+          </ul>
+        </div>
+
+        <div class="sitemap-card">
+          <h2>Case Studies</h2>
+          <ul class="sitemap-list">
+            <li><a href="nestora.html">Nestora — Architectural Motion</a></li>
+            <li><a href="theroom.html">The Room — Spatial Sound Identity</a></li>
+            <li><a href="project.html">Project Showcase Directory</a></li>
+          </ul>
+        </div>
+
+        <div class="sitemap-card">
+          <h2>Insights &amp; Resources</h2>
+          <ul class="sitemap-list">
+            <li><a href="how-motion-design-boosts-startup-conversions.html">How Motion Design Boosts Startup Conversions</a></li>
+            <li><a href="sitemap.xml">XML Sitemap</a></li>
+            <li><a href="robots.txt">Robots.txt</a></li>
+            <li><a href="llms.txt">LLMs.txt (AI Truth Engine)</a></li>
+            <li><a href="rss.xml">RSS 2.0 Feed</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
