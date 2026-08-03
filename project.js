@@ -54,7 +54,7 @@ const PROJECTS = {
     category: "MOTION DESIGN & PRODUCT EXPLAINER",
     year: "2025",
     client: "Laxman Acharya @ Achx Studio™",
-    services: "3D Motion Graphics, Product Commercial, Motion Direction",
+    services: "Motion Graphics, Product Commercial, Motion Direction",
     deliverables: "Product Explainer Video, Promotional Motion Assets",
     overview: `Laxman Acharya and the team at Achx Studio outsourced the complete motion design and animation production for KDP Pilot to Ryuk Design Studio.<br><br>We crafted a high-energy, commercial product explainer that breaks down KDP Pilot's publishing automation features into slick, engaging visual sequences — helping Achx Studio deliver a world-class motion product for their client.`,
     tagline: "High-impact motion design and product explainer animation created for Achx Studio & Laxman Acharya.",
