@@ -84,10 +84,25 @@ class LiquidShader {
       return;
     }
 
-    this.pixelRatio = Math.min(window.devicePixelRatio || 1, 1.5);
+    const isMobileDevice = window.innerWidth < 768 || ("ontouchstart" in window);
+    this.pixelRatio = isMobileDevice ? Math.min(window.devicePixelRatio || 1, 1.0) : Math.min(window.devicePixelRatio || 1, 1.5);
+    this.lastRenderTime = 0;
     this.resize();
 
-    // Shader parameter defaults matching voltra
+    // Context loss resiliency for mobile/GPU throttling
+    this.canvas.addEventListener("webglcontextlost", (e) => {
+      e.preventDefault();
+      console.warn("WebGL context lost. Pausing shader animation.");
+      this.isContextLost = true;
+    }, false);
+
+    this.canvas.addEventListener("webglcontextrestored", () => {
+      console.log("WebGL context restored. Re-initializing shader.");
+      this.isContextLost = false;
+      this.init();
+    }, false);
+
+    // Original high-fidelity shader parameter defaults
     this.params = {
       colors: [
         [0.0, 0.0, 0.0, 1.0], // rgb(0,0,0)
@@ -97,12 +112,12 @@ class LiquidShader {
         [189 / 255, 189 / 255, 189 / 255, 1.0], // rgb(189,189,189)
       ],
       seed: 585.0,
-      speed: 1.1,
+      speed: 1.25,
       loop: 0.0,
       scale: 0.56,
       turbAmp: 0.23,
       turbFreq: 0.1,
-      turbIter: 7.0,
+      turbIter: isMobileDevice ? 4.5 : 6.5,
       waveFreq: 3.8,
       distBias: 0.0,
       jellify: 0.0, // false
@@ -115,12 +130,14 @@ class LiquidShader {
 
     this.init();
 
-    window.addEventListener("resize", () => this.resize());
+    window.addEventListener("resize", () => this.resize(), { passive: true });
   }
 
   resize() {
-    const displayWidth = this.canvas.clientWidth;
-    const displayHeight = this.canvas.clientHeight;
+    const isMobileDevice = window.innerWidth < 768 || ("ontouchstart" in window);
+    this.pixelRatio = isMobileDevice ? Math.min(window.devicePixelRatio || 1, 1.0) : Math.min(window.devicePixelRatio || 1, 1.5);
+    const displayWidth = Math.max(1, Math.floor(this.canvas.clientWidth * this.pixelRatio));
+    const displayHeight = Math.max(1, Math.floor(this.canvas.clientHeight * this.pixelRatio));
 
     if (this.canvas.width !== displayWidth || this.canvas.height !== displayHeight) {
       this.canvas.width = displayWidth;
@@ -482,7 +499,11 @@ class LiquidShader {
 
   render(timeMs) {
     const gl = this.gl;
-    if (!gl || !this.program) return;
+    if (!gl || !this.program || this.isContextLost) return;
+
+    // Frame rate throttle: cap at ~60fps (15ms min step) to prevent GPU overheating on high refresh rate displays
+    if (timeMs - this.lastRenderTime < 15) return;
+    this.lastRenderTime = timeMs;
 
     const time = timeMs * 0.001;
     gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
@@ -652,10 +673,14 @@ class Smooth {
   init() {
     if (typeof Lenis === "undefined") return;
 
+    const isMobile = window.innerWidth < 768 || ("ontouchstart" in window);
     this.lenis = new Lenis({
-      lerp: 0.08,
+      lerp: isMobile ? 0.12 : 0.08,
+      duration: isMobile ? 0.8 : 1.2,
       smoothWheel: true,
       syncTouch: false,
+      touchMultiplier: 1.5,
+      wheelMultiplier: 1.0,
     });
 
     this.lenis.on("scroll", ScrollTrigger.update);
@@ -1205,6 +1230,14 @@ class Animations {
             }
           );
         }
+
+        // Touch & Tap hover support for mobile & tablet screens
+        wrap.addEventListener("touchstart", () => {
+          wrappers.forEach((w) => {
+            if (w !== wrap) w.classList.remove("is-touch-hover");
+          });
+          wrap.classList.toggle("is-touch-hover");
+        }, { passive: true });
       });
     }
   }
@@ -1354,46 +1387,55 @@ function initHoverReveal() {
     document.body.appendChild(reveal);
   }
 
-  const revealImg = q(".hover-reveal-img", reveal);
   let mouseX = 0,
     mouseY = 0;
   let currentX = 0,
     currentY = 0;
   let rotate = 0,
     targetRotate = 0;
+  let isHovering = false;
+  let rafId = null;
 
   document.addEventListener("mousemove", (e) => {
     mouseX = e.clientX;
     mouseY = e.clientY;
+    if (isHovering && !rafId) {
+      rafId = requestAnimationFrame(render);
+    }
   });
 
-  // Smooth LERP render loop
+  // Smooth LERP render loop - runs ONLY when active
   function render() {
     const dx = mouseX - currentX;
     const dy = mouseY - currentY;
-    currentX += dx * 0.085;
-    currentY += dy * 0.085;
+    currentX += dx * 0.12;
+    currentY += dy * 0.12;
 
     // Rotate based on horizontal speed
     targetRotate = dx * 0.12;
     targetRotate = Math.min(Math.max(targetRotate, -10), 10);
-    rotate += (targetRotate - rotate) * 0.08;
+    rotate += (targetRotate - rotate) * 0.1;
 
     reveal.style.left = currentX + "px";
     reveal.style.top = currentY + "px";
-    reveal.style.transform = `translate(-50%, -50%) rotate(${rotate}deg)`;
+    reveal.style.transform = `translate(-50%, -50%) rotate(${rotate.toFixed(2)}deg)`;
 
-    requestAnimationFrame(render);
+    if (isHovering || Math.abs(dx) > 0.5 || Math.abs(dy) > 0.5) {
+      rafId = requestAnimationFrame(render);
+    } else {
+      rafId = null;
+    }
   }
-  requestAnimationFrame(render);
 
   // Hover states for work rows
   qq(".js-work-row").forEach((row) => {
     row.addEventListener("mouseenter", () => {
+      isHovering = true;
       const imgUrl = row.getAttribute("data-img");
       if (imgUrl && revealImg) {
         revealImg.src = imgUrl;
       }
+      if (!rafId) rafId = requestAnimationFrame(render);
       gsap.to(reveal, {
         opacity: 1,
         scale: 1,
@@ -1403,6 +1445,7 @@ function initHoverReveal() {
     });
 
     row.addEventListener("mouseleave", () => {
+      isHovering = false;
       gsap.to(reveal, {
         opacity: 0,
         scale: 0.6,
@@ -2344,6 +2387,13 @@ function initPreviewVideosObserver() {
   videos.forEach((video) => observer.observe(video));
 }
 
+// ── REMOVE BACKGROUND FROM CLIENT LOGOS ──────────────────────────────────
+// Logo background removal is now handled by CSS mix-blend-mode: screen
+// No JS canvas processing needed
+
+
+
+
 
 // ── CONTACT FORM TO WHATSAPP ────────────────────────────────────────────
 function initContactForm() {
@@ -2474,6 +2524,7 @@ const AppController = {
       // Initialize video gallery
       initVideoGallery();
       initPreviewVideosObserver();
+
 
       // Initialize contact form
       initContactForm();

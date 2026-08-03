@@ -52,23 +52,23 @@
 
 /* ─── TOKENS ─────────────────────────────────────────────────────────── */
 :root {
-  --bg: #ffffff;
-  --bg-2: #fafafa;
-  --bg-3: #eaeaea;
-  --text: #000000;
-  --text-dim: rgba(0, 0, 0, 0.6);
-  --text-dimmer: rgba(0, 0, 0, 0.35);
+  --bg: #0a0a0a;
+  --bg-2: #121212;
+  --bg-3: #1a1a1a;
+  --text: #ffffff;
+  --text-dim: rgba(255, 255, 255, 0.65);
+  --text-dimmer: rgba(255, 255, 255, 0.35);
   --accent: #ff3300;
   --accent-rgb: 255, 51, 0;
   --white: #ffffff;
   --black: #000000;
   --lavender: #989ec0; /* Ylli's exact periwinkle purple color */
-  --dot-color: rgba(0, 0, 0, 0.055);
-  --border-color: rgba(0, 0, 0, 0.08);
+  --dot-color: rgba(255, 255, 255, 0.055);
+  --border-color: rgba(255, 255, 255, 0.08);
 
   --font-title: "Clash Display", sans-serif;
   --font-body: "Inter", sans-serif;
-  --font-mono: "GT-America-Mono-Regular", "Space Mono", monospace;
+  --font-mono: "Space Mono", monospace;
 
   --ease: cubic-bezier(0.76, 0, 0.24, 1);
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
@@ -128,7 +128,7 @@ button {
   font-family: var(--font-body) !important;
 }
 .font-jost {
-  font-family: "Jost", sans-serif !important;
+  font-family: var(--font-body) !important;
 }
 
 .accent {
@@ -329,7 +329,7 @@ button {
 
 /* ─── TYPOGRAPHY FONTS & UTILITIES ───────────────────────────────────── */
 .font-jost {
-  font-family: "Jost", sans-serif;
+  font-family: "Inter", sans-serif;
 }
 .font-inter {
   font-family: "Inter", sans-serif;
@@ -374,7 +374,7 @@ button {
 }
 
 .nav-floating .logo-text {
-  font-family: "Jost", sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 16px;
   font-weight: 800;
   color: #fff;
@@ -494,7 +494,7 @@ button {
   pointer-events: all;
 }
 .mob-link {
-  font-family: "Jost", sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: clamp(3rem, 14vw, 7rem);
   line-height: 1;
   letter-spacing: -0.02em;
@@ -541,6 +541,10 @@ button {
   width: 100%;
   height: 100%;
   display: block;
+  transform: translateZ(0);
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 .hero-shader-overlay {
   position: absolute;
@@ -658,7 +662,7 @@ button {
 }
 
 .hero-title {
-  font-family: "Jost", sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: min(12vw, 120px);
   font-weight: 700;
   line-height: 1.2;
@@ -2145,10 +2149,10 @@ button {
 
 .voice-desc {
   font-family: "Clash Display", sans-serif;
-  font-size: clamp(2rem, 3.2vw, 3rem); /* Tuned size to fit and look exact */
+  font-size: clamp(1.8rem, 3vw, 2.75rem);
   font-weight: 600;
-  line-height: 0.82;
-  letter-spacing: -0.02em;
+  line-height: 1.18;
+  letter-spacing: -0.01em;
   text-transform: uppercase;
   color: var(--text);
   margin: 0 auto;
@@ -2156,7 +2160,7 @@ button {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
+  gap: 14px;
   width: 100%;
   text-align: center;
   word-break: keep-all !important;
@@ -2266,15 +2270,19 @@ button {
   transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.gallery-img-wrapper:hover {
-  transform: translateY(-8px); /* Lift up on hover for interactive depth */
+.gallery-img-wrapper:hover,
+.gallery-img-wrapper:active,
+.gallery-img-wrapper.is-touch-hover {
+  transform: translateY(-8px); /* Lift up on hover/touch for interactive depth */
   box-shadow:
     0 15px 30px rgba(0, 0, 0, 0.08),
     0 40px 80px rgba(0, 0, 0, 0.15),
     0 70px 130px rgba(0, 0, 0, 0.22);
 }
 
-.gallery-img-wrapper:hover img {
+.gallery-img-wrapper:hover img,
+.gallery-img-wrapper:active img,
+.gallery-img-wrapper.is-touch-hover img {
   transform: scale(1.1);
 }
 
@@ -2356,9 +2364,12 @@ button {
     width: 90px;
   }
 
-  .gallery-img-wrapper,
+  .gallery-img-wrapper {
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
   .gallery-img-wrapper img {
-    transition: none !important;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .voice-right {
@@ -2542,6 +2553,8 @@ button {
   height: 100%;
   object-fit: cover;
   display: block;
+  transform: translateZ(0);
+  will-change: transform;
   transition: transform 0.6s var(--ease-out);
 }
 
@@ -3341,12 +3354,12 @@ button {
 }
 
 .testimonials-headline {
-  font-family: "Cormorant Garamond", Georgia, serif;
+  font-family: var(--font-title);
   font-size: clamp(2.2rem, 4.5vw, 3.6rem);
-  font-weight: 300;
+  font-weight: 600;
   line-height: 1.15;
   color: #ffffff;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.02em;
   margin-bottom: 24px;
 }
 
@@ -3399,11 +3412,10 @@ button {
   width: clamp(340px, 30vw, 440px);
   min-height: 380px;
   padding: 40px;
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: #111111;
+  border: 1px solid rgba(255, 255, 255, 0.07);
   border-radius: 20px;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  contain: content;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -3432,11 +3444,12 @@ button {
 }
 
 .testimonial-card-title {
-  font-family: "Cormorant Garamond", Georgia, serif;
-  font-size: 1.5rem;
-  font-weight: 500;
-  line-height: 1.25;
+  font-family: var(--font-title);
+  font-size: 1.35rem;
+  font-weight: 600;
+  line-height: 1.3;
   color: #ffffff;
+  letter-spacing: -0.01em;
   margin-bottom: 16px;
 }
 
@@ -3524,5 +3537,273 @@ button {
 
 .insights-seo-link:hover {
   color: var(--color-accent) !important;
+}
+
+/* ─── CLIENT LOGOS VELOTILE DUAL MARQUEE ──────────────────────────────── */
+.clients-velotile-section {
+  position: relative;
+  background-color: var(--bg);
+  padding: 44px 0 52px;
+  border-bottom: 1px solid var(--border-color);
+  overflow: hidden;
+  z-index: 5;
+}
+
+.clients-section-header {
+  text-align: center;
+  font-size: 0.78rem;
+  font-family: var(--font-mono);
+  letter-spacing: 0.3em;
+  color: var(--text-dimmer);
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.clients-marquee-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.clients-marquee-container {
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  position: relative;
+  mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+}
+
+.clients-marquee-track {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  white-space: nowrap;
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.clients-marquee-track.track-left {
+  animation: marqueeMoveLeft 28s linear infinite;
+}
+
+.clients-marquee-track.track-right {
+  animation: marqueeMoveRight 28s linear infinite;
+}
+
+.clients-marquee-container:hover .clients-marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes marqueeMoveLeft {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-33.3333%);
+  }
+}
+
+@keyframes marqueeMoveRight {
+  0% {
+    transform: translateX(-33.3333%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+/* ─── CLIENT LOGOS VELOTILE BORDERLESS FLOATING HOVER (HUGE & NO GAPS) ── */
+.client-logo-item {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 110px;
+  padding: 0 10px;
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  opacity: 0.85;
+  transition: opacity 0.3s ease, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+  pointer-events: auto;
+  position: relative;
+  z-index: 1;
+}
+
+.client-logo-item:hover {
+  opacity: 1;
+  transform: scale(1.15);
+  z-index: 10;
+}
+
+.client-logo-img {
+  max-height: 76px;
+  max-width: 260px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+  filter: brightness(1.25) contrast(1.1);
+  transition: filter 0.3s ease, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+}
+
+.client-logo-item:hover .client-logo-img {
+  filter: brightness(1.65) contrast(1.2) drop-shadow(0 0 24px rgba(255, 255, 255, 0.7));
+  transform: scale(1.05);
+}
+
+/* Individual logo size & brightness balancing — ALL SAME VISUAL SIZE */
+.client-logo-img.logo-kdppilot {
+  max-height: 105px;
+  max-width: 320px;
+  filter: brightness(1.3) contrast(1.15);
+}
+
+.client-logo-img.logo-achx {
+  max-height: 98px;
+  max-width: 280px;
+  filter: brightness(1.3) contrast(1.1);
+}
+
+.client-logo-img.logo-np {
+  max-height: 70px;
+  max-width: 250px;
+  filter: brightness(1.3) contrast(1.1);
+}
+
+.client-logo-img.logo-lakai {
+  max-height: 64px;
+  max-width: 220px;
+  filter: brightness(1.3) contrast(1.1);
+}
+
+.client-logo-img.logo-presalesforce {
+  max-height: 66px;
+  max-width: 260px;
+  filter: brightness(1.35) contrast(1.1);
+}
+
+/* ─── VOICE SIGNATURE DISPLAY ───────────────────────────────────────── */
+.voice-signature {
+  width: 140px;
+  height: auto;
+  opacity: 0;
+  transform: translateY(20px);
+  will-change: opacity, transform;
+  margin: 16px auto 0;
+}
+
+.voice-signature img {
+  width: 100%;
+  max-width: 140px;
+  height: auto;
+  display: block;
+  opacity: 0.95;
+  margin: 0 auto;
+}
+
+
+
+/* ─── FLOATING STICKY PILL CTA (VELOTILE STYLE) ─────────────────────── */
+.floating-cta-bar {
+  position: fixed;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 999;
+  pointer-events: auto;
+  animation: floatingCtaFloat 4s ease-in-out infinite;
+}
+
+@keyframes floatingCtaFloat {
+  0%, 100% { transform: translate(-50%, 0); }
+  50% { transform: translate(-50%, -4px); }
+}
+
+.floating-cta-inner {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: rgba(14, 14, 18, 0.88);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  padding: 7px 8px 7px 20px;
+  border-radius: 999px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.65), 0 0 20px rgba(255, 51, 0, 0.12);
+}
+
+.floating-cta-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.74rem;
+  color: rgba(255, 255, 255, 0.75);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+.status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #00ff66;
+  box-shadow: 0 0 10px #00ff66;
+  animation: statusPulse 2s infinite;
+}
+
+@keyframes statusPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.2); }
+}
+
+.floating-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #ffffff;
+  color: #000000;
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 10px 22px;
+  border-radius: 999px;
+  text-decoration: none;
+  transition: transform 0.3s ease, background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+  white-space: nowrap;
+}
+
+.floating-cta-btn:hover {
+  transform: scale(1.05);
+  background: var(--accent);
+  color: #ffffff;
+  box-shadow: 0 0 20px rgba(255, 51, 0, 0.5);
+}
+
+@media (max-width: 809px) {
+  .offers-grid {
+    grid-template-columns: 1fr;
+  }
+  .offer-flagship-inner {
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+  }
+  .offer-flagship-desc {
+    max-width: 100%;
+  }
+  .floating-cta-bar {
+    bottom: 18px;
+  }
+  .floating-cta-badge {
+    display: none; /* Hide status text on small mobile screens to keep CTA compact */
+  }
 }
 

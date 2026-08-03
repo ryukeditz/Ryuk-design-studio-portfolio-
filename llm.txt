@@ -4,7 +4,7 @@ Ryuk Design Studio is a premium design and motion agency specializing in high-en
 
 ## Contact Information
 
-- **Email**: ryukdesignstudio@zohomail.in
+- **Email**: roshan@ryukdesignstudio.com
 - **WhatsApp / Phone**: +91 6289059806
 - **Contra**: https://contra.com/roshan_kumar4
 - **LinkedIn**: https://www.linkedin.com/in/ryuk-design-studio-643504419/
@@ -26,16 +26,17 @@ Ryuk Design Studio is a premium design and motion agency specializing in high-en
 ## Key Projects
 
 1. **Lakai** — High-energy motion graphics and product showcases.
-2. **Gemini Spec Ad** — Cutting-edge visual spec ad conceptualization.
+2. **KDP Pilot (Achx Studio / Laxman Acharya)** — High-impact SaaS product explainer video created for Achx Studio.
 3. **Appsee (Walkthrough & Features)** — Multi-part interface walkthrough and feature-rich product demonstration videos.
 4. **Elyxir** — Smooth, premium product and SaaS motion showcase.
 5. **PSFAI** — High-end AI product commercial and explainer animation.
-6. **Nestora** — Brand identity and spatial/architectural design overview.
-7. **The Room** — Immersive interior design showcase.
+6. **Gemini Spec Ad** — Cutting-edge visual spec ad conceptualization.
+7. **Nestora** — Brand identity and spatial/architectural design overview.
+8. **The Room** — Immersive interior design showcase.
 
 ## Website Navigation
 
-- **Home Page**: [index.html](https://ryukeditz.github.io/Ryuk-design-studio-portfolio-/index.html)
-- **Nestora Case Study**: [nestora.html](https://ryukeditz.github.io/Ryuk-design-studio-portfolio-/nestora.html)
-- **The Room Case Study**: [theroom.html](https://ryukeditz.github.io/Ryuk-design-studio-portfolio-/theroom.html)
-- **General Projects Grid**: [project.html](https://ryukeditz.github.io/Ryuk-design-studio-portfolio-/project.html)
+- **Home Page**: [index.html](https://ryukdesignstudio.com/index.html)
+- **Nestora Case Study**: [nestora.html](https://ryukdesignstudio.com/nestora.html)
+- **The Room Case Study**: [theroom.html](https://ryukdesignstudio.com/theroom.html)
+- **General Projects Grid**: [project.html](https://ryukdesignstudio.com/project.html)
