@@ -76,8 +76,9 @@ class LiquidShader {
       alpha: false,
       depth: false,
       stencil: false,
-      antialias: true,
+      antialias: false,
       powerPreference: "high-performance",
+      desynchronized: true,
     });
     if (!this.gl) {
       console.warn("WebGL 2 not supported for LiquidShader");
@@ -85,8 +86,9 @@ class LiquidShader {
     }
 
     const isMobileDevice = window.innerWidth < 768 || ("ontouchstart" in window);
-    this.pixelRatio = isMobileDevice ? Math.min(window.devicePixelRatio || 1, 1.0) : Math.min(window.devicePixelRatio || 1, 1.5);
+    this.pixelRatio = isMobileDevice ? 1.0 : Math.min(window.devicePixelRatio || 1, 1.25);
     this.lastRenderTime = 0;
+    this.flattenedColors = new Float32Array(8 * 4);
     this.resize();
 
     // Context loss resiliency for mobile/GPU throttling
@@ -135,13 +137,21 @@ class LiquidShader {
 
   resize() {
     const isMobileDevice = window.innerWidth < 768 || ("ontouchstart" in window);
-    this.pixelRatio = isMobileDevice ? Math.min(window.devicePixelRatio || 1, 1.0) : Math.min(window.devicePixelRatio || 1, 1.5);
+    this.pixelRatio = isMobileDevice ? 1.0 : Math.min(window.devicePixelRatio || 1, 1.25);
     const displayWidth = Math.max(1, Math.floor(this.canvas.clientWidth * this.pixelRatio));
     const displayHeight = Math.max(1, Math.floor(this.canvas.clientHeight * this.pixelRatio));
 
-    if (this.canvas.width !== displayWidth || this.canvas.height !== displayHeight) {
-      this.canvas.width = displayWidth;
-      this.canvas.height = displayHeight;
+    const maxW = 1920;
+    let w = displayWidth;
+    let h = displayHeight;
+    if (w > maxW) {
+      h = Math.round(h * (maxW / w));
+      w = maxW;
+    }
+
+    if (this.canvas.width !== w || this.canvas.height !== h) {
+      this.canvas.width = w;
+      this.canvas.height = h;
     }
   }
 
@@ -495,40 +505,9 @@ class LiquidShader {
     gl.enableVertexAttribArray(this.positionAttributeLocation);
     gl.vertexAttribPointer(this.positionAttributeLocation, 2, gl.FLOAT, false, 0, 0);
     gl.bindVertexArray(null);
-  }
 
-  render(timeMs) {
-    const gl = this.gl;
-    if (!gl || !this.program || this.isContextLost) return;
-
-    // Frame rate throttle: cap at ~60fps (15ms min step) to prevent GPU overheating on high refresh rate displays
-    if (timeMs - this.lastRenderTime < 15) return;
-    this.lastRenderTime = timeMs;
-
-    const time = timeMs * 0.001;
-    gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
-
-    gl.clearColor(0.0, 0.0, 0.0, 1.0);
-    gl.clear(gl.COLOR_BUFFER_BIT);
-
+    // Upload static uniforms once instead of every single frame
     gl.useProgram(this.program);
-    gl.bindVertexArray(this.vao);
-
-    gl.uniform2f(this.uniforms.resolution, gl.canvas.width, gl.canvas.height);
-    gl.uniform1f(this.uniforms.time, time);
-    gl.uniform1f(this.uniforms.pixelRatio, this.pixelRatio);
-
-    const flattenedColors = new Float32Array(8 * 4);
-    for (let i = 0; i < 8; i++) {
-      const col = this.params.colors[i] || [0.0, 0.0, 0.0, 1.0];
-      flattenedColors[i * 4 + 0] = col[0];
-      flattenedColors[i * 4 + 1] = col[1];
-      flattenedColors[i * 4 + 2] = col[2];
-      flattenedColors[i * 4 + 3] = col[3];
-    }
-    gl.uniform4fv(this.uniforms.colors, flattenedColors);
-    gl.uniform1i(this.uniforms.colorsLength, this.params.colors.length);
-
     gl.uniform1f(this.uniforms.seed, this.params.seed);
     gl.uniform1f(this.uniforms.speed, this.params.speed);
     gl.uniform1f(this.uniforms.loop, this.params.loop);
@@ -544,6 +523,46 @@ class LiquidShader {
     gl.uniform1f(this.uniforms.exposure, this.params.exposure);
     gl.uniform1f(this.uniforms.contrast, this.params.contrast);
     gl.uniform1f(this.uniforms.saturation, this.params.saturation);
+    this.updateColors();
+  }
+
+  updateColors() {
+    const gl = this.gl;
+    if (!gl || !this.program) return;
+    for (let i = 0; i < 8; i++) {
+      const col = this.params.colors[i] || [0.0, 0.0, 0.0, 1.0];
+      this.flattenedColors[i * 4 + 0] = col[0];
+      this.flattenedColors[i * 4 + 1] = col[1];
+      this.flattenedColors[i * 4 + 2] = col[2];
+      this.flattenedColors[i * 4 + 3] = col[3];
+    }
+    gl.useProgram(this.program);
+    gl.uniform4fv(this.uniforms.colors, this.flattenedColors);
+    gl.uniform1i(this.uniforms.colorsLength, this.params.colors.length);
+  }
+
+  render(timeMs) {
+    const gl = this.gl;
+    if (!gl || !this.program || this.isContextLost) return;
+
+    // Smooth frame-pacing accumulator for high-refresh displays (120Hz/144Hz)
+    // Avoids micro-stutter from naive '< 15' threshold
+    const delta = timeMs - this.lastRenderTime;
+    if (delta < 15.5) return;
+    this.lastRenderTime = timeMs - (delta % 16.666);
+
+    const time = timeMs * 0.001;
+    gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
+
+    gl.clearColor(0.0, 0.0, 0.0, 1.0);
+    gl.clear(gl.COLOR_BUFFER_BIT);
+
+    gl.useProgram(this.program);
+    gl.bindVertexArray(this.vao);
+
+    gl.uniform2f(this.uniforms.resolution, gl.canvas.width, gl.canvas.height);
+    gl.uniform1f(this.uniforms.time, time);
+    gl.uniform1f(this.uniforms.pixelRatio, this.pixelRatio);
 
     gl.drawArrays(gl.TRIANGLES, 0, 6);
     gl.bindVertexArray(null);
@@ -688,7 +707,7 @@ class Smooth {
     gsap.ticker.add((time) => {
       this.lenis.raf(time * 1000);
     });
-    gsap.ticker.lagSmoothing(0);
+    gsap.ticker.lagSmoothing(500, 33);
 
     return this.lenis;
   }
@@ -1472,8 +1491,12 @@ function initMagnetic() {
 
   const targets = qq(".hero-right-cta, .contact-big-btn, .nav-link, .avail-badge, .footer-cta");
   targets.forEach((el) => {
+    let rect = null;
+    el.addEventListener("mouseenter", () => {
+      rect = el.getBoundingClientRect();
+    });
     el.addEventListener("mousemove", (e) => {
-      const rect = el.getBoundingClientRect();
+      if (!rect) rect = el.getBoundingClientRect();
       const cx = rect.left + rect.width / 2;
       const cy = rect.top + rect.height / 2;
       const dx = (e.clientX - cx) * 0.28;
@@ -1481,6 +1504,7 @@ function initMagnetic() {
       gsap.to(el, { x: dx, y: dy, duration: 0.4, ease: "power2.out", overwrite: "auto" });
     });
     el.addEventListener("mouseleave", () => {
+      rect = null;
       gsap.to(el, { x: 0, y: 0, duration: 0.8, ease: "elastic.out(1, 0.4)", overwrite: "auto" });
     });
   });
@@ -1519,9 +1543,14 @@ function initWorkRowTilt() {
 
   qq(".work-row").forEach((row) => {
     row.style.perspective = "800px";
+    let rect = null;
+
+    row.addEventListener("mouseenter", () => {
+      rect = row.getBoundingClientRect();
+    });
 
     row.addEventListener("mousemove", (e) => {
-      const rect = row.getBoundingClientRect();
+      if (!rect) rect = row.getBoundingClientRect();
       const x = ((e.clientX - rect.left) / rect.width - 0.5) * 10;
       const y = ((e.clientY - rect.top) / rect.height - 0.5) * -6;
       gsap.to(row, {
@@ -1535,6 +1564,7 @@ function initWorkRowTilt() {
     });
 
     row.addEventListener("mouseleave", () => {
+      rect = null;
       gsap.to(row, {
         rotateX: 0,
         rotateY: 0,
@@ -1590,73 +1620,47 @@ function initHero3DParallax() {
   const isMobile = window.innerWidth <= 768;
   if (isMobile) return;
 
+  let rect = hero.getBoundingClientRect();
+  window.addEventListener("resize", () => {
+    rect = hero.getBoundingClientRect();
+  }, { passive: true });
+
+  const centerToX = centerGroup ? gsap.quickTo(centerGroup, "x", { duration: 0.8, ease: "power2.out" }) : null;
+  const centerToY = centerGroup ? gsap.quickTo(centerGroup, "y", { duration: 0.8, ease: "power2.out" }) : null;
+
+  const leftToX = leftAddress ? gsap.quickTo(leftAddress, "x", { duration: 0.8, ease: "power2.out" }) : null;
+  const leftToY = leftAddress ? gsap.quickTo(leftAddress, "y", { duration: 0.8, ease: "power2.out" }) : null;
+
+  const rightToX = rightEstablished ? gsap.quickTo(rightEstablished, "x", { duration: 0.8, ease: "power2.out" }) : null;
+  const rightToY = rightEstablished ? gsap.quickTo(rightEstablished, "y", { duration: 0.8, ease: "power2.out" }) : null;
+
+  const bottomToX = bottomDesc ? gsap.quickTo(bottomDesc, "x", { duration: 0.8, ease: "power2.out" }) : null;
+  const bottomToY = bottomDesc ? gsap.quickTo(bottomDesc, "y", { duration: 0.8, ease: "power2.out" }) : null;
+
+  let ticking = false;
   hero.addEventListener("mousemove", (e) => {
-    const { width, height, left, top } = hero.getBoundingClientRect();
-    const mouseX = e.clientX - left;
-    const mouseY = e.clientY - top;
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => {
+      ticking = false;
+      const mouseX = e.clientX - rect.left;
+      const mouseY = e.clientY - rect.top;
 
-    const normX = mouseX / width - 0.5;
-    const normY = mouseY / height - 0.5;
+      const normX = mouseX / rect.width - 0.5;
+      const normY = mouseY / rect.height - 0.5;
 
-    if (centerGroup) {
-      gsap.to(centerGroup, {
-        x: normX * 16,
-        y: normY * 16,
-        duration: 0.8,
-        ease: "power2.out",
-        overwrite: "auto",
-      });
-    }
-    if (leftAddress) {
-      gsap.to(leftAddress, {
-        x: normX * -10,
-        yPercent: -50,
-        y: normY * -10,
-        duration: 0.8,
-        ease: "power2.out",
-        overwrite: "auto",
-      });
-    }
-    if (rightEstablished) {
-      gsap.to(rightEstablished, {
-        x: normX * -10,
-        yPercent: -50,
-        y: normY * -10,
-        duration: 0.8,
-        ease: "power2.out",
-        overwrite: "auto",
-      });
-    }
-    if (bottomDesc) {
-      gsap.to(bottomDesc, {
-        x: normX * 24,
-        y: normY * 24,
-        duration: 0.8,
-        ease: "power2.out",
-        overwrite: "auto",
-      });
-    }
-  });
+      if (centerToX) { centerToX(normX * 16); centerToY(normY * 16); }
+      if (leftToX) { leftToX(normX * -10); leftToY(normY * -10); }
+      if (rightToX) { rightToX(normX * -10); rightToY(normY * -10); }
+      if (bottomToX) { bottomToX(normX * 24); bottomToY(normY * 24); }
+    });
+  }, { passive: true });
 
   hero.addEventListener("mouseleave", () => {
-    const resetTargets = [
-      { el: centerGroup, x: 0, y: 0, yp: 0 },
-      { el: leftAddress, x: 0, y: 0, yp: -50 },
-      { el: rightEstablished, x: 0, y: 0, yp: -50 },
-      { el: bottomDesc, x: 0, y: 0, yp: 0 },
-    ];
-    resetTargets.forEach((t) => {
-      if (t.el) {
-        gsap.to(t.el, {
-          x: t.x,
-          y: t.y,
-          yPercent: t.yp,
-          duration: 1.2,
-          ease: "power2.out",
-          overwrite: "auto",
-        });
-      }
-    });
+    if (centerToX) { centerToX(0); centerToY(0); }
+    if (leftToX) { leftToX(0); leftToY(0); }
+    if (rightToX) { rightToX(0); rightToY(0); }
+    if (bottomToX) { bottomToX(0); bottomToY(0); }
   });
 }
 
@@ -2535,68 +2539,8 @@ const AppController = {
       // Initialize footer FAQ accordion
       initFooterFAQ();
 
-      // Initialize liquid gradient shader
-      let shaderCanvas = document.getElementById("shaderCanvas");
-
-      // Clean up previous WebGL shader instance and animation loop to prevent context leaks
-      if (window.__shaderAnimationFrameId) {
-        cancelAnimationFrame(window.__shaderAnimationFrameId);
-        window.__shaderAnimationFrameId = null;
-      }
-      if (window.__liquidShaderInstance) {
-        try {
-          const gl = window.__liquidShaderInstance.gl;
-          if (gl) {
-            const ext = gl.getExtension("WEBGL_lose_context");
-            if (ext) ext.loseContext();
-          }
-        } catch (e) {
-          console.warn("WebGL cleanup error:", e);
-        }
-        window.__liquidShaderInstance = null;
-      }
-
-      if (shaderCanvas) {
-        shaderCanvas.style.display = "";
-        // Recreate canvas to completely bypass browser context reuse limits after loseContext()
-        const newCanvas = shaderCanvas.cloneNode(true);
-        shaderCanvas.parentNode.replaceChild(newCanvas, shaderCanvas);
-        shaderCanvas = newCanvas;
-
-        const liquidShader = new LiquidShader(shaderCanvas);
-        window.__liquidShaderInstance = liquidShader;
-
-        const animateShader = (time) => {
-          if (window.__liquidShaderInstance !== liquidShader) {
-            return;
-          }
-          liquidShader.render(time);
-          window.__shaderAnimationFrameId = requestAnimationFrame(animateShader);
-        };
-
-        // IntersectionObserver to pause rendering when hero is out of view
-        const heroEl = document.getElementById("hero");
-        if (heroEl) {
-          const observer = new IntersectionObserver((entries) => {
-            const [entry] = entries;
-            if (entry.isIntersecting) {
-              // Resume loop if not running
-              if (!window.__shaderAnimationFrameId && window.__liquidShaderInstance === liquidShader) {
-                window.__shaderAnimationFrameId = requestAnimationFrame(animateShader);
-              }
-            } else {
-              // Pause loop
-              if (window.__shaderAnimationFrameId) {
-                cancelAnimationFrame(window.__shaderAnimationFrameId);
-                window.__shaderAnimationFrameId = null;
-              }
-            }
-          }, { threshold: 0.02 });
-          observer.observe(heroEl);
-        } else {
-          window.__shaderAnimationFrameId = requestAnimationFrame(animateShader);
-        }
-      }
+      // Initialize liquid gradient shader (if not already warmed up)
+      initLiquidShader();
 
       const worksEl = document.getElementById("works");
       const projectsTopEl = document.querySelector(".projects-top");
@@ -2617,6 +2561,48 @@ const AppController = {
   },
 };
 
+// ── LIQUID GRADIENT SHADER INITIALIZATION ────────────────────────────────
+function initLiquidShader() {
+  if (window.__liquidShaderInstance) return;
+
+  const shaderCanvas = document.getElementById("shaderCanvas");
+  if (!shaderCanvas) return;
+
+  const liquidShader = new LiquidShader(shaderCanvas);
+  window.__liquidShaderInstance = liquidShader;
+
+  const animateShader = (time) => {
+    if (window.__liquidShaderInstance !== liquidShader) {
+      return;
+    }
+    liquidShader.render(time);
+    window.__shaderAnimationFrameId = requestAnimationFrame(animateShader);
+  };
+
+  const heroEl = document.getElementById("hero");
+  if (heroEl) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const [entry] = entries;
+        if (entry.isIntersecting) {
+          if (!window.__shaderAnimationFrameId && window.__liquidShaderInstance === liquidShader) {
+            window.__shaderAnimationFrameId = requestAnimationFrame(animateShader);
+          }
+        } else {
+          if (window.__shaderAnimationFrameId) {
+            cancelAnimationFrame(window.__shaderAnimationFrameId);
+            window.__shaderAnimationFrameId = null;
+          }
+        }
+      },
+      { threshold: 0.02 }
+    );
+    observer.observe(heroEl);
+  } else {
+    window.__shaderAnimationFrameId = requestAnimationFrame(animateShader);
+  }
+}
+
 // ── BOOT ─────────────────────────────────────────────────────────────────
 window.addEventListener("DOMContentLoaded", () => {
   // Chroma-key cutout
@@ -2630,6 +2616,11 @@ window.addEventListener("DOMContentLoaded", () => {
     window.location.search.includes("project=") ||
     window.location.pathname.includes("nestora") ||
     window.location.pathname.includes("theroom");
+
+  // Pre-warm WebGL liquid shader in background during preloader
+  if (!isProjectPage) {
+    initLiquidShader();
+  }
 
   if (isProjectPage) {
     // On project page: skip preloader, init directly
