@@ -1,6 +1,6 @@
 # Ryuk Design Studio
 
-Ryuk Design Studio is a premium design and motion agency specializing in high-end motion design, interactive web development, branding, and video production for high-growth ventures and Y Combinator-backed startups.
+Ryuk Design Studio is a specialized product-video studio engineering high-impact launch films, product videos, software explainers, and campaign cutdowns for ambitious SaaS, AI, and technology companies.
 
 ## Contact Information
 
@@ -11,21 +11,22 @@ Ryuk Design Studio is a premium design and motion agency specializing in high-en
 - **X (formerly Twitter)**: https://x.com/ryuk__editzz
 - **Instagram**: https://www.instagram.com/ryukdesign.studio/
 
-## Services Offered
+## What We Make
 
-- **Motion Design & Animation**: High-end advertising videos, product walkthroughs, spec ads, and social media reels.
-- **Web Design & Development**: Premium, highly interactive portfolio and marketing websites (utilizing custom WebGL, GSAP animations, and tailored CSS layouts).
-- **Brand Identity & Graphic Design**: Logos, color systems, typography styling, and visual asset packages.
+- **Launch Films**: 30–60s flagship motion films for major product releases, funding rounds, and hero marketing campaigns.
+- **Product Videos**: 60–90s feature choreography and end-to-end interface walkthroughs showcasing real user workflows in action.
+- **Explainers**: 60–90s problem-to-solution narrative films breaking down complex technical architectures into clear mental models.
+- **Social / Campaign Cutdowns**: 6–15s modular hooks, feature highlights, and performance ad cuts tailored for LinkedIn, X, and YouTube.
 
-## Budget & Turnaround Time
+## Engagement Model & Turnaround
 
-- **Standard Projects**: Budgets generally start from **$1,500 – $2,000**.
-- **Services Included**: Detailed content research, copywriting, scripting, storyboarding, design, premium animation, revision rounds, and final delivery.
-- **Turnaround Time**: Standard project timelines range between **3 to 6 weeks** from start to finish, depending on project complexity.
+- **Turnaround Time**: Standard project timelines range between **3 to 5 weeks** from initial kickoff to final mastered delivery.
+- **Scoping & Budget**: Fixed-scope project pricing tailored to narrative scope, 3D fidelity, interface complexity, and deliverable packages.
+- **Scope Included**: Narrative architecture, scriptwriting, storyboarding, art direction, 3D/UI motion design, custom sound design, revisions, and multi-format exports.
 
 ## Key Projects
 
-1. **Lakai** — High-energy motion graphics and product showcases.
+1. **Lakai** — High-energy motion graphics and product showcase.
 2. **KDP Pilot (Achx Studio / Laxman Acharya)** — High-impact SaaS product explainer video created for Achx Studio.
 3. **Appsee (Walkthrough & Features)** — Multi-part interface walkthrough and feature-rich product demonstration videos.
 4. **Elyxir** — Smooth, premium product and SaaS motion showcase.

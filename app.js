@@ -78,7 +78,6 @@ class LiquidShader {
       stencil: false,
       antialias: false,
       powerPreference: "high-performance",
-      desynchronized: true,
     });
     if (!this.gl) {
       console.warn("WebGL 2 not supported for LiquidShader");
@@ -545,11 +544,13 @@ class LiquidShader {
     const gl = this.gl;
     if (!gl || !this.program || this.isContextLost) return;
 
-    // Smooth frame-pacing accumulator for high-refresh displays (120Hz/144Hz)
-    // Avoids micro-stutter from naive '< 15' threshold
-    const delta = timeMs - this.lastRenderTime;
-    if (delta < 15.5) return;
-    this.lastRenderTime = timeMs - (delta % 16.666);
+    // Smooth frame-pacing: allows full 60fps on standard displays without frame-dropping jitter,
+    // while throttling 120Hz/144Hz monitors gracefully to reduce GPU load
+    if (this.lastRenderTime) {
+      const delta = timeMs - this.lastRenderTime;
+      if (delta < 12.0) return;
+    }
+    this.lastRenderTime = timeMs;
 
     const time = timeMs * 0.001;
     gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
@@ -1270,34 +1271,21 @@ class Animations {
 
     const leftAddress = q(".hero-left-address");
     const rightEstablished = q(".hero-right-established");
-    const yearBadge = q(".hero-year-badge");
+    const heroEyebrow = q(".hero-eyebrow");
     const heroTitle = q(".hero-title");
-    const servicesRow = q(".hero-services-row");
+    const heroSubtitle = q(".hero-subtitle");
+    const heroCtaGroup = q(".hero-cta-group");
     const bottomDesc = q(".hero-bottom-desc");
 
-    // Wrap letters of RYUK* in spans for character-by-character clip reveal
-    if (heroTitle && !heroTitle.querySelector(".hero-title-char")) {
-      const text = heroTitle.textContent.trim();
-      heroTitle.innerHTML = "";
-      for (let i = 0; i < text.length; i++) {
-        const char = text[i];
-        const wrapper = document.createElement("span");
-        wrapper.style.display = "inline-block";
-        wrapper.style.overflow = "hidden";
-        wrapper.style.verticalAlign = "bottom";
-
-        const span = document.createElement("span");
-        span.textContent = char;
-        span.className = "hero-title-char";
-        if (char === "®") {
-          span.classList.add("logo-reg");
-        }
-        span.style.display = "inline-block";
-        span.style.transform = "translateY(100%)";
-
-        wrapper.appendChild(span);
-        heroTitle.appendChild(wrapper);
-      }
+    // Wrap words of hero headline in spans for word-by-word clip reveal
+    if (heroTitle && !heroTitle.querySelector(".hero-title-word")) {
+      const words = heroTitle.textContent.trim().split(/\s+/);
+      heroTitle.innerHTML = words
+        .map(
+          (w) =>
+            `<span class="hero-title-word" style="display:inline-block;overflow:hidden;vertical-align:bottom;margin-right:0.24em;"><span class="hero-title-word-inner" style="display:inline-block;transform:translateY(110%);">${w}</span></span>`
+        )
+        .join("");
     }
 
     // 1. Canvas shader wrapper fade-in
@@ -1325,42 +1313,52 @@ class Animations {
       }
     }
 
-    // 3. Year badge reveal
-    if (yearBadge) {
+    // 3. Eyebrow reveal
+    if (heroEyebrow) {
       revealTl.fromTo(
-        yearBadge,
-        { y: 10, opacity: 0 },
+        heroEyebrow,
+        { y: 15, opacity: 0 },
         { y: 0, opacity: 1, duration: 0.8, ease: "power3.out" },
         parentTl ? "-=0.9" : "0.35"
       );
     }
 
-    // 4. Staggered character reveal of RYUK*
-    const titleChars = qq(".hero-title-char");
-    if (titleChars.length > 0) {
+    // 4. Staggered word reveal of MAKE COMPLEX PRODUCTS FEEL OBVIOUS.
+    const titleWords = qq(".hero-title-word-inner");
+    if (titleWords.length > 0) {
       revealTl.to(
-        titleChars,
+        titleWords,
         {
           y: "0%",
-          duration: 1.4,
-          stagger: 0.06,
+          duration: 1.2,
+          stagger: 0.08,
           ease: "power4.out",
         },
-        parentTl ? "-=0.8" : "0.4"
+        parentTl ? "-=0.7" : "0.45"
       );
     }
 
-    // 5. Services row reveal
-    if (servicesRow) {
+    // 5. Subtitle reveal
+    if (heroSubtitle) {
       revealTl.fromTo(
-        servicesRow,
+        heroSubtitle,
         { y: 15, opacity: 0 },
         { y: 0, opacity: 1, duration: 1.0, ease: "power3.out" },
-        parentTl ? "-=0.6" : "0.65"
+        parentTl ? "-=0.6" : "0.7"
       );
     }
 
-    // 6. Left side address and right side established reveals
+    // 6. Dual CTA group reveal
+    if (heroCtaGroup) {
+      revealTl.fromTo(
+        heroCtaGroup,
+        { y: 15, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.9, ease: "power3.out" },
+        parentTl ? "-=0.5" : "0.85"
+      );
+    }
+
+    // 7. Left side address and right side established reveals
     if (leftAddress) {
       revealTl.fromTo(
         leftAddress,
@@ -1378,7 +1376,7 @@ class Animations {
       );
     }
 
-    // 7. Bottom left description paragraph reveal
+    // 8. Bottom left description paragraph reveal
     if (bottomDesc) {
       revealTl.fromTo(
         bottomDesc,
@@ -1643,11 +1641,12 @@ function initHero3DParallax() {
     ticking = true;
     requestAnimationFrame(() => {
       ticking = false;
-      const mouseX = e.clientX - rect.left;
-      const mouseY = e.clientY - rect.top;
+      const curRect = hero.getBoundingClientRect();
+      const mouseX = e.clientX - curRect.left;
+      const mouseY = e.clientY - curRect.top;
 
-      const normX = mouseX / rect.width - 0.5;
-      const normY = mouseY / rect.height - 0.5;
+      const normX = mouseX / curRect.width - 0.5;
+      const normY = mouseY / curRect.height - 0.5;
 
       if (centerToX) { centerToX(normX * 16); centerToY(normY * 16); }
       if (leftToX) { leftToX(normX * -10); leftToY(normY * -10); }
@@ -2275,8 +2274,9 @@ function initVideoGallery() {
       visibleCards = [];
 
       cards.forEach((card) => {
-        const category = card.getAttribute("data-category");
-        if (filterValue === "all" || category === filterValue) {
+        const categoryAttr = (card.getAttribute("data-category") || "").toLowerCase();
+        const categories = categoryAttr.split(/\s+/);
+        if (filterValue === "all" || categories.includes(filterValue.toLowerCase())) {
           card.style.display = "block";
           visibleCards.push(card);
         } else {
@@ -2407,22 +2407,26 @@ function initContactForm() {
   whatsappForm.addEventListener("submit", (e) => {
     e.preventDefault();
 
-    const name = document.getElementById("form-name").value.trim();
-    const phone = document.getElementById("form-phone").value.trim();
-    const email = document.getElementById("form-email").value.trim();
-    const budget = document.getElementById("form-budget").value;
-    const brief = document.getElementById("form-brief").value.trim();
+    const name = (document.getElementById("form-name")?.value || "").trim();
+    const company = (document.getElementById("form-company")?.value || "").trim();
+    const email = (document.getElementById("form-email")?.value || "").trim();
+    const product = (document.getElementById("form-product")?.value || "").trim();
+    const objective = document.getElementById("form-objective")?.value || "";
+    const timeline = document.getElementById("form-timeline")?.value || "";
+    const budget = document.getElementById("form-budget")?.value || "";
 
     const whatsappNumber = "916289059806";
     const message = `Hi Ryuk Design Studio,
 
-I want to query about a project:
+I would like to start a project:
 
 • Name: ${name}
-• Phone: ${phone}
-• Email: ${email}
-• Budget: ${budget}
-• Brief: ${brief}`;
+• Company: ${company}
+• Work Email: ${email}
+• Building: ${product}
+• Video Objective: ${objective}
+• Target Timeline: ${timeline}
+• Project Budget: ${budget}`;
 
     const encodedMessage = encodeURIComponent(message);
     const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;

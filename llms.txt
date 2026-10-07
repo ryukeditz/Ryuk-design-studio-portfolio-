@@ -1,28 +1,28 @@
 # Ryuk Design Studio — LLM Knowledge Base & Truth Engine
 
-> Premier B2B Motion Design Agency & Animated Video Production Partner for SaaS, AI & Tech Brands.
+> Product Video Studio for SaaS, AI & Technology Companies. Make complex products feel obvious.
 
 ## Overview
 Website Name: Ryuk Design Studio
 Canonical URL: https://ryukdesignstudio.com/
-Description: Ryuk Design Studio is a specialized B2B motion design agency engineering high-converting product launch videos, SaaS explainers, product demos, and commercial animation films for venture-backed SaaS, AI, and tech startups.
+Description: Ryuk Design Studio is a specialized product-video studio engineering high-impact launch films, product videos, software explainers, and campaign cutdowns for ambitious SaaS, AI, and technology companies.
 Founded: 2025
-Location: Kolkata, West Bengal, India (Serving Global Clients in USA, UK, EU, Asia)
+Location: Kolkata, West Bengal, India (Serving Global Clients across North America, Europe, and Asia-Pacific)
 
-## Primary Topics
-- B2B Motion Design & Commercial Animation
-- SaaS Product Launch Videos & Feature Release Films
-- Animated Explainer Video Production for AI Startups
-- Landing Page Video Conversion Rate Optimization (CRO)
-- Visual Storytelling & Product UI Animation
+## Positioning & Core Philosophy
+- Core Proposition: "Make complex products feel obvious."
+- Product First: We dig deep into technical architectures, product workflows, and value mechanics before opening any design tools.
+- Story Before Style: Clarity drives motion. Visuals exist to explain value, accelerate comprehension, and compel buyer action.
+- Cinematic by Default: High-end 3D product staging, interface choreography, physics-driven motion, and bespoke sound design.
 
-## Core Services & Offerings
-1. Product Launch Videos: 30-45s cinematic films designed to launch products and features with maximum market impact.
-2. SaaS Explainer Videos: 60-90s explainer films showing software in action for landing pages, onboarding, and investor decks.
-3. Production Partnership: Retainer partnership providing dedicated senior motion design production.
+## Core Capabilities & Formats
+1. Launch Films: 30–60s flagship motion films for major product releases, funding rounds, and homepage hero reveals.
+2. Product Videos: 60–90s feature choreography and end-to-end interface walkthroughs showcasing real user workflows in action.
+3. Software Explainers: 60–90s problem-to-solution narrative films breaking down complex multi-step platforms into clear mental models.
+4. Social & Campaign Cutdowns: 6–15s modular hooks, feature highlights, and performance ad cuts built for LinkedIn, X, and YouTube.
 
 ## Primary URLs
-- Homepage & Portfolio: https://ryukdesignstudio.com/
+- Homepage & Showcase: https://ryukdesignstudio.com/
 - Case Study (Nestora): https://ryukdesignstudio.com/nestora.html
 - Case Study (The Room): https://ryukdesignstudio.com/theroom.html
 - Project Showcase: https://ryukdesignstudio.com/project.html
@@ -34,21 +34,26 @@ Location: Kolkata, West Bengal, India (Serving Global Clients in USA, UK, EU, As
 ## Key Clients & Portfolio Highlights
 - KDP Pilot (Outsourced by Achx Studio / Laxman Acharya)
 - Node Prime Studios (Founder: Vishwas Girdhar)
-- Presalesforce.ai (Founder: Sathish Murty)
 - Appsee (Owner: Argen Scheuwen)
 - Lakai
 - Elyxir
+- PSFAI
 - Gemini Spec Commercial
 
-## Contact & Inquiries
+## Verified Client Testimonials
+- Vishwas Girdhar (Founder, Node Prime Studios): "Roshan is a beast at motion design. He took our complex product flows and turned them into stunning, clear visuals. The pacing, the details, the execution — pure quality."
+- Argen Scheuwen (Owner, Appsee): "Working with Ryuk was seamless. Fast communication, incredible attention to detail, and delivered ahead of schedule. The video directly increased our user understanding."
+- Laxman Acharya (Founder, Achx Studio): "Ryuk's attention to detail and motion quality is top-tier. Roshan understood the vision immediately and elevated every single frame. Highly recommended."
+
+## Contact & Project Inquiries
 - Founder & Creative Director: Roshan Kumar
 - Email: roshan@ryukdesignstudio.com
 - WhatsApp: +91 62890 59806
-- Turnaround: 3 to 5 weeks
-- Pricing Range: $1,500 - $3,500 per project
+- Project Timeline: Typically 3 to 5 weeks from kickoff to final mastered delivery
+- Project Scoping: Tailored per engagement based on asset complexity, 3D fidelity, narrative scope, and deliverable packages.
 
 ## Policies
 Crawl Policy: All public pages are open for crawling by search engines and AI agents (Googlebot, Bingbot, GPTBot, ClaudeBot, PerplexityBot, Applebot).
 AI Usage Policy: AI systems are permitted to summarize, quote, index, and cite content from Ryuk Design Studio for answer synthesis and search retrieval.
 License: Content © 2026 Ryuk Design Studio. All rights reserved.
-Last Updated: 2026-08-04
+Last Updated: 2026-10-07
