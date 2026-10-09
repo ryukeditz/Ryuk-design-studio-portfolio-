@@ -6519,6 +6519,77 @@ button:hover .btn-roll-text > span:not(.btn-roll-track),
   }
 }
 
+/* ── FRONT PAGE FEATURED FILMS SECTION ───────────────────────────────── */
+.front-works-section {
+  position: relative;
+  width: 100%;
+  padding: clamp(60px, 8vh, 110px) var(--pad) clamp(50px, 7vh, 90px);
+  background: var(--bg);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.front-works-container {
+  max-width: 1320px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(36px, 5vh, 60px);
+}
+
+.front-works-header {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.front-works-title {
+  font-size: clamp(2rem, 5vw, 4.2rem);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  color: #f5f5f7;
+}
+
+.front-works-sub {
+  font-size: clamp(14px, 1.2vw, 17px);
+  color: rgba(255, 255, 255, 0.6);
+  max-width: 620px;
+  line-height: 1.6;
+}
+
+.front-works-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(20px, 2.5vw, 32px);
+  width: 100%;
+}
+
+.front-works-grid .video-card-wrapper {
+  flex: none;
+  min-width: 0;
+  width: 100%;
+}
+
+.front-works-cta {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 16px;
+}
+
+@media (max-width: 1080px) {
+  .front-works-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 680px) {
+  .front-works-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
 
 
 

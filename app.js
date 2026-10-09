@@ -2231,6 +2231,17 @@ function initVideoGallery() {
   let activeIndex = 0;
   let visibleCards = Array.from(cards);
 
+  const openVideo = (card) => {
+    if (!card) return;
+    const vimeoId = card.getAttribute("data-vimeo-id");
+    const title = card.getAttribute("data-title");
+    const filteredIdx = card.getAttribute("data-filtered-index");
+    if (filteredIdx !== null) {
+      activeIndex = parseInt(filteredIdx, 10);
+    }
+    window.openVideoLightboxById(vimeoId, title);
+  };
+
   // If there are gallery cards on this page, wire up filter, cards click, and next/prev
   if (cards.length) {
     // FILTER FUNCTIONALITY
@@ -2264,13 +2275,6 @@ function initVideoGallery() {
     cards.forEach((card, idx) => {
       card.setAttribute("data-filtered-index", idx);
     });
-
-    const openVideo = (card) => {
-      const vimeoId = card.getAttribute("data-vimeo-id");
-      const title = card.getAttribute("data-title");
-      activeIndex = parseInt(card.getAttribute("data-filtered-index"), 10);
-      window.openVideoLightboxById(vimeoId, title);
-    };
 
     // Bind click on each card to open in lightbox
     cards.forEach((card) => {
