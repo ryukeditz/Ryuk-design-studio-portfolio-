@@ -1650,6 +1650,21 @@ class PageTransition {
       );
     }
 
+    // Always reset curtain to avoid trapping clicks when navigating or restored from bfcache
+    const resetCurtain = () => {
+      const curtain = document.getElementById("curtain");
+      if (curtain) {
+        curtain.classList.remove("active");
+        gsap.set(curtain, { opacity: 0, visibility: "hidden", pointerEvents: "none" });
+        const curtainLetters = curtain.querySelectorAll(".works-letters");
+        if (curtainLetters.length) {
+          gsap.set(curtainLetters, { y: "115%", opacity: 0 });
+        }
+      }
+    };
+    resetCurtain();
+    window.addEventListener("pageshow", resetCurtain);
+
     // Intercept internal links with event delegation
     if (!window.__pjaxClickBound) {
       document.addEventListener("click", (e) => {
@@ -1724,6 +1739,25 @@ class PageTransition {
               }
             }
 
+            // Case 2b: Navigating back to index.html from works.html -> Smooth cinematic return
+            if ((url.pathname.endsWith("index.html") || url.pathname === "/" || href === "index.html" || href === "/") && window.location.pathname.includes("works")) {
+              const curtain = document.getElementById("curtain");
+              if (curtain) {
+                e.preventDefault();
+                curtain.classList.add("active");
+                gsap.set(curtain, { opacity: 1, visibility: "visible", pointerEvents: "auto" });
+                gsap.to(curtain, {
+                  opacity: 1,
+                  duration: 0.35,
+                  ease: "power2.inOut",
+                  onComplete: () => {
+                    window.location.href = href;
+                  },
+                });
+                return;
+              }
+            }
+
             // Case 3: Navigating to index.html or any other internal link -> Let browser navigate naturally
             // Native navigation guarantees WebGL, GSAP timelines, and canvas simulations start 100% clean and fresh
           }
@@ -1737,7 +1771,7 @@ class PageTransition {
     // Handle browser back and forward buttons cleanly
     if (!window.__popstateBound) {
       window.addEventListener("popstate", () => {
-        // Native clean reload ensures all WebGL shaders, ScrollTriggers, and canvases restore perfectly
+        resetCurtain();
         window.location.reload();
       });
       window.__popstateBound = true;
@@ -2206,45 +2240,80 @@ function initVideoGallery() {
     }
   };
 
-  // 1. LIGHTBOX LAUNCH (Available globally for Vimeo IDs, direct MP4, or showreels)
-  window.openVideoLightboxById = (srcOrId, title) => {
-    if (!srcOrId) return;
-    const str = srcOrId.toString();
+  if (modalClose) modalClose.onclick = closeModal;
+  if (modalOverlay) modalOverlay.onclick = closeModal;
+
+  // Track global active playlist and active index so titles and video IDs never drift
+  let activePlaylist = [];
+  let activePlaylistIndex = 0;
+
+  const renderActiveVideo = () => {
+    if (!activePlaylist.length) return;
+    const current = activePlaylist[activePlaylistIndex];
+    if (!current) return;
+
+    const str = (current.id || "").toString();
+    const title = current.title || "Selected Film";
+
     if (str.includes(".mp4") || str.includes(".webm") || str.startsWith("blob:") || (str.includes("/") && !str.includes("vimeo.com"))) {
-      videoContainer.innerHTML = `<video src="${str}" controls autoplay playsinline style="position:absolute;top:0;left:0;width:100%;height:100%;background:#000;border-radius:12px;object-fit:contain;" title="${title || 'Video'}"></video>`;
+      videoContainer.innerHTML = `<video src="${str}" controls autoplay playsinline style="position:absolute;top:0;left:0;width:100%;height:100%;background:#000;border-radius:12px;object-fit:contain;" title="${title}"></video>`;
     } else {
       const vimeoId = str.replace(/[^0-9]/g, "");
-      videoContainer.innerHTML = `<iframe src="https://player.vimeo.com/video/${vimeoId || str}?autoplay=1&badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="${title || 'Video'}"></iframe>`;
+      videoContainer.innerHTML = `<iframe src="https://player.vimeo.com/video/${vimeoId || str}?autoplay=1&badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="${title}"></iframe>`;
     }
-    if (modalTitle) modalTitle.textContent = title || "Video";
+
+    if (modalTitle) modalTitle.textContent = title;
     modal.classList.add("active");
 
-    // Pause Lenis smooth scroll
     if (window.__lenis) {
       window.__lenis.stop();
     }
   };
 
-  if (modalClose) modalClose.onclick = closeModal;
-  if (modalOverlay) modalOverlay.onclick = closeModal;
+  // 1. LIGHTBOX LAUNCH (Available globally for Vimeo IDs, direct MP4, or showreels)
+  window.openVideoLightboxById = (srcOrId, title, customPlaylist, customIndex) => {
+    if (!srcOrId) return;
 
-  let activeIndex = 0;
-  let visibleCards = Array.from(cards);
-
-  const openVideo = (card) => {
-    if (!card) return;
-    const vimeoId = card.getAttribute("data-vimeo-id");
-    const title = card.getAttribute("data-title");
-    const filteredIdx = card.getAttribute("data-filtered-index");
-    if (filteredIdx !== null) {
-      activeIndex = parseInt(filteredIdx, 10);
+    if (Array.isArray(customPlaylist) && customPlaylist.length) {
+      activePlaylist = customPlaylist;
+      activePlaylistIndex = typeof customIndex === "number" ? customIndex : 0;
+    } else if (cards.length) {
+      // On works.html: use visible cards
+      const visible = Array.from(cards).filter((c) => c.style.display !== "none");
+      activePlaylist = visible.map((c) => ({
+        id: c.getAttribute("data-vimeo-id"),
+        title: c.getAttribute("data-title") || c.querySelector(".video-title")?.textContent || "Selected Film",
+      }));
+      const foundIdx = activePlaylist.findIndex((item) => item.id && item.id.toString() === srcOrId.toString());
+      activePlaylistIndex = foundIdx >= 0 ? foundIdx : 0;
+    } else {
+      // On index.html: use ring items
+      const ringItems = Array.from(document.querySelectorAll(".ring-item"));
+      if (ringItems.length) {
+        activePlaylist = ringItems.map((item) => ({
+          id: item.getAttribute("data-vimeo-id"),
+          title: item.getAttribute("data-title") || item.querySelector(".ring-card-title")?.textContent || "Selected Film",
+        }));
+        const foundIdx = activePlaylist.findIndex((item) => item.id && item.id.toString() === srcOrId.toString());
+        activePlaylistIndex = foundIdx >= 0 ? foundIdx : 0;
+      } else {
+        activePlaylist = [{ id: srcOrId, title: title || "Selected Film" }];
+        activePlaylistIndex = 0;
+      }
     }
-    window.openVideoLightboxById(vimeoId, title);
+
+    // Override the current item's title if explicitly passed
+    if (title && activePlaylist[activePlaylistIndex]) {
+      activePlaylist[activePlaylistIndex].title = title;
+    }
+
+    renderActiveVideo();
   };
 
-  // If there are gallery cards on this page, wire up filter, cards click, and next/prev
+  // 2. WORKS PAGE CARD FILTERING & CLICK BINDING
   if (cards.length) {
-    // FILTER FUNCTIONALITY
+    let visibleCards = Array.from(cards);
+
     filterBtns.forEach((btn) => {
       btn.addEventListener("click", () => {
         filterBtns.forEach((b) => b.classList.remove("active"));
@@ -2264,40 +2333,36 @@ function initVideoGallery() {
           }
         });
 
-        // Update data-index dynamically on filtered list for navigation purposes
         visibleCards.forEach((card, idx) => {
           card.setAttribute("data-filtered-index", idx);
         });
       });
     });
 
-    // Initialize filtered index on boot
     cards.forEach((card, idx) => {
       card.setAttribute("data-filtered-index", idx);
-    });
-
-    // Bind click on each card to open in lightbox
-    cards.forEach((card) => {
-      card.addEventListener("click", () => openVideo(card));
+      card.addEventListener("click", () => {
+        const vimeoId = card.getAttribute("data-vimeo-id");
+        const title = card.getAttribute("data-title") || card.querySelector(".video-title")?.textContent;
+        window.openVideoLightboxById(vimeoId, title);
+      });
     });
   }
 
   // 3. NAVIGATION (PREV/NEXT)
   const navigate = (direction) => {
-    if (!visibleCards.length) return;
+    if (!activePlaylist.length) return;
     if (direction === "next") {
-      activeIndex = (activeIndex + 1) % visibleCards.length;
+      activePlaylistIndex = (activePlaylistIndex + 1) % activePlaylist.length;
     } else {
-      activeIndex = (activeIndex - 1 + visibleCards.length) % visibleCards.length;
+      activePlaylistIndex = (activePlaylistIndex - 1 + activePlaylist.length) % activePlaylist.length;
     }
-    const nextCard = visibleCards[activeIndex];
-    openVideo(nextCard);
+    renderActiveVideo();
   };
 
   if (btnPrev) btnPrev.addEventListener("click", () => navigate("prev"));
   if (btnNext) btnNext.addEventListener("click", () => navigate("next"));
 
-  // Bind Escape and arrow keys globally, cleaning up the old listener if it exists
   if (window.__videoGalleryKeydownHandler) {
     document.removeEventListener("keydown", window.__videoGalleryKeydownHandler);
   }

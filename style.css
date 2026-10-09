@@ -6278,314 +6278,386 @@ button:hover .btn-roll-text > span:not(.btn-roll-track),
 }
 
 /* ═══════════════════════════════════════════════════════════════════════
-   BRAND FOOTER: MITRA HORIZON + VERMILLION DETAILS
-   Reference: Mitra (getmitra.com) Aurora Wave + Vermillion (vermillion.global) Details
+   BRAND FOOTER: MADE IN EVOLVE SPEC (madeinevolve.com)
+   Precision Swiss Layout, 1952 3D Cinema Crowd Backdrop,
+   Vertical Pinstripe Columns, Huge Email Centerpiece & Technical Directory
    ═══════════════════════════════════════════════════════════════════════ */
-.mitra-footer {
-  --fx: 50%;
-  --fy: 30%;
+.evolve-footer {
   position: relative;
   width: 100%;
-  background: #050608;
+  background: #030405;
+  color: #ffffff;
   overflow: hidden;
-  padding-top: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  box-sizing: border-box;
   z-index: 10;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-/* 1. Undulating Aurora Wave Horizon (Mitra Spec) */
-.mitra-wave-wrapper {
-  position: relative;
-  width: 100%;
-  height: clamp(140px, 18vw, 240px);
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  pointer-events: none;
-  z-index: 3;
-}
-
-/* Velvety ambient dusk aurora mesh */
-.mitra-wave-glow-mesh {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(
-    ellipse 80% 50% at 50% 12%,
-    rgba(255, 20, 147, 0.22) 0%,
-    rgba(255, 92, 177, 0.16) 28%,
-    rgba(121, 40, 202, 0.12) 55%,
-    transparent 80%
-  );
-  filter: blur(50px);
-  pointer-events: none;
-  z-index: 1;
-}
-
-/* Interactive Cursor-Tracking Aurora Spotlight across entire footer (Mitra) */
-.mitra-hover-aurora {
+/* Background image wrap with high-contrast cinema crowd & moody vignette */
+.evolve-bg-wrap {
   position: absolute;
   inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.evolve-bg-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+  opacity: 0.32;
+  filter: grayscale(100%) contrast(140%) brightness(65%);
+  transform: scale(1.02);
+}
+
+.evolve-bg-scrim {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 50%, rgba(3, 4, 5, 0.45) 0%, rgba(3, 4, 5, 0.88) 75%, #030405 100%),
+              linear-gradient(180deg, rgba(3, 4, 5, 0.95) 0%, transparent 20%, transparent 80%, #030405 100%);
+}
+
+/* Vertical 12-column pinstripe grid (Made in Evolve signature) */
+.evolve-grid-pinstripes {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
   pointer-events: none;
   z-index: 2;
-  opacity: 0;
-  transition: opacity 0.5s ease;
-  background: radial-gradient(
-    circle 700px at var(--fx, 50%) var(--fy, 30%),
-    rgba(255, 92, 177, 0.32) 0%,
-    rgba(255, 20, 147, 0.22) 25%,
-    rgba(121, 40, 202, 0.16) 50%,
-    rgba(244, 114, 182, 0.08) 72%,
-    transparent 85%
-  );
-  filter: blur(36px);
 }
 
-.mitra-footer:hover .mitra-hover-aurora {
-  opacity: 1;
-}
-
-.mitra-wave-svg {
-  position: relative;
-  width: 100%;
-  min-width: 1200px;
+.evolve-grid-pinstripes span {
+  border-right: 1px solid rgba(255, 255, 255, 0.035);
   height: 100%;
-  z-index: 4;
-  display: block;
 }
 
-/* 2. Mitra Exact 4-Column Directory Layout Grid */
-.mitra-footer-container {
-  width: 100%;
-  max-width: 1360px;
-  margin: 0 auto;
-  padding: clamp(50px, 7vh, 90px) var(--pad) clamp(40px, 5vh, 60px);
-  display: grid;
-  grid-template-columns: 1.5fr 1fr 1fr 1fr 1fr;
-  gap: clamp(28px, 4vw, 56px);
+.evolve-footer-inner {
   position: relative;
-  z-index: 5;
-}
-
-/* Left: Studio Brand & Copyright */
-.mitra-col-brand {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: clamp(36px, 5vh, 64px) clamp(20px, 4vw, 56px) clamp(40px, 6vh, 64px);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  min-height: 190px;
+  min-height: 85vh;
+  box-sizing: border-box;
+  z-index: 3;
 }
 
-.mitra-brand-lockup {
+/* 1. TOP ROW */
+.evolve-top-row {
+  display: grid;
+  grid-template-columns: 1fr 1.6fr 1.6fr auto;
+  gap: clamp(20px, 3vw, 48px);
+  align-items: flex-start;
+  padding-bottom: clamp(28px, 4vh, 48px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.evolve-brand-mark {
   display: flex;
-  flex-direction: column;
+  align-items: center;
   gap: 12px;
 }
 
-.mitra-studio-logo {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  text-decoration: none;
-  color: #ffffff;
+.evolve-pixel-cluster {
+  display: inline-grid;
+  grid-template-columns: repeat(3, 4px);
+  grid-template-rows: repeat(2, 4px);
+  gap: 3px;
 }
 
-.mitra-logo-icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 24px;
-  height: 24px;
-  color: #ff5cb1;
+.evolve-pixel-cluster i {
+  display: block;
+  width: 4px;
+  height: 4px;
+  background: #ffffff;
+  border-radius: 1px;
 }
 
-.mitra-logo-icon svg {
-  width: 100%;
-  height: 100%;
+.evolve-pixel-cluster i:nth-child(2) {
+  background: #ff5cb1;
 }
 
-.mitra-logo-name {
+.evolve-logo-text {
   font-family: var(--font-title);
-  font-size: 24px;
+  font-size: 16px;
   font-weight: 700;
   letter-spacing: -0.02em;
   color: #ffffff;
+  text-decoration: none;
 }
 
-.mitra-copyright {
-  font-size: 13px;
-  color: rgba(255, 255, 255, 0.42);
-  line-height: 1.6;
-  margin-top: auto;
+.evolve-studio-claim p {
+  font-family: var(--font-sans);
+  font-size: clamp(12.5px, 0.95vw, 14px);
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.85);
+  margin: 0;
 }
 
-/* Right: 4 Nav Columns (Product, Company, Resources, Connect) */
-.mitra-col-nav {
+.evolve-studio-loc {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.evolve-loc-mail {
+  font-family: var(--font-sans);
+  font-size: clamp(12.5px, 0.95vw, 14px);
+  color: #ffffff;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.evolve-loc-mail:hover {
+  color: #ff5cb1;
+}
+
+.evolve-loc-est {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.evolve-top-action {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.evolve-lang-tag {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.evolve-btn-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 18px;
+  background: #ffffff;
+  color: #030405;
+  border: 1px solid #ffffff;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+}
+
+.evolve-btn-pill:hover {
+  background: #ff5cb1;
+  border-color: #ff5cb1;
+  color: #030405;
+  box-shadow: 0 0 24px rgba(255, 92, 177, 0.4);
+  transform: translateY(-1px);
+}
+
+/* 2. CENTER HERO */
+.evolve-center-hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: clamp(60px, 10vh, 120px) 0;
+  gap: clamp(14px, 2vh, 24px);
+}
+
+.evolve-impact-title {
+  font-family: var(--font-title);
+  font-size: clamp(22px, 3.2vw, 44px);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  color: #ffffff;
+  margin: 0;
+}
+
+.evolve-email-lockup {
+  position: relative;
+  display: inline-block;
+}
+
+.evolve-colossal-email {
+  font-family: var(--font-title);
+  font-size: clamp(28px, 5.5vw, 76px);
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  color: #ffffff;
+  text-decoration: none;
+  line-height: 1.05;
+  display: inline-block;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  text-shadow: 0 0 40px rgba(0, 0, 0, 0.8);
+}
+
+.evolve-colossal-email:hover {
+  color: #ffffff;
+  text-shadow: 0 0 50px rgba(255, 92, 177, 0.55);
+  transform: scale(1.015);
+}
+
+/* 3. BOTTOM 4-COLUMN GRID */
+.evolve-bottom-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(24px, 3.5vw, 48px);
+  padding-top: clamp(32px, 4vh, 52px);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.evolve-col {
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
 
-.mitra-nav-label {
-  font-family: var(--font-title);
-  font-size: 14.5px;
-  font-weight: 600;
-  letter-spacing: -0.01em;
-  color: rgba(255, 255, 255, 0.48);
-  text-transform: none;
+.evolve-col-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: rgba(255, 255, 255, 0.95);
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 
-.mitra-nav-list {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  list-style: none;
-  padding: 0;
+.evolve-idx {
+  color: #ff5cb1;
+}
+
+.evolve-col-body {
+  font-family: var(--font-sans);
+  font-size: clamp(12.5px, 0.95vw, 13.5px);
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.evolve-col-body p {
   margin: 0;
 }
 
-.mitra-nav-list a {
-  font-family: var(--font-sans);
-  font-size: 14px;
-  color: rgba(255, 255, 255, 0.72);
+.evolve-link {
+  color: rgba(255, 255, 255, 0.75);
   text-decoration: none;
-  transition: color 0.25s ease, transform 0.25s ease;
-  display: inline-flex;
-  align-items: center;
+  transition: all 0.2s ease;
+  display: inline-block;
 }
 
-.mitra-nav-list a:hover {
+.evolve-link:hover {
   color: #ff5cb1;
   transform: translateX(2px);
 }
 
-/* 3. Monumental Bottom Wordmark (Mitra Climax) */
-.mitra-monumental-wordmark {
-  width: 100%;
-  overflow: hidden;
-  position: relative;
+.evolve-links-list {
   display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  line-height: 0.72;
-  user-select: none;
-  pointer-events: none;
-  margin-bottom: -0.09em;
-  padding-top: 24px;
+  flex-direction: column;
+  gap: 8px;
 }
 
-.mitra-wordmark-text {
-  font-family: "Switzer", "Clash Display", -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: clamp(140px, 28vw, 450px);
+.evolve-sublinks {
+  margin-top: 12px;
+}
+
+/* Newsletter / Inquiry Form */
+.evolve-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.evolve-input {
+  width: 100%;
+  height: 38px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 4px;
+  color: #ffffff;
+  padding: 0 12px;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  box-sizing: border-box;
+  outline: none;
+  transition: border-color 0.25s ease, background 0.25s ease;
+}
+
+.evolve-input::placeholder {
+  color: rgba(255, 255, 255, 0.35);
+}
+
+.evolve-input:focus {
+  border-color: #ff5cb1;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.evolve-submit-btn {
+  height: 36px;
+  background: #ffffff;
+  border: 1px solid #ffffff;
+  border-radius: 4px;
+  color: #030405;
+  font-family: var(--font-mono);
+  font-size: 11px;
   font-weight: 700;
-  letter-spacing: -0.04em;
-  line-height: 0.72;
-  white-space: nowrap;
-  text-transform: none;
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.38) 0%,
-    rgba(255, 92, 177, 0.22) 50%,
-    rgba(255, 20, 147, 0.05) 100%
-  );
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 0 50px rgba(255, 20, 147, 0.16));
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+.evolve-submit-btn:hover {
+  background: #ff5cb1;
+  border-color: #ff5cb1;
+  box-shadow: 0 0 20px rgba(255, 92, 177, 0.4);
+}
+
+/* Responsive Breakpoints */
 @media (max-width: 960px) {
-  .mitra-footer-container {
+  .evolve-top-row {
     grid-template-columns: 1fr 1fr;
-    gap: 36px;
-    padding: 40px var(--pad) 30px;
-  }
-  .mitra-col-brand {
-    grid-column: 1 / -1;
-    min-height: auto;
-    gap: 24px;
-  }
-}
-
-@media (max-width: 560px) {
-  .mitra-footer-container {
-    grid-template-columns: 1fr;
     gap: 28px;
   }
-}
-
-/* ── FRONT PAGE FEATURED FILMS SECTION ───────────────────────────────── */
-.front-works-section {
-  position: relative;
-  width: 100%;
-  padding: clamp(60px, 8vh, 110px) var(--pad) clamp(50px, 7vh, 90px);
-  background: var(--bg);
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.front-works-container {
-  max-width: 1320px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  gap: clamp(36px, 5vh, 60px);
-}
-
-.front-works-header {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.front-works-title {
-  font-size: clamp(2rem, 5vw, 4.2rem);
-  line-height: 1.05;
-  letter-spacing: -0.03em;
-  color: #f5f5f7;
-}
-
-.front-works-sub {
-  font-size: clamp(14px, 1.2vw, 17px);
-  color: rgba(255, 255, 255, 0.6);
-  max-width: 620px;
-  line-height: 1.6;
-}
-
-.front-works-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: clamp(20px, 2.5vw, 32px);
-  width: 100%;
-}
-
-.front-works-grid .video-card-wrapper {
-  flex: none;
-  min-width: 0;
-  width: 100%;
-}
-
-.front-works-cta {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 16px;
-}
-
-@media (max-width: 1080px) {
-  .front-works-grid {
-    grid-template-columns: repeat(2, 1fr);
+  .evolve-bottom-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 36px;
+  }
+  .evolve-footer-inner {
+    min-height: auto;
   }
 }
 
-@media (max-width: 680px) {
-  .front-works-grid {
+@media (max-width: 600px) {
+  .evolve-top-row {
     grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .evolve-bottom-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  .evolve-col-body {
+    font-size: 13.5px;
+  }
+  .evolve-colossal-email {
+    font-size: clamp(24px, 8vw, 36px);
   }
 }
 
