@@ -1,0 +1,525 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Selected works of 2026 by Ryuk Design Studio. Launch films, product walkthroughs, 3D spec commercials, and high-converting product videos."
+    />
+    <meta property="og:title" content="Selected Works of 2026 — Ryuk® Launch Film Studio" />
+    <meta
+      property="og:description"
+      content="Turning complicated tech products into stories people understand, remember, and want to try. Explore our full film archive."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://ryukdesignstudio.com/works.html" />
+    <link rel="canonical" href="https://ryukdesignstudio.com/works.html" />
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#080808" />
+    <meta name="author" content="Roshan Kumar — Ryuk Design Studio" />
+    <title>Selected Works of 2026 — Ryuk® Launch Film Studio</title>
+
+    <!-- Brand Fonts: Switzer + Clash Display + Inter + Space Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link rel="preconnect" href="https://api.fontshare.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700;800;900&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link href="https://api.fontshare.com/v2/css?f[]=switzer@400,500,600,700,800&display=swap" rel="stylesheet" />
+    <link href="https://api.fontshare.com/v2/css?f[]=clash-display@300,400,500,600,700&display=swap" rel="stylesheet" />
+
+    <!-- Lenis Smooth Scroll -->
+    <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+    <!-- GSAP + ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <link rel="stylesheet" href="style.css?v=74" />
+  </head>
+  <body>
+    <!-- Grain + Cursor + Rails + Field Canvas -->
+    <canvas class="field" id="field" aria-hidden="true"></canvas>
+    <div class="grain" aria-hidden="true"></div>
+    <div class="cursor" id="cursor"></div>
+    <div class="rails" aria-hidden="true"><i></i><i></i></div>
+
+    <!-- ── PAGE CURTAIN (OVERSIZED SELECTED WORKS TRANSITION LAYER) ────────── -->
+    <div class="curtain" id="curtain" aria-hidden="true">
+      <div class="curtain-works-layer">
+        <div class="works-large">
+          <div class="works-flex">
+            <span class="works-letters">S</span>
+            <span class="works-letters">E</span>
+            <span class="works-letters">L</span>
+            <span class="works-letters">E</span>
+            <span class="works-letters">C</span>
+            <span class="works-letters">T</span>
+            <span class="works-letters">E</span>
+            <span class="works-letters">D</span>
+          </div>
+          <div class="works-flex">
+            <span class="works-letters">(</span>
+            <span class="works-letters">W</span>
+            <span class="works-letters">O</span>
+            <span class="works-letters">R</span>
+            <span class="works-letters">K</span>
+            <span class="works-letters">S</span>
+            <span class="works-letters">)</span>
+          </div>
+          <div class="works-flex">
+            <span class="works-letters pink-glow">2</span>
+            <span class="works-letters pink-glow">3</span>
+            <span class="works-letters pink-glow">‘</span>
+            <span class="works-letters pink-glow">2</span>
+            <span class="works-letters pink-glow">6</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── NAV ────────────────────────────────────────────────────────────── -->
+    <div class="nav-container-floating">
+      <nav class="nav-floating" id="nav">
+        <a href="index.html" class="nav-logo-custom" aria-label="Return to Studio Homepage">
+          <span class="logo-text">RYUK<span class="logo-reg">®</span></span>
+        </a>
+        <div class="nav-links-custom" id="navLinks">
+          <a href="index.html" class="nav-link-custom" aria-label="Back to Studio Homepage">← /Home</a>
+          <a href="works.html" class="nav-link-custom active">/Work</a>
+          <a href="index.html#process" class="nav-link-custom">/Process</a>
+          <a href="index.html#founder" class="nav-link-custom">/Founder</a>
+          <a href="index.html#faq" class="nav-link-custom">/FAQ</a>
+        </div>
+        <div class="nav-cta-wrapper">
+          <a href="https://calendly.com/roshan-ryukdesignstudio/30min" target="_blank" rel="noopener" class="nav-cta-btn">
+            <span class="btn-roll-text">
+              <span class="btn-roll-track">
+                <span class="btn-roll-item">Book a call →</span>
+                <span class="btn-roll-item clone" aria-hidden="true">Book a call →</span>
+              </span>
+            </span>
+          </a>
+          <button class="nav-burger-custom" id="navBurger" aria-label="Menu"><span></span><span></span></button>
+        </div>
+      </nav>
+    </div>
+
+    <!-- ── MOBILE MENU ─────────────────────────────────────────────────────── -->
+    <div class="mob-menu" id="mobMenu">
+      <a href="index.html#hero" class="mob-link">/Home</a>
+      <a href="works.html" class="mob-link active">/Work</a>
+      <a href="index.html#process" class="mob-link">/Process</a>
+      <a href="index.html#founder" class="mob-link">/Founder</a>
+      <a href="index.html#faq" class="mob-link">/FAQ</a>
+      <a href="https://calendly.com/roshan-ryukdesignstudio/30min" target="_blank" rel="noopener" class="mob-cta-btn">
+        <span class="btn-roll-text">
+          <span class="btn-roll-track">
+            <span class="btn-roll-item">Book a call →</span>
+            <span class="btn-roll-item clone" aria-hidden="true">Book a call →</span>
+          </span>
+        </span>
+      </a>
+      <div class="mob-footer">
+        <span>roshan@ryukdesignstudio.com</span>
+        <span>©<span class="js-year">26</span> Ryuk<span class="logo-reg">®</span></span>
+      </div>
+    </div>
+
+    <!-- ════════════════════════════════════════════════════════════════════ -->
+    <!--  MAIN CONTENT                                                        -->
+    <!-- ════════════════════════════════════════════════════════════════════ -->
+    <main id="pageContent">
+      <!-- ── FULLSCREEN OVERSIZED WORKS HERO (IMAGE 3 & 2 SPEC) ───────────── -->
+      <section class="works-fullscreen-hero" id="worksHero">
+        <div class="works-large js-reveal-works">
+          <div class="works-flex">
+            <span class="works-letters">S</span>
+            <span class="works-letters">E</span>
+            <span class="works-letters">L</span>
+            <span class="works-letters">E</span>
+            <span class="works-letters">C</span>
+            <span class="works-letters">T</span>
+            <span class="works-letters">E</span>
+            <span class="works-letters">D</span>
+          </div>
+          <div class="works-flex">
+            <span class="works-letters">(</span>
+            <span class="works-letters">W</span>
+            <span class="works-letters">O</span>
+            <span class="works-letters">R</span>
+            <span class="works-letters">K</span>
+            <span class="works-letters">S</span>
+            <span class="works-letters">)</span>
+          </div>
+          <div class="works-flex">
+            <span class="works-letters pink-glow">2</span>
+            <span class="works-letters pink-glow">3</span>
+            <span class="works-letters pink-glow">‘</span>
+            <span class="works-letters pink-glow">2</span>
+            <span class="works-letters pink-glow">6</span>
+          </div>
+        </div>
+        <div class="works-hero-scroll-cue font-mono">
+          <a href="index.html" class="works-back-link" aria-label="Back to Studio Homepage">
+            <span class="back-arrow">←</span>
+            <span>BACK TO STUDIO</span>
+          </a>
+          <span class="cue-tag">// 07 FILMS DELIVERED ✦ 4K CINEMA MASTERING</span>
+          <a href="#works-gallery" class="works-scroll-cue-arrow" aria-label="Scroll to gallery">
+            <span>EXPLORE ARCHIVE</span>
+            <span>↓</span>
+          </a>
+        </div>
+      </section>
+
+      <!-- ── FULL VIDEO GALLERY (GRID DIRECTORY) ────────────────────────────── -->
+      <section class="video-gallery-section" id="works-gallery" style="padding-top: 48px;">
+        <div class="gallery-container">
+          <!-- Category Filters: ALL, LAUNCH, PRODUCT, EXPLAINER, VSL, EXPERIMENTS -->
+          <div class="gallery-filters-row js-reveal-up">
+            <button class="filter-btn active" data-filter="all">ALL (7) <span class="filter-plus">+</span></button>
+            <button class="filter-btn" data-filter="launch">LAUNCH (1) <span class="filter-plus">+</span></button>
+            <button class="filter-btn" data-filter="product">PRODUCT (4) <span class="filter-plus">+</span></button>
+            <button class="filter-btn" data-filter="explainer">EXPLAINER (3) <span class="filter-plus">+</span></button>
+            <button class="filter-btn" data-filter="vsl">VSL (1) <span class="filter-plus">+</span></button>
+            <button class="filter-btn" data-filter="experiments">EXPERIMENTS (1) <span class="filter-plus">+</span></button>
+          </div>
+
+          <!-- Video Grid with Plus intersections -->
+          <div class="video-grid">
+            <!-- Video 1: Lakai -->
+            <div
+              class="video-card-wrapper js-reveal-up"
+              data-category="launch explainer"
+              data-index="0"
+              data-vimeo-id="1203870359"
+              data-title="Lakai"
+            >
+              <div class="video-card">
+                <div class="video-wrapper">
+                  <video
+                    src="images/works/lakai/video.mp4"
+                    poster="images/works/lakai/poster.jpg"
+                    loop
+                    muted
+                    playsinline
+                    preload="none"
+                    class="card-preview-video"
+                  ></video>
+                </div>
+                <div class="video-info">
+                  <h3 class="video-title">Lakai</h3>
+                  <span class="video-category-tag">Launch Film · Explainer</span>
+                </div>
+              </div>
+              <div class="grid-plus">+</div>
+            </div>
+
+            <!-- Video 2: KDP Pilot -->
+            <div
+              class="video-card-wrapper js-reveal-up"
+              data-category="product explainer"
+              data-index="1"
+              data-vimeo-id="1215284508"
+              data-title="KDP Pilot — Achx Studio"
+            >
+              <div class="video-card">
+                <div class="video-wrapper">
+                  <iframe
+                    src="https://player.vimeo.com/video/1215284508?background=1&autoplay=1&loop=1&byline=0&title=0&muted=1"
+                    frameborder="0"
+                    allow="autoplay; fullscreen"
+                    style="position:absolute; top:0; left:0; width:100%; height:100%; pointer-events:none;"
+                    class="card-preview-video"
+                    title="KDP PILOT"
+                  ></iframe>
+                </div>
+                <div class="video-info">
+                  <h3 class="video-title">KDP Pilot</h3>
+                  <span class="video-category-tag">Product Video · Explainer</span>
+                </div>
+              </div>
+              <div class="grid-plus">+</div>
+            </div>
+
+            <!-- Video 3: Appsee Walkthrough -->
+            <div
+              class="video-card-wrapper js-reveal-up"
+              data-category="product"
+              data-index="2"
+              data-vimeo-id="1203870358"
+              data-title="Appsee — Walkthrough"
+            >
+              <div class="video-card">
+                <div class="video-wrapper">
+                  <video
+                    src="images/works/appsee/video.mp4"
+                    poster="images/works/appsee/poster.jpg"
+                    loop
+                    muted
+                    playsinline
+                    preload="none"
+                    class="card-preview-video"
+                  ></video>
+                </div>
+                <div class="video-info">
+                  <h3 class="video-title">Appsee — Walkthrough</h3>
+                  <span class="video-category-tag">Product Walkthrough</span>
+                </div>
+              </div>
+              <div class="grid-plus">+</div>
+            </div>
+
+            <!-- Video 4: Appsee Features -->
+            <div
+              class="video-card-wrapper js-reveal-up"
+              data-category="product"
+              data-index="3"
+              data-vimeo-id="1203870360"
+              data-title="Appsee — Features"
+            >
+              <div class="video-card">
+                <div class="video-wrapper">
+                  <video
+                    src="images/works/appsee/features.mp4"
+                    poster="images/works/appsee/poster.jpg"
+                    loop
+                    muted
+                    playsinline
+                    preload="none"
+                    class="card-preview-video"
+                  ></video>
+                </div>
+                <div class="video-info">
+                  <h3 class="video-title">Appsee — Features</h3>
+                  <span class="video-category-tag">Feature Showcase</span>
+                </div>
+              </div>
+              <div class="grid-plus">+</div>
+            </div>
+
+            <!-- Video 5: Elyxir -->
+            <div
+              class="video-card-wrapper js-reveal-up"
+              data-category="vsl"
+              data-index="4"
+              data-vimeo-id="1203866870"
+              data-title="Elyxir"
+            >
+              <div class="video-card">
+                <div class="video-wrapper">
+                  <video
+                    src="images/works/elyxir/video.mp4"
+                    poster="images/works/elyxir/poster.jpg"
+                    loop
+                    muted
+                    playsinline
+                    preload="none"
+                    class="card-preview-video"
+                  ></video>
+                </div>
+                <div class="video-info">
+                  <h3 class="video-title">Elyxir</h3>
+                  <span class="video-category-tag">Video Sales Letter</span>
+                </div>
+              </div>
+              <div class="grid-plus">+</div>
+            </div>
+
+            <!-- Video 6: PSFAI -->
+            <div
+              class="video-card-wrapper js-reveal-up"
+              data-category="explainer"
+              data-index="5"
+              data-vimeo-id="1208464484"
+              data-title="PSFAI"
+            >
+              <div class="video-card">
+                <div class="video-wrapper">
+                  <iframe
+                    src="https://player.vimeo.com/video/1208464484?background=1&autoplay=1&loop=1&byline=0&title=0&muted=1"
+                    frameborder="0"
+                    allow="autoplay; fullscreen"
+                    style="position:absolute; top:0; left:0; width:100%; height:100%; pointer-events:none;"
+                    class="card-preview-video"
+                    title="PSFAI"
+                  ></iframe>
+                </div>
+                <div class="video-info">
+                  <h3 class="video-title">PSFAI</h3>
+                  <span class="video-category-tag">SaaS Explainer Video</span>
+                </div>
+              </div>
+              <div class="grid-plus">+</div>
+            </div>
+
+            <!-- Video 7: Gemini Spec Ad -->
+            <div
+              class="video-card-wrapper js-reveal-up"
+              data-category="experiments product"
+              data-index="6"
+              data-vimeo-id="1203870364"
+              data-title="Gemini Spec Ad"
+            >
+              <div class="video-card">
+                <div class="video-wrapper">
+                  <video
+                    src="images/works/gemini/video.mp4"
+                    poster="images/works/appsee/poster.jpg"
+                    loop
+                    muted
+                    playsinline
+                    preload="none"
+                    class="card-preview-video"
+                  ></video>
+                </div>
+                <div class="video-info">
+                  <h3 class="video-title">Gemini Spec Ad</h3>
+                  <span class="video-category-tag">Experiments · Product Demo</span>
+                </div>
+              </div>
+              <div class="grid-plus">+</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── BRAND FOOTER (MITRA HORIZON + VERMILLION DETAILS) ─────────────── -->
+      <footer class="mitra-footer" id="footer">
+        <!-- Interactive Cursor-Tracking Aurora Glow (Mitra Spec) -->
+        <div class="mitra-hover-aurora" aria-hidden="true"></div>
+        <div class="mitra-wave-glow-mesh" aria-hidden="true"></div>
+
+        <!-- Undulating Velvet Aurora Wave Horizon -->
+        <div class="mitra-wave-wrapper" aria-hidden="true">
+          <svg class="mitra-wave-svg" viewBox="0 0 1880 320" fill="none" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="ryukWaveGradWorks" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#060608" stop-opacity="0" />
+                <stop offset="12%" stop-color="#7928ca" stop-opacity="0.6" />
+                <stop offset="32%" stop-color="#ff1493" stop-opacity="0.95" />
+                <stop offset="52%" stop-color="#ff7a45" stop-opacity="0.9" />
+                <stop offset="72%" stop-color="#fb7185" stop-opacity="0.85" />
+                <stop offset="88%" stop-color="#7928ca" stop-opacity="0.55" />
+                <stop offset="100%" stop-color="#060608" stop-opacity="0" />
+              </linearGradient>
+              <filter id="waveBloomWorks" x="-20%" y="-20%" width="140%" height="140%">
+                <feGaussianBlur stdDeviation="7" result="blur" />
+                <feMerge>
+                  <feMergeNode in="blur" />
+                  <feMergeNode in="SourceGraphic" />
+                </feMerge>
+              </filter>
+            </defs>
+            <!-- Atmospheric under-glow fill -->
+            <path d="M0,165 C280,95 560,230 940,150 C1320,70 1600,215 1880,145 L1880,320 L0,320 Z" 
+                  fill="rgba(6, 6, 8, 0.98)" />
+            <!-- Luminous undulating wave horizon stroke -->
+            <path d="M0,165 C280,95 560,230 940,150 C1320,70 1600,215 1880,145" 
+                  stroke="url(#ryukWaveGradWorks)" 
+                  stroke-width="3" 
+                  fill="none" 
+                  filter="url(#waveBloomWorks)" />
+          </svg>
+        </div>
+
+        <!-- Vermillion Disciplined 3-Column HUD Grid -->
+        <div class="mitra-footer-container">
+          <!-- Col 1: Studio Left / About -->
+          <div class="mitra-col-about js-reveal-up">
+            <div class="mitra-brand-lockup">
+              <a href="index.html#hero" class="mitra-studio-logo">
+                <span class="mitra-logo-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <path d="M12 2L14.4 9.6H22L15.8 14.1L18.2 21.7L12 17.2L5.8 21.7L8.2 14.1L2 9.6H9.6L12 2Z" fill="url(#ryukWaveGradWorks)"/>
+                  </svg>
+                </span>
+                <span class="mitra-logo-name">RYUK<span class="logo-reg">®</span></span>
+              </a>
+              <p class="mitra-footer-signoff">
+                Ryuk is a launch film studio for physical AI, robotics and high-growth technology. Making complex products feel immediately obvious.
+              </p>
+            </div>
+
+            <!-- HUD Meta Details from Vermillion -->
+            <div class="mitra-hud-meta font-mono">
+              <div class="hud-item">
+                <span class="hud-label">STATUS</span>
+                <span class="hud-val">
+                  <span class="status-pulse"></span>
+                  Taking projects for Q2 2026
+                </span>
+              </div>
+              <div class="hud-item">
+                <span class="hud-label">TIME</span>
+                <span class="hud-val footer-live-clock" id="footerClock">--:--:-- UTC</span>
+              </div>
+              <div class="hud-item">
+                <span class="hud-label">BASE</span>
+                <span class="hud-val">Global · SF · BLR</span>
+              </div>
+            </div>
+
+            <div class="mitra-copyright">
+              <span>© 2026 Ryuk Design Studio, Inc. All rights reserved.</span>
+            </div>
+          </div>
+
+          <!-- Col 2: FOLLOW (from Vermillion) -->
+          <div class="mitra-col-nav js-reveal-up">
+            <span class="mitra-nav-label font-mono">FOLLOW</span>
+            <ul class="mitra-nav-list font-mono">
+              <li><a href="https://x.com/ryuk__editzz" target="_blank" rel="noopener">X (Twitter) ↗</a></li>
+              <li><a href="https://www.linkedin.com/in/ryuk-design-studio-643504419/" target="_blank" rel="noopener">LinkedIn ↗</a></li>
+              <li><a href="https://www.instagram.com/ryukdesign.studio/" target="_blank" rel="noopener">Instagram ↗</a></li>
+              <li><a href="https://wa.me/916289059806" target="_blank" rel="noopener">WhatsApp ↗</a></li>
+            </ul>
+          </div>
+
+          <!-- Col 3: START (from Vermillion) -->
+          <div class="mitra-col-nav js-reveal-up">
+            <span class="mitra-nav-label font-mono">START</span>
+            <div class="mitra-call-invite">
+              <a href="https://calendly.com/roshan-ryukdesignstudio/30min" target="_blank" rel="noopener" class="mitra-start-btn" aria-label="Book a 30-min discovery call">
+                <span class="btn-roll-text">
+                  <span class="btn-roll-track">
+                    <span class="btn-roll-item">Book a call →</span>
+                    <span class="btn-roll-item clone" aria-hidden="true">Book a call →</span>
+                  </span>
+                </span>
+              </a>
+            </div>
+            <ul class="mitra-nav-list font-mono" style="margin-top: 8px;">
+              <li><a href="mailto:roshan@ryukdesignstudio.com">roshan@ryukdesignstudio.com ↗</a></li>
+              <li><a href="https://wa.me/916289059806" target="_blank" rel="noopener">+91 6289 059 806 ↗</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Monumental Cropped Wordmark: Exactly like Mitra -->
+        <div class="mitra-monumental-wordmark" aria-hidden="true">
+          <span class="mitra-wordmark-text">Ryuk</span>
+        </div>
+      </footer>
+    </main>
+
+    <!-- ── LIGHTBOX MODAL ────────────────────────────────────────────────── -->
+    <div class="lightbox-modal" id="lightboxModal">
+      <div class="lightbox-overlay" id="lightboxOverlay"></div>
+      <div class="lightbox-content">
+        <button class="lightbox-close" id="lightboxClose" aria-label="Close video">&times;</button>
+        <button class="lightbox-nav lightbox-prev" id="lightboxPrev" aria-label="Previous video">&#10216;</button>
+        <div class="lightbox-video-container" id="lightboxVideoContainer">
+          <!-- Vimeo iframe injected here dynamically -->
+        </div>
+        <button class="lightbox-nav lightbox-next" id="lightboxNext" aria-label="Next video">&#10217;</button>
+        <div class="lightbox-title-bar" id="lightboxTitle">Video Title</div>
+      </div>
+    </div>
+
+    <script src="app.js?v=74"></script>
+  </body>
+</html>

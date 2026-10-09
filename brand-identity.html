@@ -1,0 +1,896 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RYUK® Brand Identity & 4K Logo Exploration Suite</title>
+    <!-- Brand Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link rel="preconnect" href="https://api.fontshare.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link href="https://api.fontshare.com/v2/css?f[]=switzer@400,500,600,700,800&display=swap" rel="stylesheet" />
+    <link href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&display=swap" rel="stylesheet" />
+
+    <style>
+      :root {
+        --bg: #050608;
+        --surface: #0a0d13;
+        --surface-card: rgba(14, 18, 26, 0.85);
+        --border: rgba(255, 255, 255, 0.08);
+        --border-highlight: rgba(255, 92, 177, 0.4);
+        --accent: #ff1493;
+        --accent-pink: #ff5cb1;
+        --accent-amber: #ff7a45;
+        --text: #f0efec;
+        --text-dim: #8a8a88;
+        --font-title: "Switzer", -apple-system, sans-serif;
+        --font-mono: "Space Mono", monospace;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        background-color: var(--bg);
+        background-image: 
+          radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.12) 1.15px, transparent 0),
+          radial-gradient(ellipse 65% 40% at 50% 10%, rgba(255, 20, 147, 0.07), transparent 70%);
+        background-size: 28px 28px, 100% 100%;
+        color: var(--text);
+        font-family: var(--font-title);
+        line-height: 1.5;
+        padding-bottom: 120px;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      .container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 32px;
+      }
+
+      /* Header */
+      header {
+        padding: 60px 0 40px;
+        border-bottom: 1px solid var(--border);
+        position: relative;
+      }
+
+      .header-eyebrow {
+        font-family: var(--font-mono);
+        font-size: 11px;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--accent-pink);
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 12px;
+      }
+
+      .live-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--accent);
+        box-shadow: 0 0 10px var(--accent);
+      }
+
+      h1 {
+        font-size: clamp(32px, 5vw, 64px);
+        font-weight: 400;
+        letter-spacing: -0.03em;
+        line-height: 1.05;
+        color: #ffffff;
+        margin-bottom: 16px;
+      }
+
+      .header-desc {
+        color: var(--text-dim);
+        font-size: 16px;
+        max-width: 720px;
+        line-height: 1.6;
+      }
+
+      /* Control Bar */
+      .toolbar {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        gap: 16px;
+        padding: 24px 0;
+        margin-bottom: 48px;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .tool-group {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .tool-btn {
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid var(--border);
+        color: var(--text);
+        padding: 8px 16px;
+        border-radius: 999px;
+        font-family: var(--font-mono);
+        font-size: 11px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+
+      .tool-btn:hover, .tool-btn.active {
+        background: rgba(255, 20, 147, 0.15);
+        border-color: var(--accent-pink);
+        color: #ffffff;
+      }
+
+      /* Concept Grid */
+      .concepts-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 36px;
+        margin-bottom: 80px;
+      }
+
+      @media (max-width: 960px) {
+        .concepts-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .concept-card {
+        background: var(--surface-card);
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        padding: 32px;
+        position: relative;
+        backdrop-filter: blur(14px);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 20px 48px -20px rgba(0, 0, 0, 0.85);
+        display: flex;
+        flex-direction: column;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .concept-card:hover {
+        border-color: var(--border-highlight);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 24px 60px rgba(0, 0, 0, 0.9), 0 0 30px rgba(255, 20, 147, 0.15);
+      }
+
+      .concept-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        margin-bottom: 24px;
+        border-bottom: 1px solid var(--border);
+        padding-bottom: 16px;
+      }
+
+      .concept-num {
+        font-family: var(--font-mono);
+        font-size: 11px;
+        color: var(--accent-pink);
+        letter-spacing: 0.15em;
+      }
+
+      .concept-title {
+        font-size: 22px;
+        font-weight: 500;
+        letter-spacing: -0.02em;
+        color: #ffffff;
+      }
+
+      .concept-ref-tag {
+        font-family: var(--font-mono);
+        font-size: 10px;
+        color: var(--text-dim);
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+
+      /* Stage Preview Box */
+      .preview-stage {
+        width: 100%;
+        aspect-ratio: 16 / 10;
+        background: #020304;
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        border-radius: 4px;
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 24px;
+      }
+
+      /* Grid Overlay */
+      .grid-guides {
+        position: absolute;
+        inset: 0;
+        background-image: 
+          linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+          linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+        background-size: 20px 20px;
+        background-position: center center;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+      }
+
+      .grid-guides.show {
+        opacity: 1;
+      }
+
+      .logo-svg-wrap {
+        width: 220px;
+        height: 220px;
+        position: relative;
+        z-index: 2;
+        transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      .concept-card:hover .logo-svg-wrap {
+        transform: scale(1.04);
+      }
+
+      .concept-desc {
+        color: var(--text-dim);
+        font-size: 14px;
+        line-height: 1.6;
+        margin-bottom: 20px;
+        flex: 1;
+      }
+
+      .concept-meta-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 16px;
+        border-top: 1px solid var(--border);
+      }
+
+      .action-btns {
+        display: flex;
+        gap: 8px;
+      }
+
+      .action-btn {
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid var(--border);
+        color: var(--text);
+        padding: 6px 14px;
+        border-radius: 4px;
+        font-family: var(--font-mono);
+        font-size: 10px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+
+      .action-btn:hover {
+        background: var(--accent);
+        border-color: var(--accent);
+        color: #ffffff;
+      }
+
+      /* Section Separator */
+      .sec-title-row {
+        margin: 80px 0 32px;
+        padding-bottom: 16px;
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+      }
+
+      .sec-title-row h2 {
+        font-size: 28px;
+        font-weight: 400;
+        letter-spacing: -0.02em;
+      }
+
+      /* Color Swatches */
+      .swatch-grid {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        gap: 16px;
+        margin-bottom: 80px;
+      }
+
+      @media (max-width: 960px) {
+        .swatch-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+
+      @media (max-width: 600px) {
+        .swatch-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      .swatch-card {
+        background: var(--surface-card);
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        overflow: hidden;
+        cursor: pointer;
+        transition: transform 0.2s ease, border-color 0.2s ease;
+      }
+
+      .swatch-card:hover {
+        transform: translateY(-3px);
+        border-color: var(--accent-pink);
+      }
+
+      .swatch-color {
+        height: 100px;
+        width: 100%;
+      }
+
+      .swatch-info {
+        padding: 12px;
+        font-family: var(--font-mono);
+        font-size: 11px;
+      }
+
+      .swatch-name {
+        color: #ffffff;
+        font-weight: 700;
+        margin-bottom: 4px;
+      }
+
+      .swatch-hex {
+        color: var(--text-dim);
+      }
+
+      /* Mockup Showcase */
+      .mockup-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 32px;
+      }
+
+      @media (max-width: 860px) {
+        .mockup-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .mockup-card {
+        background: #020304;
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        aspect-ratio: 16 / 9;
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 32px;
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+      }
+
+      .mockup-card.title-card {
+        background: radial-gradient(ellipse at center, rgba(255, 20, 147, 0.15) 0%, #000000 80%);
+      }
+
+      .mockup-card.app-icon-card {
+        background: linear-gradient(135deg, #090d14 0%, #040609 100%);
+      }
+
+      .app-icon-squircle {
+        width: 128px;
+        height: 128px;
+        border-radius: 28px;
+        background: linear-gradient(145deg, #18202d 0%, #0a0e16 100%);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        box-shadow: 
+          inset 0 1px 0 rgba(255, 255, 255, 0.25),
+          0 20px 40px rgba(0, 0, 0, 0.9),
+          0 0 30px rgba(255, 20, 147, 0.25);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .mockup-caption {
+        position: absolute;
+        bottom: 16px;
+        left: 20px;
+        font-family: var(--font-mono);
+        font-size: 10px;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--text-dim);
+      }
+
+      /* Notification Toast */
+      .toast {
+        position: fixed;
+        bottom: 32px;
+        right: 32px;
+        background: #f0efec;
+        color: #050608;
+        padding: 12px 24px;
+        border-radius: 999px;
+        font-family: var(--font-mono);
+        font-size: 12px;
+        font-weight: 700;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), 0 0 20px rgba(255, 20, 147, 0.4);
+        transform: translateY(100px);
+        opacity: 0;
+        transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        z-index: 9999;
+      }
+
+      .toast.show {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <div class="header-eyebrow">
+          <span class="live-dot"></span>
+          RYUK® DESIGN STUDIO ✦ 4K BRAND IDENTITY SPEC
+        </div>
+        <h1>Logo &amp; Visual Identity Exploration</h1>
+        <p class="header-desc">
+          Four distinct conceptual logo systems engineered for 4K video mastering, high-contrast dark environments, and responsive digital products. Each concept explores geometric precision, chromatic velocity, and cinematic presence inspired by studio reference archetypes.
+        </p>
+      </header>
+
+      <!-- Toolbar -->
+      <div class="toolbar">
+        <div class="tool-group">
+          <button class="tool-btn active" id="btnThemeDark">Obsidian Dark</button>
+          <button class="tool-btn" id="btnThemeLight">Titanium Light</button>
+          <button class="tool-btn" id="btnThemeNeon">Neon Magenta</button>
+        </div>
+        <div class="tool-group">
+          <button class="tool-btn" id="btnToggleGrid">Toggle Construction Grid</button>
+          <a href="index.html" class="tool-btn">← Back to Main Studio Site</a>
+        </div>
+      </div>
+
+      <!-- Concepts Section -->
+      <section class="concepts-grid">
+        <!-- ── CONCEPT 01: THE KINETIC R ───────────────────────────────── -->
+        <article class="concept-card">
+          <div class="concept-header">
+            <div>
+              <span class="concept-num">CONCEPT 01</span>
+              <h3 class="concept-title">The Kinetic R</h3>
+            </div>
+            <span class="concept-ref-tag">Ref: Circular Velocity</span>
+          </div>
+
+          <div class="preview-stage" id="stage1">
+            <div class="grid-guides"></div>
+            <div class="logo-svg-wrap">
+              <!-- Concept 1 SVG: Continuous circular loop with forward launch spur -->
+              <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" id="svg-concept-1" width="100%" height="100%">
+                <defs>
+                  <linearGradient id="c1-grad" x1="20" y1="20" x2="180" y2="180" gradientUnits="userSpaceOnUse">
+                    <stop offset="0%" stop-color="#ffffff"/>
+                    <stop offset="60%" stop-color="#f0efec"/>
+                    <stop offset="100%" stop-color="#ff5cb1"/>
+                  </linearGradient>
+                </defs>
+                <!-- Heavy circular loop with cut-in chamber and launch spur -->
+                <path d="M 40,24 
+                         L 126,24 
+                         C 162,24 176,50 176,78 
+                         C 176,104 158,124 126,128 
+                         L 174,176 
+                         L 132,176 
+                         L 92,130 
+                         L 72,130 
+                         L 72,176 
+                         L 40,176 
+                         Z 
+                         M 72,54 
+                         L 72,102 
+                         L 116,102 
+                         C 134,102 144,92 144,78 
+                         C 144,64 134,54 116,54 
+                         Z" 
+                      fill="url(#c1-grad)" 
+                      fill-rule="evenodd"/>
+                <!-- Precision aerodynamic chamfer notch -->
+                <polygon points="126,24 140,24 126,38" fill="#ff1493"/>
+              </svg>
+            </div>
+          </div>
+
+          <p class="concept-desc">
+            <strong>The Kinetic R</strong> translates the bold circular trajectory of reference 01 into an aerodynamic studio monogram. Built with high-speed chamfers and a forward-lunging diagonal strut that communicates immediate launch velocity and directional focus.
+          </p>
+
+          <div class="concept-meta-row">
+            <span class="concept-ref-tag font-mono">GEOMETRY: 48PX MONOLITH STROKE</span>
+            <div class="action-btns">
+              <button class="action-btn" onclick="copySvg('svg-concept-1')">Copy SVG</button>
+              <button class="action-btn" onclick="downloadSvg('svg-concept-1', 'ryuk-kinetic-r.svg')">4K Export</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- ── CONCEPT 02: THE MODULAR SLAB R ─────────────────────────── -->
+        <article class="concept-card">
+          <div class="concept-header">
+            <div>
+              <span class="concept-num">CONCEPT 02</span>
+              <h3 class="concept-title">The Modular Slab R</h3>
+            </div>
+            <span class="concept-ref-tag">Ref: Velotile Modular Blocks</span>
+          </div>
+
+          <div class="preview-stage" id="stage2">
+            <div class="grid-guides"></div>
+            <div class="logo-svg-wrap">
+              <!-- Concept 2 SVG: Architectural Interlocking Blocks with Chromatic Edge -->
+              <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" id="svg-concept-2" width="100%" height="100%">
+                <defs>
+                  <filter id="c2-glow" x="-20%" y="-20%" width="140%" height="140%">
+                    <feDropShadow dx="0" dy="0" stdDeviation="6" flood-color="#ff1493" flood-opacity="0.35"/>
+                  </filter>
+                </defs>
+                <!-- Block 1: Monolithic Pillar Stem -->
+                <rect x="36" y="32" width="36" height="136" rx="4" fill="#ffffff"/>
+                <!-- Block 2: Precision Upper Vault -->
+                <path d="M 80,32 
+                         L 156,32 
+                         C 162,32 168,38 168,44 
+                         L 168,88 
+                         C 168,94 162,100 156,100 
+                         L 80,100 
+                         Z 
+                         M 108,58 
+                         L 140,58 
+                         L 140,74 
+                         L 108,74 
+                         Z" 
+                      fill="#ffffff" 
+                      fill-rule="evenodd"/>
+                <!-- Block 3: Detached Stepping Launch Strut (Velotile Reference Motif) -->
+                <path d="M 112,112 
+                         L 138,112 
+                         L 172,164 
+                         C 174,167 172,168 168,168 
+                         L 136,168 
+                         L 108,124 
+                         Z" 
+                      fill="#ff5cb1"
+                      filter="url(#c2-glow)"/>
+              </svg>
+            </div>
+          </div>
+
+          <p class="concept-desc">
+            <strong>The Modular Slab R</strong> is inspired directly by the Velotile reference geometry: pure architectural components separated by precision hairline voids. The neon-pink detached stepping strut creates a high-tension focal point engineered for modern tech brands.
+          </p>
+
+          <div class="concept-meta-row">
+            <span class="concept-ref-tag font-mono">GEOMETRY: MODULAR GRID 16PX GAP</span>
+            <div class="action-btns">
+              <button class="action-btn" onclick="copySvg('svg-concept-2')">Copy SVG</button>
+              <button class="action-btn" onclick="downloadSvg('svg-concept-2', 'ryuk-modular-slab-r.svg')">4K Export</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- ── CONCEPT 03: THE LIQUID CHROME MONOLITH ──────────────────── -->
+        <article class="concept-card">
+          <div class="concept-header">
+            <div>
+              <span class="concept-num">CONCEPT 03</span>
+              <h3 class="concept-title">The Liquid Chrome R</h3>
+            </div>
+            <span class="concept-ref-tag">Ref: 3D Iridescent Chrome</span>
+          </div>
+
+          <div class="preview-stage" id="stage3">
+            <div class="grid-guides"></div>
+            <div class="logo-svg-wrap">
+              <!-- Concept 3 SVG: 3D Beveled Chrome Block with Liquid Sunset/Pink Reflections -->
+              <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" id="svg-concept-3" width="100%" height="100%">
+                <defs>
+                  <!-- Liquid Chrome Multi-Stop Specular Reflection -->
+                  <linearGradient id="chrome-surface" x1="30" y1="20" x2="170" y2="180" gradientUnits="userSpaceOnUse">
+                    <stop offset="0%" stop-color="#ffffff"/>
+                    <stop offset="28%" stop-color="#ff7a45"/>
+                    <stop offset="42%" stop-color="#ff1493"/>
+                    <stop offset="58%" stop-color="#ffffff"/>
+                    <stop offset="82%" stop-color="#ff5cb1"/>
+                    <stop offset="100%" stop-color="#ff7a45"/>
+                  </linearGradient>
+                  <!-- Specular Edge Rim Filter -->
+                  <filter id="c3-bloom" x="-30%" y="-30%" width="160%" height="160%">
+                    <feDropShadow dx="0" dy="4" stdDeviation="12" flood-color="#ff1493" flood-opacity="0.45"/>
+                  </filter>
+                </defs>
+                <!-- Heavy 3D Beveled Outer Silhouette -->
+                <path d="M 38,30 
+                         L 134,30 
+                         C 164,30 176,52 176,82 
+                         C 176,104 162,118 136,122 
+                         L 174,170 
+                         L 134,170 
+                         L 98,124 
+                         L 74,124 
+                         L 74,170 
+                         L 38,170 
+                         Z" 
+                      fill="url(#chrome-surface)" 
+                      filter="url(#c3-bloom)"/>
+                <!-- Inner Cutout Counter Space with Bevel Rim -->
+                <rect x="74" y="60" width="46" height="36" rx="4" fill="#020304"/>
+                <rect x="75" y="61" width="44" height="34" rx="3" stroke="rgba(255,255,255,0.4)" stroke-width="1.5" fill="none"/>
+              </svg>
+            </div>
+          </div>
+
+          <p class="concept-desc">
+            <strong>The Liquid Chrome R</strong> captures the tactile luxury of reference 03: a heavy 3D beveled block sculpted with liquid mercury reflections, hot-pink caustic flares, and sunset amber rim lighting. Optimized for cinema bumper animations and splash screens.
+          </p>
+
+          <div class="concept-meta-row">
+            <span class="concept-ref-tag font-mono">SPECULAR: DUAL-STOP CAUSTIC MAP</span>
+            <div class="action-btns">
+              <button class="action-btn" onclick="copySvg('svg-concept-3')">Copy SVG</button>
+              <button class="action-btn" onclick="downloadSvg('svg-concept-3', 'ryuk-liquid-chrome-r.svg')">4K Export</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- ── CONCEPT 04: THE CINEMA SHUTTER PRISM ────────────────────── -->
+        <article class="concept-card">
+          <div class="concept-header">
+            <div>
+              <span class="concept-num">CONCEPT 04</span>
+              <h3 class="concept-title">The Cinema Shutter R</h3>
+            </div>
+            <span class="concept-ref-tag">Studio Emblem: Optical Prism</span>
+          </div>
+
+          <div class="preview-stage" id="stage4">
+            <div class="grid-guides"></div>
+            <div class="logo-svg-wrap">
+              <!-- Concept 4 SVG: Aperture / Anamorphic Shutter converging into R -->
+              <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" id="svg-concept-4" width="100%" height="100%">
+                <defs>
+                  <linearGradient id="c4-beam" x1="40" y1="40" x2="160" y2="160" gradientUnits="userSpaceOnUse">
+                    <stop offset="0%" stop-color="#ffffff"/>
+                    <stop offset="50%" stop-color="#ff5cb1"/>
+                    <stop offset="100%" stop-color="#ff1493"/>
+                  </linearGradient>
+                </defs>
+                <!-- Anamorphic Lens Shutter Blades forming R -->
+                <path d="M 46,36 L 118,36 C 146,36 164,52 164,78 C 164,98 150,114 126,118 L 164,164 L 132,164 L 98,122 L 74,122 L 74,164 L 46,164 Z M 74,60 L 74,98 L 114,98 C 128,98 136,90 136,78 C 136,66 128,60 114,60 Z" 
+                      fill="none" 
+                      stroke="url(#c4-beam)" 
+                      stroke-width="12" 
+                      stroke-linecap="round" 
+                      stroke-linejoin="round"/>
+                <!-- Internal Optical Focal Dot -->
+                <circle cx="105" cy="79" r="6" fill="#ff1493"/>
+              </svg>
+            </div>
+          </div>
+
+          <p class="concept-desc">
+            <strong>The Cinema Shutter R</strong> is an optical mark that combines a camera lens aperture blade with an anamorphic ratio prism. Crafted with precision hairline strokes and a glowing focal core to highlight Ryuk’s craft as a specialized launch film director.
+          </p>
+
+          <div class="concept-meta-row">
+            <span class="concept-ref-tag font-mono">OPTICS: 12PX VECTOR CONTOUR</span>
+            <div class="action-btns">
+              <button class="action-btn" onclick="copySvg('svg-concept-4')">Copy SVG</button>
+              <button class="action-btn" onclick="downloadSvg('svg-concept-4', 'ryuk-cinema-shutter-r.svg')">4K Export</button>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <!-- Brand Color Tokens -->
+      <div class="sec-title-row">
+        <h2>Brand Color Architecture</h2>
+        <span class="concept-ref-tag font-mono">CLICK TO COPY HEX</span>
+      </div>
+
+      <div class="swatch-grid">
+        <div class="swatch-card" onclick="copyHex('#050608')">
+          <div class="swatch-color" style="background:#050608; border-bottom:1px solid var(--border);"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Obsidian Base</div>
+            <div class="swatch-hex">#050608</div>
+          </div>
+        </div>
+
+        <div class="swatch-card" onclick="copyHex('#FF1493')">
+          <div class="swatch-color" style="background:#ff1493;"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Deep Pink</div>
+            <div class="swatch-hex">#FF1493</div>
+          </div>
+        </div>
+
+        <div class="swatch-card" onclick="copyHex('#FF5CB1')">
+          <div class="swatch-color" style="background:#ff5cb1;"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Hot Pink</div>
+            <div class="swatch-hex">#FF5CB1</div>
+          </div>
+        </div>
+
+        <div class="swatch-card" onclick="copyHex('#FF7A45')">
+          <div class="swatch-color" style="background:#ff7a45;"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Sunset Amber</div>
+            <div class="swatch-hex">#FF7A45</div>
+          </div>
+        </div>
+
+        <div class="swatch-card" onclick="copyHex('#FB7185')">
+          <div class="swatch-color" style="background:#fb7185;"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Rose Glow</div>
+            <div class="swatch-hex">#FB7185</div>
+          </div>
+        </div>
+
+        <div class="swatch-card" onclick="copyHex('#F0EFEC')">
+          <div class="swatch-color" style="background:#f0efec;"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Chrome White</div>
+            <div class="swatch-hex">#F0EFEC</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Real World Studio Mockups -->
+      <div class="sec-title-row">
+        <h2>Studio Application Mockups</h2>
+        <span class="concept-ref-tag font-mono">4K VIEWPORT SIMULATION</span>
+      </div>
+
+      <div class="mockup-grid">
+        <!-- 4K Title Card -->
+        <div class="mockup-card title-card">
+          <div style="text-align: center; z-index: 2;">
+            <div style="width: 72px; height: 72px; margin: 0 auto 18px;">
+              <svg viewBox="0 0 200 200" fill="none" width="100%" height="100%">
+                <path d="M 40,24 L 126,24 C 162,24 176,50 176,78 C 176,104 158,124 126,128 L 174,176 L 132,176 L 92,130 L 72,130 L 72,176 L 40,176 Z M 72,54 L 72,102 L 116,102 C 134,102 144,92 144,78 C 144,64 134,54 116,54 Z" fill="#ffffff" fill-rule="evenodd"/>
+                <polygon points="126,24 140,24 126,38" fill="#ff1493"/>
+              </svg>
+            </div>
+            <h3 style="font-family: var(--font-title); font-size: 26px; font-weight: 500; letter-spacing: 0.16em; color: #ffffff; text-transform: uppercase;">RYUK DESIGN STUDIO</h3>
+            <span style="font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.28em; color: var(--accent-pink); text-transform: uppercase;">A 2026 LAUNCH FILM ARCHIVE</span>
+          </div>
+          <div class="mockup-caption font-mono">// 01: 4K MASTER CINEMATIC TITLE SLATE</div>
+        </div>
+
+        <!-- App Icon -->
+        <div class="mockup-card app-icon-card">
+          <div class="app-icon-squircle">
+            <div style="width: 64px; height: 64px;">
+              <svg viewBox="0 0 200 200" fill="none" width="100%" height="100%">
+                <rect x="36" y="32" width="36" height="136" rx="4" fill="#ffffff"/>
+                <path d="M 80,32 L 156,32 C 162,32 168,38 168,44 L 168,88 C 168,94 162,100 156,100 L 80,100 Z M 108,58 L 140,58 L 140,74 L 108,74 Z" fill="#ffffff" fill-rule="evenodd"/>
+                <path d="M 112,112 L 138,112 L 172,164 C 174,167 172,168 168,168 L 136,168 L 108,124 Z" fill="#ff5cb1"/>
+              </svg>
+            </div>
+          </div>
+          <div class="mockup-caption font-mono">// 02: HIGH-DENSITY APPARATUS ICON (1024PX SQUIRCLE)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">Copied to Clipboard!</div>
+
+    <script>
+      // Toast notification helper
+      function showToast(msg) {
+        const t = document.getElementById("toast");
+        t.textContent = msg;
+        t.classList.add("show");
+        setTimeout(() => t.classList.remove("show"), 2200);
+      }
+
+      // Copy SVG to clipboard
+      function copySvg(svgId) {
+        const svgEl = document.getElementById(svgId);
+        if (!svgEl) return;
+        const serializer = new XMLSerializer();
+        const svgStr = serializer.serializeToString(svgEl);
+        navigator.clipboard.writeText(svgStr).then(() => {
+          showToast("SVG Code Copied to Clipboard!");
+        });
+      }
+
+      // Download SVG File
+      function downloadSvg(svgId, filename) {
+        const svgEl = document.getElementById(svgId);
+        if (!svgEl) return;
+        const serializer = new XMLSerializer();
+        let svgStr = serializer.serializeToString(svgEl);
+        if (!svgStr.match(/^<svg[^>]+xmlns="http\:\/\/www\.w3\.org\/2000\/svg"/)) {
+          svgStr = svgStr.replace(/^<svg/, '<svg xmlns="http://www.w3.org/2000/svg"');
+        }
+        const blob = new Blob([svgStr], { type: "image/svg+xml;charset=utf-8" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+        showToast("Downloaded " + filename);
+      }
+
+      // Copy Hex
+      function copyHex(hex) {
+        navigator.clipboard.writeText(hex).then(() => {
+          showToast("Copied " + hex + " to Clipboard!");
+        });
+      }
+
+      // Toggle Construction Grid
+      const gridBtn = document.getElementById("btnToggleGrid");
+      gridBtn.addEventListener("click", () => {
+        const grids = document.querySelectorAll(".grid-guides");
+        const isShown = grids[0].classList.contains("show");
+        grids.forEach(g => g.classList.toggle("show", !isShown));
+        gridBtn.classList.toggle("active", !isShown);
+        showToast(!isShown ? "Construction Guides Enabled" : "Guides Hidden");
+      });
+
+      // Theme Toggles
+      const btnDark = document.getElementById("btnThemeDark");
+      const btnLight = document.getElementById("btnThemeLight");
+      const btnNeon = document.getElementById("btnThemeNeon");
+      const stages = document.querySelectorAll(".preview-stage");
+
+      btnDark.addEventListener("click", () => {
+        stages.forEach(s => s.style.background = "#020304");
+        btnDark.classList.add("active");
+        btnLight.classList.remove("active");
+        btnNeon.classList.remove("active");
+      });
+
+      btnLight.addEventListener("click", () => {
+        stages.forEach(s => s.style.background = "#f5f5f7");
+        btnLight.classList.add("active");
+        btnDark.classList.remove("active");
+        btnNeon.classList.remove("active");
+      });
+
+      btnNeon.addEventListener("click", () => {
+        stages.forEach(s => s.style.background = "radial-gradient(ellipse at center, #1b0a1c 0%, #060207 100%)");
+        btnNeon.classList.add("active");
+        btnDark.classList.remove("active");
+        btnLight.classList.remove("active");
+      });
+    </script>
+  </body>
+</html>

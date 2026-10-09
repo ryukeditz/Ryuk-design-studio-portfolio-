@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Ryuk is a product video studio for SaaS, AI, and technology companies. We turn complex products into clear, high-converting launch films, product videos, and explainers."
+      content="Ryuk is a launch film studio for fast-growing SaaS, AI, and technology companies. Turning complicated products into stories people understand, remember, and want to try."
     />
-    <meta property="og:title" content="Ryuk® — Product Video Studio for SaaS, AI & Technology" />
+    <meta property="og:title" content="Ryuk® — Launch Films for Fast-Growing Tech & AI Startups" />
     <meta
       property="og:description"
-      content="Make complex products feel obvious. High-converting launch films, product videos, and explainers for SaaS, AI, and technology companies."
+      content="Make complex products feel obvious. High-impact launch films and cinematic product narratives for SaaS, AI, and technology companies."
     />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://ryukdesignstudio.com/" />
@@ -20,8 +20,8 @@
     <meta name="theme-color" content="#080808" />
     <meta name="author" content="Roshan Kumar — Ryuk Design Studio" />
     <meta name="publisher" content="Ryuk Design Studio" />
-    <title>Ryuk® — Product Video Studio for SaaS, AI & Technology</title>
-    <meta name="keywords" content="product video studio, SaaS launch video, AI product video, SaaS explainer video production, product demo video, tech launch film, motion design studio, high-converting product videos" />
+    <title>Ryuk® — Launch Films for Fast-Growing Tech & AI Startups</title>
+    <meta name="keywords" content="launch films, SaaS launch video, AI launch video, tech launch film studio, 3D product launch, motion design studio, high-converting launch films" />
 
     <!-- Structured Data (JSON-LD) for SEO / AEO / GEO -->
     <script type="application/ld+json">
@@ -150,13 +150,15 @@
     }
     </script>
 
-    <!-- Brand Fonts: Clash Display + Inter + Space Mono -->
+    <!-- Brand Fonts: Switzer + Clash Display + Inter + Space Mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link rel="preconnect" href="https://api.fontshare.com" />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700;800;900&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap"
       rel="stylesheet"
     />
+    <link href="https://api.fontshare.com/v2/css?f[]=switzer@400,500,600,700,800&display=swap" rel="stylesheet" />
     <link href="https://api.fontshare.com/v2/css?f[]=clash-display@300,400,500,600,700&display=swap" rel="stylesheet" />
 
     <!-- Lenis Smooth Scroll -->
@@ -165,7 +167,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
-    <link rel="stylesheet" href="style.css?v=57" />
+    <link rel="stylesheet" href="style.css?v=74" />
   </head>
   <body class="is-loading">
     <!-- ── PRELOADER ──────────────────────────────────────────────────────── -->
@@ -173,7 +175,7 @@
       <section class="loading">
         <nav>
           <div class="brand font-mono">
-            <span>Ryuk® is a product video studio</span>
+            <span>Ryuk® is a launch film studio</span>
             <span>turning complex technology</span>
             <span>into clear, high-converting films.</span>
           </div>
@@ -185,21 +187,52 @@
         </nav>
 
         <div class="loading-text">
-          <span>Ryuk® ✦ Product Video Studio ✦ Make Complex Products Feel Obvious ✦ SaaS · AI · Technology &nbsp;&nbsp;&nbsp;</span>
-          <span>Ryuk® ✦ Product Video Studio ✦ Make Complex Products Feel Obvious ✦ SaaS · AI · Technology &nbsp;&nbsp;&nbsp;</span>
-          <span>Ryuk® ✦ Product Video Studio ✦ Make Complex Products Feel Obvious ✦ SaaS · AI · Technology &nbsp;&nbsp;&nbsp;</span>
+          <span>Ryuk® ✦ Launch Film Studio ✦ Make Complex Products Feel Obvious ✦ SaaS · AI · Technology &nbsp;&nbsp;&nbsp;</span>
+          <span>Ryuk® ✦ Launch Film Studio ✦ Make Complex Products Feel Obvious ✦ SaaS · AI · Technology &nbsp;&nbsp;&nbsp;</span>
+          <span>Ryuk® ✦ Launch Film Studio ✦ Make Complex Products Feel Obvious ✦ SaaS · AI · Technology &nbsp;&nbsp;&nbsp;</span>
         </div>
       </section>
     </div>
 
-    <!-- ── NOISE GRAIN ─────────────────────────────────────────────────────── -->
+    <!-- ── NOISE GRAIN + RAILS + FIELD CANVAS ────────────────────────────── -->
+    <canvas class="field" id="field" aria-hidden="true"></canvas>
     <div class="grain" aria-hidden="true"></div>
-
-    <!-- ── CURSOR ──────────────────────────────────────────────────────────── -->
     <div class="cursor" id="cursor"></div>
+    <div class="rails" aria-hidden="true"><i></i><i></i></div>
 
-    <!-- ── PAGE CURTAIN ────────────────────────────────────────────────────── -->
-    <div class="curtain" id="curtain"></div>
+    <!-- ── PAGE CURTAIN (OVERSIZED SELECTED WORKS TRANSITION LAYER) ────────── -->
+    <div class="curtain" id="curtain" aria-hidden="true">
+      <div class="curtain-works-layer">
+        <div class="works-large">
+          <div class="works-flex">
+            <span class="works-letters">S</span>
+            <span class="works-letters">E</span>
+            <span class="works-letters">L</span>
+            <span class="works-letters">E</span>
+            <span class="works-letters">C</span>
+            <span class="works-letters">T</span>
+            <span class="works-letters">E</span>
+            <span class="works-letters">D</span>
+          </div>
+          <div class="works-flex">
+            <span class="works-letters">(</span>
+            <span class="works-letters">W</span>
+            <span class="works-letters">O</span>
+            <span class="works-letters">R</span>
+            <span class="works-letters">K</span>
+            <span class="works-letters">S</span>
+            <span class="works-letters">)</span>
+          </div>
+          <div class="works-flex">
+            <span class="works-letters pink-glow">2</span>
+            <span class="works-letters pink-glow">3</span>
+            <span class="works-letters pink-glow">‘</span>
+            <span class="works-letters pink-glow">2</span>
+            <span class="works-letters pink-glow">6</span>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- ── NAV ────────────────────────────────────────────────────────────── -->
     <div class="nav-container-floating">
@@ -209,13 +242,20 @@
         </a>
         <div class="nav-links-custom" id="navLinks">
           <a href="#hero" class="nav-link-custom">/Home</a>
-          <a href="#works" class="nav-link-custom">/Work</a>
-          <a href="#services" class="nav-link-custom">/Services</a>
-          <a href="#about" class="nav-link-custom">/About</a>
-          <a href="#contact" class="nav-link-custom">/Contact</a>
+          <a href="works.html" class="nav-link-custom">/Work</a>
+          <a href="#process" class="nav-link-custom">/Process</a>
+          <a href="#founder" class="nav-link-custom">/Founder</a>
+          <a href="#faq" class="nav-link-custom">/FAQ</a>
         </div>
         <div class="nav-cta-wrapper">
-          <a href="#contact" class="nav-cta-btn">Start a Project →</a>
+          <a href="https://calendly.com/roshan-ryukdesignstudio/30min" target="_blank" rel="noopener" class="nav-cta-btn">
+            <span class="btn-roll-text">
+              <span class="btn-roll-track">
+                <span class="btn-roll-item">Book a call →</span>
+                <span class="btn-roll-item clone" aria-hidden="true">Book a call →</span>
+              </span>
+            </span>
+          </a>
           <button class="nav-burger-custom" id="navBurger" aria-label="Menu"><span></span><span></span></button>
         </div>
       </nav>
@@ -224,10 +264,18 @@
     <!-- ── MOBILE MENU ─────────────────────────────────────────────────────── -->
     <div class="mob-menu" id="mobMenu">
       <a href="#hero" class="mob-link">/Home</a>
-      <a href="#works" class="mob-link">/Work</a>
-      <a href="#services" class="mob-link">/Services</a>
-      <a href="#about" class="mob-link">/About</a>
-      <a href="#contact" class="mob-link">/Contact</a>
+      <a href="works.html" class="mob-link">/Work</a>
+      <a href="#process" class="mob-link">/Process</a>
+      <a href="#founder" class="mob-link">/Founder</a>
+      <a href="#faq" class="mob-link">/FAQ</a>
+      <a href="https://calendly.com/roshan-ryukdesignstudio/30min" target="_blank" rel="noopener" class="mob-cta-btn">
+        <span class="btn-roll-text">
+          <span class="btn-roll-track">
+            <span class="btn-roll-item">Book a call →</span>
+            <span class="btn-roll-item clone" aria-hidden="true">Book a call →</span>
+          </span>
+        </span>
+      </a>
       <div class="mob-footer">
         <span>roshan@ryukdesignstudio.com</span>
         <span>©<span class="js-year">26</span> Ryuk<span class="logo-reg">®</span></span>
@@ -239,512 +287,498 @@
     <!-- ════════════════════════════════════════════════════════════════════ -->
 
     <main id="pageContent">
-      <!-- ── HERO ───────────────────────────────────────────────────────────── -->
-      <section class="hero hero-section" id="hero">
-        <!-- WebGL shader canvas background -->
-        <div class="hero-shader-wrapper">
-          <canvas id="shaderCanvas" class="hero-shader-canvas"></canvas>
-          <div class="hero-shader-overlay"></div>
+      <!-- ── HERO (EXACT GANIMATE STRUCTURE & TYPOGRAPHY) ──────────────────── -->
+      <section class="hero" id="hero" aria-labelledby="hero-title">
+        <!-- Symmetrical Amphitheater Gradient Pillars (Deep Pink Palette) -->
+        <div class="hero-pillar-stage" aria-hidden="true">
+          <div class="hero-pillar-bar pillar-1"></div>
+          <div class="hero-pillar-bar pillar-2"></div>
+          <div class="hero-pillar-bar pillar-3"></div>
+          <div class="hero-pillar-bar pillar-4"></div>
+          <div class="hero-pillar-bar pillar-5"></div>
+          <div class="hero-pillar-bar pillar-6"></div>
+          <div class="hero-pillar-bar pillar-7"></div>
+          <div class="hero-pillar-bar pillar-8"></div>
+          <div class="hero-pillar-bar pillar-9"></div>
+          <div class="hero-pillar-bar pillar-10"></div>
+          <div class="hero-stage-floor-beam"></div>
         </div>
 
-        <div class="hero-voltra-container">
-          <!-- Left side address -->
-          <div class="hero-left-address js-reveal-up">
-            <div class="address-text font-inter">
-              India<br />
-              West Bengal<br />
-              Kolkata
-            </div>
-            <a href="#about" class="address-link font-mono">visit.</a>
-          </div>
+        <!-- Ambient Deep Pink Base Bloom -->
+        <div class="hero-ambient-lights" aria-hidden="true">
+          <div class="hero-ambient-orb orb-pink"></div>
+        </div>
 
-          <!-- Center block -->
-          <div class="hero-center-group">
-            <div class="hero-eyebrow font-mono js-reveal-up">
-              <span class="eyebrow-pulse"></span> RYUK® — PRODUCT VIDEO STUDIO
-            </div>
-            <h1 class="hero-title font-title">
-              MAKE COMPLEX PRODUCTS FEEL OBVIOUS.
-            </h1>
-            <p class="hero-subtitle font-inter js-reveal-up">
-              We create launch films, product videos, and explainers for SaaS, AI, and technology companies. Taking what is difficult to understand and making it impossible to ignore.
-            </p>
-            <div class="hero-cta-group js-reveal-up">
-              <a href="#contact" class="hero-btn-primary font-mono">START A PROJECT →</a>
-              <a href="#works" class="hero-btn-secondary font-mono">VIEW OUR WORK ↗</a>
-            </div>
+        <div class="hero-copy">
+          <div>
+            <div class="eyebrow"><span class="pink-dot"></span>Launch films studio 2026</div>
+            <h1 id="hero-title"><span class="hero-line hero-line-primary">Make complex products</span><span class="hero-line hero-line-accent">feel immediately obvious.</span></h1>
           </div>
-
-          <!-- Right side established -->
-          <div class="hero-right-established js-reveal-up">
-            <div class="est-year font-inter">2025</div>
-            <div class="est-label font-inter">Established since.</div>
-          </div>
-
-          <!-- Bottom left description paragraph -->
-          <div class="hero-bottom-desc js-reveal-up">
-            <div class="desc-angle-decorator">┐</div>
-            <p class="desc-text font-inter">
-              SaaS · AI · Infrastructure<br />
-              Strategy first. Story second.<br />
-              Motion after.
-            </p>
+          <div class="hero-bottom">
+            <p class="hero-subtitle">High-impact launch films for SaaS, AI, and technology companies. Turning complicated products into stories people understand, remember, and want to try.</p>
+            <div class="hero-actions">
+              <a class="button-link button-primary" href="https://calendly.com/roshan-ryukdesignstudio/30min" target="_blank" rel="noopener">
+                <span class="btn-roll-text">
+                  <span class="btn-roll-track">
+                    <span class="btn-roll-item">Book a call ↗</span>
+                    <span class="btn-roll-item clone" aria-hidden="true">Book a call ↗</span>
+                  </span>
+                </span>
+              </a>
+              <a class="button-link button-outline" href="#ringShowcase">
+                <span class="btn-roll-text">
+                  <span class="btn-roll-track">
+                    <span class="btn-roll-item">View our work ↓</span>
+                    <span class="btn-roll-item clone" aria-hidden="true">View our work ↓</span>
+                  </span>
+                </span>
+              </a>
+            </div>
           </div>
         </div>
+
+        <a class="hero-scroll-cue" href="#clients" aria-label="Scroll down to our clients">
+          <span>Scroll down</span>
+          <span class="hero-scroll-cue-arrow" aria-hidden="true">↓</span>
+        </a>
       </section>
 
-      <!-- ── CLIENT LOGOS SECTION (VELOTILE TWO-ROW DUAL MARQUEE) ──────── -->
-      <section class="clients-velotile-section" id="clients">
-        <div class="clients-section-header-wrap js-reveal-up">
-          <span class="clients-section-eyebrow font-mono">// TRUSTED BY</span>
-          <h2 class="clients-section-header font-mono">TRUSTED BY TEAMS BUILDING WHAT'S NEXT.</h2>
-        </div>
+      <!-- ── CLIENTS SECTION (VERMILLION HUD SPEC) ─────────────────────── -->
+      <section class="clients" id="clients" aria-label="Clients">
+        <div class="clients-inner js-reveal-up">
+          <div class="subhead">
+            <span class="lbl">CLIENTS</span>
+            <span class="line" aria-hidden="true"></span>
+          </div>
 
-        <div class="clients-marquee-wrapper">
-          <!-- Marquee Row 1 (Moves Left) -->
-          <div class="clients-marquee-container">
-            <div class="clients-marquee-track track-left">
+          <div class="cmarquee">
+            <div class="ctrack">
               <!-- Set 1 -->
-              <div class="client-logo-item"><img src="images/client_logos/logo_1_clean.png" alt="Node Prime Studios" class="client-logo-img logo-np" /></div>
-              <div class="client-logo-item"><img src="images/client_logos/lakai_clean.png" alt="Lakai" class="client-logo-img logo-lakai" /></div>
-              <div class="client-logo-item"><img src="images/client_logos/kdp_pilot_clean.png" alt="KDP Pilot" class="client-logo-img logo-kdppilot" /></div>
-              <div class="client-logo-item"><img src="images/client_logos/presalesforce_clean.png" alt="Presalesforce.ai" class="client-logo-img logo-presalesforce" /></div>
-              <div class="client-logo-item"><img src="images/client_logos/achx_studio_clean.png" alt="Achx Studio" class="client-logo-img logo-achx" /></div>
-
-              <!-- Set 2 (Duplicates for infinite loop) -->
-              <div class="client-logo-item" aria-hidden="true"><img src="images/client_logos/logo_1_clean.png" alt="Node Prime Studios" class="client-logo-img logo-np" /></div>
-              <div class="client-logo-item" aria-hidden="true"><img src="images/client_logos/lakai_clean.png" alt="Lakai" class="client-logo-img logo-lakai" /></div>
-              <div class="client-logo-item" aria-hidden="true"><img src="images/client_logos/kdp_pilot_clean.png" alt="KDP Pilot" class="client-logo-img logo-kdppilot" /></div>
-              <div class="client-logo-item" aria-hidden="true"><img src="images/client_logos/presalesforce_clean.png" alt="Presalesforce.ai" class="client-logo-img logo-presalesforce" /></div>
-              <div class="client-logo-item" aria-hidden="true"><img src="images/client_logos/achx_studio_clean.png" alt="Achx Studio" class="client-logo-img logo-achx" /></div>
-
-              <!-- Set 3 -->
-              <div class="client-logo-item" aria-hidden="true"><img src="images/client_logos/logo_1_clean.png" alt="Node Prime Studios" class="client-logo-img logo-np" /></div>
-              <div class="client-logo-item" aria-hidden="true"><img src="images/client_logos/lakai_clean.png" alt="Lakai" class="client-logo-img logo-lakai" /></div>
-              <div class="client-logo-item" aria-hidden="true"><img src="images/client_logos/kdp_pilot_clean.png" alt="KDP Pilot" class="client-logo-img logo-kdppilot" /></div>
-              <div class="client-logo-item" aria-hidden="true"><img src="images/client_logos/presalesforce_clean.png" alt="Presalesforce.ai" class="client-logo-img logo-presalesforce" /></div>
-              <div class="client-logo-item" aria-hidden="true"><img src="images/client_logos/achx_studio_clean.png" alt="Achx Studio" class="client-logo-img logo-achx" /></div>
-            </div>
-          </div>
-
-          <!-- Marquee Row 2 (Moves Right / Reverse) -->
-          <div class="clients-marquee-container">
-            <div class="clients-marquee-track track-right">
-              <!-- Set 1 -->
-              <div class="client-logo-item"><img src="images/client_logos/achx_studio_clean.png" alt="Achx Studio" class="client-logo-img logo-achx" /></div>
-              <div class="client-logo-item"><img src="images/client_logos/presalesforce_clean.png" alt="Presalesforce.ai" class="client-logo-img logo-presalesforce" /></div>
-              <div class="client-logo-item"><img src="images/client_logos/kdp_pilot_clean.png" alt="KDP Pilot" class="client-logo-img logo-kdppilot" /></div>
-              <div class="client-logo-item"><img src="images/client_logos/lakai_clean.png" alt="Lakai" class="client-logo-img logo-lakai" /></div>
-              <div class="client-logo-item"><img src="images/client_logos/logo_1_clean.png" alt="Node Prime Studios" class="client-logo-img logo-np" /></div>
-
-              <!-- Set 2 -->
-              <div class="client-logo-item" aria-hidden="true"><img src="images/client_logos/achx_studio_clean.png" alt="Achx Studio" class="client-logo-img logo-achx" /></div>
-              <div class="client-logo-item" aria-hidden="true"><img src="images/client_logos/presalesforce_clean.png" alt="Presalesforce.ai" class="client-logo-img logo-presalesforce" /></div>
-              <div class="client-logo-item" aria-hidden="true"><img src="images/client_logos/kdp_pilot_clean.png" alt="KDP Pilot" class="client-logo-img logo-kdppilot" /></div>
-              <div class="client-logo-item" aria-hidden="true"><img src="images/client_logos/lakai_clean.png" alt="Lakai" class="client-logo-img logo-lakai" /></div>
-              <div class="client-logo-item" aria-hidden="true"><img src="images/client_logos/logo_1_clean.png" alt="Node Prime Studios" class="client-logo-img logo-np" /></div>
-
-              <!-- Set 3 -->
-              <div class="client-logo-item" aria-hidden="true"><img src="images/client_logos/achx_studio_clean.png" alt="Achx Studio" class="client-logo-img logo-achx" /></div>
-              <div class="client-logo-item" aria-hidden="true"><img src="images/client_logos/presalesforce_clean.png" alt="Presalesforce.ai" class="client-logo-img logo-presalesforce" /></div>
-              <div class="client-logo-item" aria-hidden="true"><img src="images/client_logos/kdp_pilot_clean.png" alt="KDP Pilot" class="client-logo-img logo-kdppilot" /></div>
-              <div class="client-logo-item" aria-hidden="true"><img src="images/client_logos/lakai_clean.png" alt="Lakai" class="client-logo-img logo-lakai" /></div>
-              <div class="client-logo-item" aria-hidden="true"><img src="images/client_logos/logo_1_clean.png" alt="Node Prime Studios" class="client-logo-img logo-np" /></div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ── POSITIONING SECTION ──────────────────────────────────────── -->
-      <section class="positioning-section" id="positioning">
-        <div class="positioning-container">
-          <div class="positioning-top js-reveal-up">
-            <span class="positioning-eyebrow font-mono">// 01 — THE CORE PROBLEM</span>
-            <h2 class="positioning-headline font-title">
-              YOUR PRODUCT IS COMPLEX.<br />
-              <span class="dimmed">YOUR VIDEO SHOULDN'T BE.</span>
-            </h2>
-          </div>
-
-          <div class="positioning-grid">
-            <div class="positioning-col positioning-col-problem js-reveal-up">
-              <span class="col-tag font-mono">THE FRICTION</span>
-              <p class="positioning-lead font-inter">
-                Most technology companies struggle to explain what they actually do.
-              </p>
-              <p class="positioning-body font-inter">
-                Visitors bounce within seconds before ever understanding your core value proposition. Features get buried under technical engineering jargon, abstract diagrams, and generic marketing fluff. You spent months building breakthrough software—only for potential buyers to leave confused.
-              </p>
-            </div>
-
-            <div class="positioning-col positioning-col-solution js-reveal-up">
-              <span class="col-tag font-mono accent">THE RYUK THESIS</span>
-              <p class="positioning-mantra font-title">
-                “Strategy first. Story second. Motion after.”
-              </p>
-              <p class="positioning-body font-inter">
-                We strip away the noise to discover the singular narrative that makes your product click with buyers, investors, and users. By pairing architectural comprehension with cinema-grade motion craft, we turn complex technical workflows into undeniable, high-converting product films.
-              </p>
-            </div>
-          </div>
-
-          <div class="positioning-pillars js-reveal-up">
-            <div class="pos-pillar-card">
-              <span class="pillar-num font-mono">01</span>
-              <h3 class="pillar-title font-title">Architectural Clarity</h3>
-              <p class="pillar-desc font-inter">We learn how your systems, data models, and interfaces work so your product is represented with genuine authority.</p>
-            </div>
-            <div class="pos-pillar-card">
-              <span class="pillar-num font-mono">02</span>
-              <h3 class="pillar-title font-title">Conversion-Led Flow</h3>
-              <p class="pillar-desc font-inter">Every shot is engineered to hold attention, overcome customer skepticism, and lift conversion across your funnel.</p>
-            </div>
-            <div class="pos-pillar-card">
-              <span class="pillar-num font-mono">03</span>
-              <h3 class="pillar-title font-title">Zero Decorative Fluff</h3>
-              <p class="pillar-desc font-inter">No senseless animations that obscure product utility. Every motion beat clarifies an essential product benefit.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ── WHAT WE MAKE (SERVICES) ─────────────────────────────────── -->
-      <section class="what-we-make-section" id="services">
-        <div class="services-container">
-          <div class="services-header js-reveal-up">
-            <span class="services-eyebrow font-mono">// 02 — SPECIALIZATION</span>
-            <h2 class="services-headline font-title">WHAT WE MAKE.</h2>
-            <p class="services-sub font-inter">
-              Four specialized video formats designed specifically for SaaS, AI, and modern technology companies.
-            </p>
-          </div>
-
-          <div class="services-grid">
-            <!-- 01: Launch Films -->
-            <div class="service-card js-reveal-up">
-              <div class="service-card-top">
-                <span class="service-card-num font-mono">01</span>
-                <span class="service-card-tag font-mono">HIGH-IMPACT</span>
+              <div class="cl">
+                <img src="images/client_logos/lakai_clean.png" alt="Lakai" class="cl-logo logo-lakai" />
               </div>
-              <h3 class="service-card-title font-title">Launch Films</h3>
-              <p class="service-card-desc font-inter">
-                High-energy cinematic films engineered for product debuts, major feature releases, and funding announcements that command market attention.
-              </p>
-              <div class="service-card-meta font-mono">
-                <span>RUNTIME: 30–60 SECONDS</span>
-                <span>PURPOSE: MARKET IMPACT & MOMENTUM</span>
+              <div class="cl yc-cell">
+                <div class="yc-lockup">
+                  <svg class="yc-logo" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+                    <path d="M47.9985 47.9994H0V8.61853e-07H47.9985V47.9994Z" fill="#FF6600"></path>
+                    <path d="M13.9012 11.7843H17.6595L22.4961 21.5325C23.203 22.9836 23.7984 24.3976 23.7984 24.3976C23.7984 24.3976 24.4313 23.021 25.175 21.5325L30.0868 11.7843H33.5843L25.2865 27.3746V37.309H22.1244V27.1884L13.9012 11.7843Z" fill="white"></path>
+                  </svg>
+                  <b class="yc-title">YC companies</b>
+                </div>
               </div>
-            </div>
+              <div class="cl">
+                <img src="images/client_logos/presalesforce_clean.png" alt="Presalesforce.ai" class="cl-logo logo-presalesforce" />
+              </div>
+              <div class="cl">
+                <img src="images/client_logos/kdp_pilot_clean.png" alt="KDP Pilot" class="cl-logo logo-kdppilot" />
+              </div>
+              <div class="cl">
+                <img src="images/client_logos/isom_clean.png" alt="ISOM" class="cl-logo logo-isom" />
+              </div>
 
-            <!-- 02: Product Videos -->
-            <div class="service-card js-reveal-up">
-              <div class="service-card-top">
-                <span class="service-card-num font-mono">02</span>
-                <span class="service-card-tag font-mono">CONVERSION</span>
+              <!-- Set 2 (for seamless loop) -->
+              <div class="cl" aria-hidden="true">
+                <img src="images/client_logos/lakai_clean.png" alt="" class="cl-logo logo-lakai" />
               </div>
-              <h3 class="service-card-title font-title">Product Videos</h3>
-              <p class="service-card-desc font-inter">
-                Interface walkthroughs and feature demonstrations that showcase real workflow utility without boring your prospects.
-              </p>
-              <div class="service-card-meta font-mono">
-                <span>RUNTIME: 45–90 SECONDS</span>
-                <span>PURPOSE: UI CLARITY & DEMO FUNNEL</span>
+              <div class="cl yc-cell" aria-hidden="true">
+                <div class="yc-lockup">
+                  <svg class="yc-logo" viewBox="0 0 48 48" fill="none">
+                    <path d="M47.9985 47.9994H0V8.61853e-07H47.9985V47.9994Z" fill="#FF6600"></path>
+                    <path d="M13.9012 11.7843H17.6595L22.4961 21.5325C23.203 22.9836 23.7984 24.3976 23.7984 24.3976C23.7984 24.3976 24.4313 23.021 25.175 21.5325L30.0868 11.7843H33.5843L25.2865 27.3746V37.309H22.1244V27.1884L13.9012 11.7843Z" fill="white"></path>
+                  </svg>
+                  <b class="yc-title">YC companies</b>
+                </div>
               </div>
-            </div>
+              <div class="cl" aria-hidden="true">
+                <img src="images/client_logos/presalesforce_clean.png" alt="" class="cl-logo logo-presalesforce" />
+              </div>
+              <div class="cl" aria-hidden="true">
+                <img src="images/client_logos/kdp_pilot_clean.png" alt="" class="cl-logo logo-kdppilot" />
+              </div>
+              <div class="cl" aria-hidden="true">
+                <img src="images/client_logos/isom_clean.png" alt="" class="cl-logo logo-isom" />
+              </div>
 
-            <!-- 03: Explainers -->
-            <div class="service-card js-reveal-up">
-              <div class="service-card-top">
-                <span class="service-card-num font-mono">03</span>
-                <span class="service-card-tag font-mono">STORYTELLING</span>
+              <!-- Set 3 (for ultra-wide display continuity) -->
+              <div class="cl" aria-hidden="true">
+                <img src="images/client_logos/lakai_clean.png" alt="" class="cl-logo logo-lakai" />
               </div>
-              <h3 class="service-card-title font-title">Explainers</h3>
-              <p class="service-card-desc font-inter">
-                Narrative-driven breakdowns that translate complex technical architectures, distributed systems, and AI workflows into effortless understanding.
-              </p>
-              <div class="service-card-meta font-mono">
-                <span>RUNTIME: 60–120 SECONDS</span>
-                <span>PURPOSE: VALUE ARTICULATION</span>
+              <div class="cl yc-cell" aria-hidden="true">
+                <div class="yc-lockup">
+                  <svg class="yc-logo" viewBox="0 0 48 48" fill="none">
+                    <path d="M47.9985 47.9994H0V8.61853e-07H47.9985V47.9994Z" fill="#FF6600"></path>
+                    <path d="M13.9012 11.7843H17.6595L22.4961 21.5325C23.203 22.9836 23.7984 24.3976 23.7984 24.3976C23.7984 24.3976 24.4313 23.021 25.175 21.5325L30.0868 11.7843H33.5843L25.2865 27.3746V37.309H22.1244V27.1884L13.9012 11.7843Z" fill="white"></path>
+                  </svg>
+                  <b class="yc-title">YC companies</b>
+                </div>
               </div>
-            </div>
-
-            <!-- 04: Social / Campaign Cutdowns -->
-            <div class="service-card js-reveal-up">
-              <div class="service-card-top">
-                <span class="service-card-num font-mono">04</span>
-                <span class="service-card-tag font-mono">DISTRIBUTION</span>
+              <div class="cl" aria-hidden="true">
+                <img src="images/client_logos/presalesforce_clean.png" alt="" class="cl-logo logo-presalesforce" />
               </div>
-              <h3 class="service-card-title font-title">Social / Campaign Cutdowns</h3>
-              <p class="service-card-desc font-inter">
-                Bite-sized, high-retention vertical and horizontal cuts optimized for LinkedIn, X, and paid acquisition to drive continuous pipeline.
-              </p>
-              <div class="service-card-meta font-mono">
-                <span>FORMATS: 9:16 / 1:1 / 16:9</span>
-                <span>PURPOSE: CONTINUOUS ACQUISITION</span>
+              <div class="cl" aria-hidden="true">
+                <img src="images/client_logos/kdp_pilot_clean.png" alt="" class="cl-logo logo-kdppilot" />
+              </div>
+              <div class="cl" aria-hidden="true">
+                <img src="images/client_logos/isom_clean.png" alt="" class="cl-logo logo-isom" />
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- ══════════════════════════════════════════════════════
-       WORKS SLAB — Exact Ylli Ramadani pattern
-       Individual letters inside overflow:hidden flex rows
-       Wrapper gets pinned; letters rise on scroll
-       ══════════════════════════════════════════════════════ -->
-      <div class="works-wrapper">
-        <section id="works" class="works">
-          <div class="works-large">
-            <!-- Row 1: "Selected" — each letter is a span -->
-            <div class="works-flex">
-              <span class="works-letters">S</span>
-              <span class="works-letters">e</span>
-              <span class="works-letters">l</span>
-              <span class="works-letters">e</span>
-              <span class="works-letters">c</span>
-              <span class="works-letters">t</span>
-              <span class="works-letters">e</span>
-              <span class="works-letters">d</span>
-            </div>
+      <!-- ── CURVED 3D VIDEO RING (LAUNCHANYTHING SHOWCASE) ─────────────── -->
+      <section class="ring-showcase-section" id="ringShowcase" aria-label="Curved Launch Films Reel">
+        <div class="ring-section-header js-reveal-up">
+          <div class="eyebrow"><span class="pink-dot"></span>Featured Work / Launch Films</div>
+          <h2 class="ring-section-title">
+            <span class="ring-title-line">You bring the product, we handle</span>
+            <span class="ring-title-line">everything else</span>
+          </h2>
+          <p class="ring-section-sub">
+            Hover &amp; drag from right to left to explore. Click any film to watch in full cinema sound.
+          </p>
+        </div>
 
-            <!-- Row 2: "(Works)" -->
-            <div class="works-flex">
-              <span class="works-letters">(</span>
-              <span class="works-letters">W</span>
-              <span class="works-letters">o</span>
-              <span class="works-letters">r</span>
-              <span class="works-letters">k</span>
-              <span class="works-letters">s</span>
-              <span class="works-letters">)</span>
-            </div>
-
-            <!-- Row 3: year line -->
-            <div class="works-flex">
-              <span class="works-letters">2</span>
-              <span class="works-letters">3</span>
-              <span class="works-letters">‘</span>
-              <span class="works-letters">2</span>
-              <span class="works-letters">6</span>
-            </div>
-          </div>
-
-          <!-- Bottom: keep scrolling -->
-          <div class="works-small">
-            <span class="underline">Keep Scrolling</span>
-            <span>+</span>
-          </div>
-        </section>
-      </div>
-
-      <!-- ── VIDEO GALLERY ────────────────────────────────────────────────── -->
-      <section class="video-gallery-section" id="works-gallery">
-        <div class="gallery-container">
-          <!-- Category Filters: ALL, LAUNCH, PRODUCT, EXPLAINER, VSL, EXPERIMENTS -->
-          <div class="gallery-filters-row js-reveal-up">
-            <button class="filter-btn active" data-filter="all">ALL (7) <span class="filter-plus">+</span></button>
-            <button class="filter-btn" data-filter="launch">LAUNCH (1) <span class="filter-plus">+</span></button>
-            <button class="filter-btn" data-filter="product">PRODUCT (4) <span class="filter-plus">+</span></button>
-            <button class="filter-btn" data-filter="explainer">EXPLAINER (3) <span class="filter-plus">+</span></button>
-            <button class="filter-btn" data-filter="vsl">VSL (1) <span class="filter-plus">+</span></button>
-            <button class="filter-btn" data-filter="experiments">EXPERIMENTS (1) <span class="filter-plus">+</span></button>
-          </div>
-
-          <!-- Video Grid with Plus intersections -->
-          <div class="video-grid">
-            <!-- Video 1: Lakai -->
+        <div class="ring" id="ring" aria-label="Curved launch video reel">
+          <div class="ring-cyl" id="ringCyl">
+            <!-- 1. Lakai -->
             <div
-              class="video-card-wrapper js-reveal-up"
-              data-category="launch explainer"
-              data-index="0"
+              class="ring-item"
               data-vimeo-id="1203870359"
-              data-title="Lakai"
+              data-title="Lakai — Launch Film"
+              data-category="Launch Film · Explainer"
+              tabindex="0"
+              role="button"
+              aria-label="Watch Lakai Launch Film"
             >
-              <div class="video-card">
-                <div class="video-wrapper">
-                  <video
-                    src="images/works/lakai/video.mp4"
-                    poster="images/works/lakai/poster.jpg"
-                    loop
-                    muted
-                    playsinline
-                    preload="none"
-                    class="card-preview-video"
-                  ></video>
-                </div>
-                <div class="video-info">
-                  <h3 class="video-title">Lakai</h3>
-                  <span class="video-category-tag">Launch Film · Explainer</span>
+              <div class="ring-frame">
+                <video
+                  src="images/works/lakai/video.mp4"
+                  poster="images/works/lakai/poster.jpg"
+                  autoplay
+                  muted
+                  loop
+                  playsinline
+                  preload="metadata"
+                  class="ring-media"
+                ></video>
+                <div class="ring-card-overlay">
+                  <div class="ring-card-badge">
+                    <span class="ring-card-tag">LAUNCH FILM</span>
+                    <h4 class="ring-card-title">Lakai</h4>
+                  </div>
+                  <div class="ring-card-play-btn" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"/></svg>
+                  </div>
                 </div>
               </div>
-              <div class="grid-plus">+</div>
             </div>
 
-            <!-- Video 2: KDP Pilot -->
+            <!-- 2. Presalesforce.ai -->
             <div
-              class="video-card-wrapper js-reveal-up"
-              data-category="product explainer"
-              data-index="1"
+              class="ring-item"
+              data-vimeo-id="1208464484"
+              data-title="Presalesforce.ai — Enterprise AI Platform"
+              data-category="Product Video · Explainer"
+              tabindex="0"
+              role="button"
+              aria-label="Watch Presalesforce.ai Platform Film"
+            >
+              <div class="ring-frame">
+                <video
+                  src="images/works/psf/video.mp4"
+                  poster="images/works/psf/poster.jpg"
+                  autoplay
+                  muted
+                  loop
+                  playsinline
+                  preload="metadata"
+                  class="ring-media"
+                ></video>
+                <div class="ring-card-overlay">
+                  <div class="ring-card-badge">
+                    <span class="ring-card-tag">AI PLATFORM</span>
+                    <h4 class="ring-card-title">Presalesforce.ai</h4>
+                  </div>
+                  <div class="ring-card-play-btn" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"/></svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 3. Appsee Walkthrough -->
+            <div
+              class="ring-item"
+              data-vimeo-id="1203870358"
+              data-title="Appsee — Product Walkthrough"
+              data-category="Product Demo · UI Motion"
+              tabindex="0"
+              role="button"
+              aria-label="Watch Appsee Product Walkthrough"
+            >
+              <div class="ring-frame">
+                <video
+                  src="images/works/appsee/video.mp4"
+                  poster="images/works/appsee/poster.jpg"
+                  autoplay
+                  muted
+                  loop
+                  playsinline
+                  preload="metadata"
+                  class="ring-media"
+                ></video>
+                <div class="ring-card-overlay">
+                  <div class="ring-card-badge">
+                    <span class="ring-card-tag">PRODUCT DEMO</span>
+                    <h4 class="ring-card-title">Appsee Walkthrough</h4>
+                  </div>
+                  <div class="ring-card-play-btn" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"/></svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 4. Elyxir -->
+            <div
+              class="ring-item"
+              data-vimeo-id="1203866870"
+              data-title="Elyxir — High-Converting VSL"
+              data-category="Growth VSL · Conversion Film"
+              tabindex="0"
+              role="button"
+              aria-label="Watch Elyxir Conversion VSL"
+            >
+              <div class="ring-frame">
+                <video
+                  src="images/works/elyxir/video.mp4"
+                  poster="images/works/elyxir/poster.jpg"
+                  autoplay
+                  muted
+                  loop
+                  playsinline
+                  preload="metadata"
+                  class="ring-media"
+                ></video>
+                <div class="ring-card-overlay">
+                  <div class="ring-card-badge">
+                    <span class="ring-card-tag">GROWTH VSL</span>
+                    <h4 class="ring-card-title">Elyxir</h4>
+                  </div>
+                  <div class="ring-card-play-btn" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"/></svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 5. Gemini Spec Ad -->
+            <div
+              class="ring-item"
+              data-vimeo-id="1203870364"
+              data-title="Gemini — Autonomous AI Launch"
+              data-category="Spec Ad · 3D Cinema"
+              tabindex="0"
+              role="button"
+              aria-label="Watch Gemini Launch Film"
+            >
+              <div class="ring-frame">
+                <video
+                  src="images/works/gemini/video.mp4"
+                  poster="images/works/gemini/poster.jpg"
+                  autoplay
+                  muted
+                  loop
+                  playsinline
+                  preload="metadata"
+                  class="ring-media"
+                ></video>
+                <div class="ring-card-overlay">
+                  <div class="ring-card-badge">
+                    <span class="ring-card-tag">SPEC AD · 3D</span>
+                    <h4 class="ring-card-title">Gemini Autonomous</h4>
+                  </div>
+                  <div class="ring-card-play-btn" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"/></svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 6. Appsee Features -->
+            <div
+              class="ring-item"
+              data-vimeo-id="1203870360"
+              data-title="Appsee — Feature Release Film"
+              data-category="Feature Launch · Motion"
+              tabindex="0"
+              role="button"
+              aria-label="Watch Appsee Feature Release Film"
+            >
+              <div class="ring-frame">
+                <video
+                  src="images/works/appsee/features.mp4"
+                  poster="images/works/appsee/poster.jpg"
+                  autoplay
+                  muted
+                  loop
+                  playsinline
+                  preload="metadata"
+                  class="ring-media"
+                ></video>
+                <div class="ring-card-overlay">
+                  <div class="ring-card-badge">
+                    <span class="ring-card-tag">FEATURE RELEASE</span>
+                    <h4 class="ring-card-title">Appsee Features</h4>
+                  </div>
+                  <div class="ring-card-play-btn" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"/></svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 7. KDP Pilot -->
+            <div
+              class="ring-item"
               data-vimeo-id="1215284508"
               data-title="KDP Pilot — Achx Studio"
+              data-category="Launch Film · Explainer"
+              tabindex="0"
+              role="button"
+              aria-label="Watch KDP Pilot Explainer"
             >
-              <div class="video-card">
-                <div class="video-wrapper">
-                  <iframe
-                    src="https://player.vimeo.com/video/1215284508?background=1&autoplay=1&loop=1&byline=0&title=0&muted=1"
-                    frameborder="0"
-                    allow="autoplay; fullscreen"
-                    style="position:absolute; top:0; left:0; width:100%; height:100%; pointer-events:none;"
-                    class="card-preview-video"
-                    title="KDP PILOT"
-                  ></iframe>
-                </div>
-                <div class="video-info">
-                  <h3 class="video-title">KDP Pilot</h3>
-                  <span class="video-category-tag">Product Video · Explainer</span>
+              <div class="ring-frame">
+                <img
+                  src="images/works/appsee/poster.jpg"
+                  alt="KDP Pilot"
+                  class="ring-media"
+                  loading="lazy"
+                />
+                <div class="ring-card-overlay">
+                  <div class="ring-card-badge">
+                    <span class="ring-card-tag">EXPLAINER</span>
+                    <h4 class="ring-card-title">KDP Pilot</h4>
+                  </div>
+                  <div class="ring-card-play-btn" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"/></svg>
+                  </div>
                 </div>
               </div>
-              <div class="grid-plus">+</div>
             </div>
 
-            <!-- Video 3: Appsee Walkthrough -->
+            <!-- 8. Lakai (Loop) -->
             <div
-              class="video-card-wrapper js-reveal-up"
-              data-category="product"
-              data-index="2"
-              data-vimeo-id="1203870358"
-              data-title="Appsee — Walkthrough"
+              class="ring-item"
+              data-vimeo-id="1203870359"
+              data-title="Lakai — Launch Film"
+              data-category="Launch Film · Explainer"
+              tabindex="0"
+              role="button"
+              aria-label="Watch Lakai Launch Film"
             >
-              <div class="video-card">
-                <div class="video-wrapper">
-                  <video
-                    src="images/works/appsee/video.mp4"
-                    poster="images/works/appsee/poster.jpg"
-                    loop
-                    muted
-                    playsinline
-                    preload="none"
-                    class="card-preview-video"
-                  ></video>
-                </div>
-                <div class="video-info">
-                  <h3 class="video-title">Appsee — Walkthrough</h3>
-                  <span class="video-category-tag">Product Walkthrough</span>
+              <div class="ring-frame">
+                <video
+                  src="images/works/lakai/video.mp4"
+                  poster="images/works/lakai/poster.jpg"
+                  autoplay
+                  muted
+                  loop
+                  playsinline
+                  preload="metadata"
+                  class="ring-media"
+                ></video>
+                <div class="ring-card-overlay">
+                  <div class="ring-card-badge">
+                    <span class="ring-card-tag">LAUNCH FILM</span>
+                    <h4 class="ring-card-title">Lakai</h4>
+                  </div>
+                  <div class="ring-card-play-btn" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"/></svg>
+                  </div>
                 </div>
               </div>
-              <div class="grid-plus">+</div>
             </div>
 
-            <!-- Video 4: Appsee Features -->
+            <!-- 9. Presalesforce.ai (Loop) -->
             <div
-              class="video-card-wrapper js-reveal-up"
-              data-category="product"
-              data-index="3"
-              data-vimeo-id="1203870360"
-              data-title="Appsee — Features"
-            >
-              <div class="video-card">
-                <div class="video-wrapper">
-                  <video
-                    src="images/works/appsee/features.mp4"
-                    poster="images/works/appsee/poster.jpg"
-                    loop
-                    muted
-                    playsinline
-                    preload="none"
-                    class="card-preview-video"
-                  ></video>
-                </div>
-                <div class="video-info">
-                  <h3 class="video-title">Appsee — Features</h3>
-                  <span class="video-category-tag">Feature Showcase</span>
-                </div>
-              </div>
-              <div class="grid-plus">+</div>
-            </div>
-
-            <!-- Video 5: Elyxir -->
-            <div
-              class="video-card-wrapper js-reveal-up"
-              data-category="vsl"
-              data-index="4"
-              data-vimeo-id="1203866870"
-              data-title="Elyxir"
-            >
-              <div class="video-card">
-                <div class="video-wrapper">
-                  <video
-                    src="images/works/elyxir/video.mp4"
-                    poster="images/works/elyxir/poster.jpg"
-                    loop
-                    muted
-                    playsinline
-                    preload="none"
-                    class="card-preview-video"
-                  ></video>
-                </div>
-                <div class="video-info">
-                  <h3 class="video-title">Elyxir</h3>
-                  <span class="video-category-tag">Video Sales Letter</span>
-                </div>
-              </div>
-              <div class="grid-plus">+</div>
-            </div>
-
-            <!-- Video 6: PSFAI -->
-            <div
-              class="video-card-wrapper js-reveal-up"
-              data-category="explainer"
-              data-index="5"
+              class="ring-item"
               data-vimeo-id="1208464484"
-              data-title="PSFAI"
+              data-title="Presalesforce.ai — Enterprise AI Platform"
+              data-category="Product Video · Explainer"
+              tabindex="0"
+              role="button"
+              aria-label="Watch Presalesforce.ai Platform Film"
             >
-              <div class="video-card">
-                <div class="video-wrapper">
-                  <iframe
-                    src="https://player.vimeo.com/video/1208464484?background=1&autoplay=1&loop=1&byline=0&title=0&muted=1"
-                    frameborder="0"
-                    allow="autoplay; fullscreen"
-                    style="position:absolute; top:0; left:0; width:100%; height:100%; pointer-events:none;"
-                    class="card-preview-video"
-                    title="PSFAI"
-                  ></iframe>
-                </div>
-                <div class="video-info">
-                  <h3 class="video-title">PSFAI</h3>
-                  <span class="video-category-tag">SaaS Explainer Video</span>
+              <div class="ring-frame">
+                <video
+                  src="images/works/psf/video.mp4"
+                  poster="images/works/psf/poster.jpg"
+                  autoplay
+                  muted
+                  loop
+                  playsinline
+                  preload="metadata"
+                  class="ring-media"
+                ></video>
+                <div class="ring-card-overlay">
+                  <div class="ring-card-badge">
+                    <span class="ring-card-tag">AI PLATFORM</span>
+                    <h4 class="ring-card-title">Presalesforce.ai</h4>
+                  </div>
+                  <div class="ring-card-play-btn" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"/></svg>
+                  </div>
                 </div>
               </div>
-              <div class="grid-plus">+</div>
             </div>
 
-            <!-- Video 7: Gemini Spec Ad -->
+            <!-- 10. Gemini Spec Ad (Loop) -->
             <div
-              class="video-card-wrapper js-reveal-up"
-              data-category="experiments product"
-              data-index="6"
+              class="ring-item"
               data-vimeo-id="1203870364"
-              data-title="Gemini Spec Ad"
+              data-title="Gemini — Autonomous AI Launch"
+              data-category="Spec Ad · 3D Cinema"
+              tabindex="0"
+              role="button"
+              aria-label="Watch Gemini Launch Film"
             >
-              <div class="video-card">
-                <div class="video-wrapper">
-                  <video
-                    src="images/works/gemini/video.mp4"
-                    poster="images/works/appsee/poster.jpg"
-                    loop
-                    muted
-                    playsinline
-                    preload="none"
-                    class="card-preview-video"
-                  ></video>
-                </div>
-                <div class="video-info">
-                  <h3 class="video-title">Gemini Spec Ad</h3>
-                  <span class="video-category-tag">Experiments · Product Demo</span>
+              <div class="ring-frame">
+                <video
+                  src="images/works/gemini/video.mp4"
+                  poster="images/works/gemini/poster.jpg"
+                  autoplay
+                  muted
+                  loop
+                  playsinline
+                  preload="metadata"
+                  class="ring-media"
+                ></video>
+                <div class="ring-card-overlay">
+                  <div class="ring-card-badge">
+                    <span class="ring-card-tag">SPEC AD · 3D</span>
+                    <h4 class="ring-card-title">Gemini Autonomous</h4>
+                  </div>
+                  <div class="ring-card-play-btn" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"/></svg>
+                  </div>
                 </div>
               </div>
-              <div class="grid-plus">+</div>
             </div>
           </div>
+        </div>
+
+        <!-- Ring Footer CTA: Show More Works button linking to separate works page -->
+        <div class="ring-footer-cta js-reveal-up">
+          <a href="works.html" class="btn-show-more-works" aria-label="Explore full selected works archive on dedicated page">
+            <span class="btn-roll-text">
+              <span class="btn-roll-track">
+                <span class="btn-roll-item">Show More Works ↗</span>
+                <span class="btn-roll-item clone" aria-hidden="true">Show More Works ↗</span>
+              </span>
+            </span>
+          </a>
         </div>
       </section>
 
@@ -753,8 +787,8 @@
         <div class="process-inner">
           <!-- Header Row -->
           <div class="process-header-row js-reveal-up">
-            <div class="process-label font-mono">// 03 — HOW WE WORK</div>
-            <h2 class="process-main-title font-title">FROM PRODUCT TO <span class="dimmed">FINAL FRAME.</span></h2>
+            <div class="process-label"><div class="eyebrow" style="margin-bottom:0;"><span class="pink-dot"></span>How We Work</div></div>
+            <h2 class="process-main-title font-title">From product to <span class="dimmed">final frame.</span></h2>
             <div class="process-sub-caption font-inter">Built through deep product understanding, strategic scripting, and obsessive motion craft.</div>
           </div>
 
@@ -850,463 +884,516 @@
               </div>
             </div>
           </div>
+        </div>
+      </section>
 
-          <!-- Kicker Banner -->
-          <div class="process-kicker-banner js-reveal-up">
-            <span class="kicker-tag font-mono">// OUR STANDARD</span>
-            <div class="kicker-headline font-title">
-              CLEAR THINKING. SHARP DESIGN. SERIOUS MOTION.
+      <!-- ── CLIENT FEEDBACK (VERMILLION SPEC) ───────────────────────────── -->
+      <section class="sec testi testimonials-section" id="testimonials" aria-label="Client Feedback">
+        <div class="testi-header-wrap js-reveal-up">
+          <div class="subhead">
+            <span class="lbl">CLIENT FEEDBACK</span>
+            <span class="line" aria-hidden="true"></span>
+          </div>
+          <div class="titlerow">
+            <h2 class="testi-title font-title">What the founders <span class="dimmed">said.</span></h2>
+            <p class="testi-sub font-inter">Direct, unfiltered feedback from founders and operators who launched with Ryuk.</p>
+          </div>
+        </div>
+
+        <div class="tmarq" aria-label="Client Reviews">
+          <div class="tmtrack">
+            <!-- Card 01: Node Prime Studios -->
+            <div class="tcard">
+              <span class="fx" aria-hidden="true"></span>
+              <div class="tq">
+                <div class="tq-top">
+                  <span class="tq-num font-mono">01</span>
+                  <svg class="pd tqi" viewBox="0 0 256 256" width="22" height="22" aria-hidden="true">
+                    <path d="M100,56H40A16,16,0,0,0,24,72v64a16,16,0,0,0,16,16h60v8a32,32,0,0,1-32,32,8,8,0,0,0,0,16,48.05,48.05,0,0,0,48-48V72A16,16,0,0,0,100,56Zm0,80H40V72h60ZM216,56H156a16,16,0,0,0-16,16v64a16,16,0,0,0,16,16h60v8a32,32,0,0,1-32,32,8,8,0,0,0,0,16,48.05,48.05,0,0,0,48-48V72A16,16,0,0,0,216,56Zm0,80H156V72h60Z" fill="currentColor"/>
+                  </svg>
+                </div>
+                <p class="tq-quote font-inter">“Ryuk Design Studio is in a league of their own. They turned our complex technical pipeline into an incredibly premium, high-energy launch film. The response from our community was outstanding.”</p>
+              </div>
+              <div class="tqf">
+                <div class="tqf-author">
+                  <b class="tqf-name">Vishwas Girdhar</b>
+                  <span class="tqf-role font-inter">Founder @ Node Prime Studios</span>
+                </div>
+                <div class="tqa">
+                  <img src="images/client_logos/logo_1_clean.png" alt="Node Prime" />
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 02: Appsee -->
+            <div class="tcard">
+              <span class="fx" aria-hidden="true"></span>
+              <div class="tq">
+                <div class="tq-top">
+                  <span class="tq-num font-mono">02</span>
+                  <svg class="pd tqi" viewBox="0 0 256 256" width="22" height="22" aria-hidden="true">
+                    <path d="M100,56H40A16,16,0,0,0,24,72v64a16,16,0,0,0,16,16h60v8a32,32,0,0,1-32,32,8,8,0,0,0,0,16,48.05,48.05,0,0,0,48-48V72A16,16,0,0,0,100,56Zm0,80H40V72h60ZM216,56H156a16,16,0,0,0-16,16v64a16,16,0,0,0,16,16h60v8a32,32,0,0,1-32,32,8,8,0,0,0,0,16,48.05,48.05,0,0,0,48-48V72A16,16,0,0,0,216,56Zm0,80H156V72h60Z" fill="currentColor"/>
+                  </svg>
+                </div>
+                <p class="tq-quote font-inter">“Collaborating with Ryuk on the showcase was exceptional. Their attention to motion detail, slick typography staggers, and execution speed are unmatched. Built with genuine mastery.”</p>
+              </div>
+              <div class="tqf">
+                <div class="tqf-author">
+                  <b class="tqf-name">Argen Scheuwen</b>
+                  <span class="tqf-role font-inter">Owner @ Appsee</span>
+                </div>
+                <div class="tqa">
+                  <img src="images/works/appsee/poster.jpg" alt="Appsee" />
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 03: KDP Pilot -->
+            <div class="tcard">
+              <span class="fx" aria-hidden="true"></span>
+              <div class="tq">
+                <div class="tq-top">
+                  <span class="tq-num font-mono">03</span>
+                  <svg class="pd tqi" viewBox="0 0 256 256" width="22" height="22" aria-hidden="true">
+                    <path d="M100,56H40A16,16,0,0,0,24,72v64a16,16,0,0,0,16,16h60v8a32,32,0,0,1-32,32,8,8,0,0,0,0,16,48.05,48.05,0,0,0,48-48V72A16,16,0,0,0,100,56Zm0,80H40V72h60ZM216,56H156a16,16,0,0,0-16,16v64a16,16,0,0,0,16,16h60v8a32,32,0,0,1-32,32,8,8,0,0,0,0,16,48.05,48.05,0,0,0,48-48V72A16,16,0,0,0,216,56Zm0,80H156V72h60Z" fill="currentColor"/>
+                  </svg>
+                </div>
+                <p class="tq-quote font-inter">“Roshan delivered outstanding motion storytelling on aggressive deadlines. Flawless execution on KDP Pilot—they turned an intricate automation pipeline into pure clarity.”</p>
+              </div>
+              <div class="tqf">
+                <div class="tqf-author">
+                  <b class="tqf-name">Laxman Acharya</b>
+                  <span class="tqf-role font-inter">Founder @ Achx Studio</span>
+                </div>
+                <div class="tqa">
+                  <img src="images/client_logos/kdp_pilot_clean.png" alt="KDP Pilot" />
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 04: Lakai -->
+            <div class="tcard">
+              <span class="fx" aria-hidden="true"></span>
+              <div class="tq">
+                <div class="tq-top">
+                  <span class="tq-num font-mono">04</span>
+                  <svg class="pd tqi" viewBox="0 0 256 256" width="22" height="22" aria-hidden="true">
+                    <path d="M100,56H40A16,16,0,0,0,24,72v64a16,16,0,0,0,16,16h60v8a32,32,0,0,1-32,32,8,8,0,0,0,0,16,48.05,48.05,0,0,0,48-48V72A16,16,0,0,0,100,56Zm0,80H40V72h60ZM216,56H156a16,16,0,0,0-16,16v64a16,16,0,0,0,16,16h60v8a32,32,0,0,1-32,32,8,8,0,0,0,0,16,48.05,48.05,0,0,0,48-48V72A16,16,0,0,0,216,56Zm0,80H156V72h60Z" fill="currentColor"/>
+                  </svg>
+                </div>
+                <p class="tq-quote font-inter">“Super high agency and insanely fast execution. Took our product launch film from script to master release in less than a week. Sold out Batch 1 in 48 hours.”</p>
+              </div>
+              <div class="tqf">
+                <div class="tqf-author">
+                  <b class="tqf-name">Lakai Core Team</b>
+                  <span class="tqf-role font-inter">Product Leads @ Lakai</span>
+                </div>
+                <div class="tqa">
+                  <img src="images/client_logos/lakai_clean.png" alt="Lakai" />
+                </div>
+              </div>
+            </div>
+
+            <!-- Duplicate Set for Seamless Marquee Loop -->
+            <!-- Card 01 Duplicate -->
+            <div class="tcard" aria-hidden="true">
+              <span class="fx" aria-hidden="true"></span>
+              <div class="tq">
+                <div class="tq-top">
+                  <span class="tq-num font-mono">01</span>
+                  <svg class="pd tqi" viewBox="0 0 256 256" width="22" height="22" aria-hidden="true">
+                    <path d="M100,56H40A16,16,0,0,0,24,72v64a16,16,0,0,0,16,16h60v8a32,32,0,0,1-32,32,8,8,0,0,0,0,16,48.05,48.05,0,0,0,48-48V72A16,16,0,0,0,100,56Zm0,80H40V72h60ZM216,56H156a16,16,0,0,0-16,16v64a16,16,0,0,0,16,16h60v8a32,32,0,0,1-32,32,8,8,0,0,0,0,16,48.05,48.05,0,0,0,48-48V72A16,16,0,0,0,216,56Zm0,80H156V72h60Z" fill="currentColor"/>
+                  </svg>
+                </div>
+                <p class="tq-quote font-inter">“Ryuk Design Studio is in a league of their own. They turned our complex technical pipeline into an incredibly premium, high-energy launch film. The response from our community was outstanding.”</p>
+              </div>
+              <div class="tqf">
+                <div class="tqf-author">
+                  <b class="tqf-name">Vishwas Girdhar</b>
+                  <span class="tqf-role font-inter">Founder @ Node Prime Studios</span>
+                </div>
+                <div class="tqa">
+                  <img src="images/client_logos/logo_1_clean.png" alt="" />
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 02 Duplicate -->
+            <div class="tcard" aria-hidden="true">
+              <span class="fx" aria-hidden="true"></span>
+              <div class="tq">
+                <div class="tq-top">
+                  <span class="tq-num font-mono">02</span>
+                  <svg class="pd tqi" viewBox="0 0 256 256" width="22" height="22" aria-hidden="true">
+                    <path d="M100,56H40A16,16,0,0,0,24,72v64a16,16,0,0,0,16,16h60v8a32,32,0,0,1-32,32,8,8,0,0,0,0,16,48.05,48.05,0,0,0,48-48V72A16,16,0,0,0,100,56Zm0,80H40V72h60ZM216,56H156a16,16,0,0,0-16,16v64a16,16,0,0,0,16,16h60v8a32,32,0,0,1-32,32,8,8,0,0,0,0,16,48.05,48.05,0,0,0,48-48V72A16,16,0,0,0,216,56Zm0,80H156V72h60Z" fill="currentColor"/>
+                  </svg>
+                </div>
+                <p class="tq-quote font-inter">“Collaborating with Ryuk on the showcase was exceptional. Their attention to motion detail, slick typography staggers, and execution speed are unmatched. Built with genuine mastery.”</p>
+              </div>
+              <div class="tqf">
+                <div class="tqf-author">
+                  <b class="tqf-name">Argen Scheuwen</b>
+                  <span class="tqf-role font-inter">Owner @ Appsee</span>
+                </div>
+                <div class="tqa">
+                  <img src="images/works/appsee/poster.jpg" alt="" />
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 03 Duplicate -->
+            <div class="tcard" aria-hidden="true">
+              <span class="fx" aria-hidden="true"></span>
+              <div class="tq">
+                <div class="tq-top">
+                  <span class="tq-num font-mono">03</span>
+                  <svg class="pd tqi" viewBox="0 0 256 256" width="22" height="22" aria-hidden="true">
+                    <path d="M100,56H40A16,16,0,0,0,24,72v64a16,16,0,0,0,16,16h60v8a32,32,0,0,1-32,32,8,8,0,0,0,0,16,48.05,48.05,0,0,0,48-48V72A16,16,0,0,0,100,56Zm0,80H40V72h60ZM216,56H156a16,16,0,0,0-16,16v64a16,16,0,0,0,16,16h60v8a32,32,0,0,1-32,32,8,8,0,0,0,0,16,48.05,48.05,0,0,0,48-48V72A16,16,0,0,0,216,56Zm0,80H156V72h60Z" fill="currentColor"/>
+                  </svg>
+                </div>
+                <p class="tq-quote font-inter">“Roshan delivered outstanding motion storytelling on aggressive deadlines. Flawless execution on KDP Pilot—they turned an intricate automation pipeline into pure clarity.”</p>
+              </div>
+              <div class="tqf">
+                <div class="tqf-author">
+                  <b class="tqf-name">Laxman Acharya</b>
+                  <span class="tqf-role font-inter">Founder @ Achx Studio</span>
+                </div>
+                <div class="tqa">
+                  <img src="images/client_logos/kdp_pilot_clean.png" alt="" />
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 04 Duplicate -->
+            <div class="tcard" aria-hidden="true">
+              <span class="fx" aria-hidden="true"></span>
+              <div class="tq">
+                <div class="tq-top">
+                  <span class="tq-num font-mono">04</span>
+                  <svg class="pd tqi" viewBox="0 0 256 256" width="22" height="22" aria-hidden="true">
+                    <path d="M100,56H40A16,16,0,0,0,24,72v64a16,16,0,0,0,16,16h60v8a32,32,0,0,1-32,32,8,8,0,0,0,0,16,48.05,48.05,0,0,0,48-48V72A16,16,0,0,0,100,56Zm0,80H40V72h60ZM216,56H156a16,16,0,0,0-16,16v64a16,16,0,0,0,16,16h60v8a32,32,0,0,1-32,32,8,8,0,0,0,0,16,48.05,48.05,0,0,0,48-48V72A16,16,0,0,0,216,56Zm0,80H156V72h60Z" fill="currentColor"/>
+                  </svg>
+                </div>
+                <p class="tq-quote font-inter">“Super high agency and insanely fast execution. Took our product launch film from script to master release in less than a week. Sold out Batch 1 in 48 hours.”</p>
+              </div>
+              <div class="tqf">
+                <div class="tqf-author">
+                  <b class="tqf-name">Lakai Core Team</b>
+                  <span class="tqf-role font-inter">Product Leads @ Lakai</span>
+                </div>
+                <div class="tqa">
+                  <img src="images/client_logos/lakai_clean.png" alt="" />
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- ── WHY RYUK SECTION ───────────────────────────────────────── -->
-      <section class="why-ryuk-section" id="why-ryuk">
-        <div class="why-ryuk-container">
-          <div class="why-ryuk-header js-reveal-up">
-            <span class="why-ryuk-eyebrow font-mono">// 04 — THE RYUK ADVANTAGE</span>
-            <h2 class="why-ryuk-headline font-title">NOT JUST MOTION DESIGN.</h2>
-            <p class="why-ryuk-sub font-inter">
-              Why high-velocity SaaS, AI, and infrastructure teams choose Ryuk over traditional creative agencies.
-            </p>
+      <!-- ── MEET THE FOUNDER (VERMILLION SPEC) ─────────────────────── -->
+      <section class="sec founder" id="founder" aria-label="Meet the Founder">
+        <div class="wrap js-reveal-up">
+          <div class="subhead">
+            <span class="lbl">MEET THE FOUNDER</span>
+            <span class="line" aria-hidden="true"></span>
           </div>
 
-          <div class="why-ryuk-grid">
-            <!-- Pillar 1 -->
-            <div class="why-card js-reveal-up">
-              <div class="why-card-num font-mono">01</div>
-              <h3 class="why-card-title font-title">Product First</h3>
-              <p class="why-card-desc font-inter">
-                Traditional motion studios focus on decorative eye candy that obscures how software actually works. We prioritize technical comprehension. We learn your architecture so your product is represented accurately, not just decoratively.
-              </p>
-            </div>
-
-            <!-- Pillar 2 -->
-            <div class="why-card js-reveal-up">
-              <div class="why-card-num font-mono">02</div>
-              <h3 class="why-card-title font-title">Story Before Style</h3>
-              <p class="why-card-desc font-inter">
-                A visually stunning video that doesn't explain the product is a failed video. We engineer every beat, script line, and visual sequence around customer psychology, objections, and buying intent. Narrative always leads.
-              </p>
-            </div>
-
-            <!-- Pillar 3 -->
-            <div class="why-card js-reveal-up">
-              <div class="why-card-num font-mono">03</div>
-              <h3 class="why-card-title font-title">Cinematic by Default</h3>
-              <p class="why-card-desc font-inter">
-                We believe B2B software doesn't have to look dry or corporate. We treat modern technology with the lighting, depth, sound design, and atmospheric pacing of high-end cinema—commanding the respect your engineering deserves.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ── TESTIMONIALS ────────────────────────────────────────────────── -->
-      <section class="testimonials-section" id="testimonials">
-        <div class="testimonials-header js-reveal-up">
-          <span class="testimonials-label font-mono">// 05 — PROVEN IMPACT</span>
-          <h2 class="testimonials-headline font-title">GOOD WORK SHOULD SPEAK FOR ITSELF.</h2>
-          <p class="testimonials-subtitle font-inter">
-            Direct feedback from founders and operators who trusted us with their product narrative.
-          </p>
-        </div>
-
-        <div class="testimonials-grid js-reveal-up">
-          <!-- Card 1: Vishwas Girdhar -->
-          <div class="testimonial-card">
-            <div class="testimonial-content">
-              <span class="testimonial-quote-mark font-mono">“</span>
-              <h4 class="testimonial-card-title">"A game changer for Node Prime"</h4>
-              <p class="testimonial-text font-inter">
-                Ryuk Design Studio is in a league of their own. They turned our complex technical pipeline into an incredibly premium, high-energy product launch video. The response from our community was outstanding.
-              </p>
-            </div>
-            <div class="testimonial-author-wrapper">
-              <div class="testimonial-author">
-                <span class="author-name font-title">Vishwas Girdhar</span>
-                <span class="author-company font-inter">Founder @ Node Prime Studios</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Card 2: Argen Scheuwen -->
-          <div class="testimonial-card">
-            <div class="testimonial-content">
-              <span class="testimonial-quote-mark font-mono">“</span>
-              <h4 class="testimonial-card-title">"Attention to detail is unmatched"</h4>
-              <p class="testimonial-text font-inter">
-                Collaborating with Ryuk on the Appsee showcase was an exceptional experience. Their attention to motion detail, slick typography staggers, and execution speed are unmatched.
-              </p>
-            </div>
-            <div class="testimonial-author-wrapper">
-              <div class="testimonial-author">
-                <span class="author-name font-title">Argen Scheuwen</span>
-                <span class="author-company font-inter">Owner @ Appsee</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Card 3: Laxman Acharya -->
-          <div class="testimonial-card">
-            <div class="testimonial-content">
-              <span class="testimonial-quote-mark font-mono">“</span>
-              <h4 class="testimonial-card-title">"Flawless execution on KDP Pilot"</h4>
-              <p class="testimonial-text font-inter">
-                We outsourced the KDP Pilot motion design and product commercial animation to Ryuk Design Studio. Roshan and his team delivered outstanding motion storytelling on tight deadlines. Highly recommended!
-              </p>
-            </div>
-            <div class="testimonial-author-wrapper">
-              <div class="testimonial-author">
-                <span class="author-name font-title">Laxman Acharya</span>
-                <span class="author-company font-inter">Founder @ Achx Studio</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ── VOICE OF RYUK (ABOUT) ──────────────────────────────────────── -->
-      <section class="voice-section" id="about">
-        <div class="voice-header js-reveal-up">
-          <div class="voice-header-sep"></div>
-          <div class="voice-header-content">
-            <span class="voice-num font-mono">06</span>
-            <span class="voice-title font-mono">//Voice Of Ryuk®</span>
-            <span class="voice-year font-mono">Since 2025</span>
-          </div>
-        </div>
-
-        <div class="voice-container">
-          <!-- Left Sticky column (Text + Signature) -->
-          <div class="voice-left">
-            <div class="voice-content-wrap">
-              <div class="voice-eyebrow font-mono">// WHAT WE CARE ABOUT</div>
-              <h2 class="voice-main-head font-title">WE MAKE PRODUCTS EASIER TO UNDERSTAND.</h2>
-              <p class="voice-desc font-inter" id="voiceDesc">
-                <span class="voice-line">We believe the biggest bottleneck in technology isn't engineering—it's communication.</span>
-                <span class="voice-line">The best products in the world lose if buyers don't immediately grasp why they matter.</span>
-                <span class="voice-line">Ryuk was built to solve that problem. We sit at the intersection of product strategy, visual storytelling, and high-end motion craft.</span>
-                <span class="voice-line">Taking what is difficult to understand and making it impossible to ignore.</span>
-              </p>
-              <div class="voice-signature" id="voiceSignature">
-                <img src="images/voice/sig_clean.png" alt="Roshan Kumar Signature" />
-              </div>
-            </div>
-          </div>
-
-          <!-- Right Scrolling column (Staggered gallery) -->
-          <div class="voice-right">
-            <div class="gallery-grid">
-              <!-- Row 1: side-by-side -->
-              <div class="gallery-row gallery-row-2">
-                <div class="gallery-img-wrapper img-1">
-                  <img src="images/voice/image1.jpg" alt="Voice Image 1" />
+          <div class="fgrid">
+            <!-- Left: Founder Portrait & Metadata -->
+            <figure class="portrait">
+              <span class="pframe">
+                <img src="images/ryuk_profile.png" alt="Roshan Kumar — Founder &amp; Creative Director" loading="lazy" />
+              </span>
+              <figcaption>
+                <div class="portrait-meta">
+                  <b>Roshan Kumar</b>
+                  <span class="font-mono">Founder &amp; Creative Director</span>
                 </div>
-                <div class="gallery-img-wrapper img-2">
-                  <img src="images/voice/image2.jpg" alt="Voice Image 2" />
+                <div class="portrait-socials">
+                  <a href="https://x.com/ryuk__editzz" target="_blank" rel="noopener" aria-label="Roshan Kumar on X">
+                    <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true">
+                      <path d="M18.9 2H22l-7 8 8.2 12h-6.4l-5-7.3L5.9 22H2.8l7.5-8.6L2.4 2h6.6l4.5 6.7zM17.8 20.1h1.7L7.3 3.8H5.4z"/>
+                    </svg>
+                  </a>
+                  <a href="https://www.linkedin.com/in/ryuk-design-studio-643504419/?skipRedirect=true" target="_blank" rel="noopener" aria-label="Roshan Kumar on LinkedIn">
+                    <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true">
+                      <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.25V10.9H6.46M7.86 6.3a1.64 1.64 0 0 0-1.66 1.64 1.63 1.63 0 0 0 1.66 1.63 1.63 1.63 0 0 0 1.65-1.63A1.64 1.64 0 0 0 7.86 6.3z"/>
+                    </svg>
+                  </a>
+                  <a href="https://www.instagram.com/ryukdesign.studio/?__pwa=1" target="_blank" rel="noopener" aria-label="Roshan Kumar on Instagram">
+                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                      <rect x="3" y="3" width="18" height="18" rx="5"/>
+                      <circle cx="12" cy="12" r="4.2"/>
+                      <circle cx="17.4" cy="6.6" r="1" fill="currentColor" stroke="none"/>
+                    </svg>
+                  </a>
                 </div>
-              </div>
+              </figcaption>
+            </figure>
 
-              <!-- Row 2: centered large image -->
-              <div class="gallery-row gallery-row-1">
-                <div class="gallery-img-wrapper img-3">
-                  <img src="images/voice/image3.jpg" alt="Voice Image 3" />
-                </div>
-              </div>
-
-              <!-- Row 3: side-by-side -->
-              <div class="gallery-row gallery-row-2">
-                <div class="gallery-img-wrapper img-4">
-                  <img src="images/voice/image4.jpg" alt="Voice Image 4" />
-                </div>
-                <div class="gallery-img-wrapper img-5">
-                  <img src="images/voice/image5.jpg" alt="Voice Image 5" />
-                </div>
-              </div>
-
-              <!-- Row 4: centered large image -->
-              <div class="gallery-row gallery-row-1">
-                <div class="gallery-img-wrapper img-6">
-                  <img src="images/voice/image6.jpg" alt="Voice Image 6" />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ── FLOATING STICKY PILL CTA ─────────────────────────────────── -->
-      <div class="floating-cta-bar" id="floatingCta">
-        <div class="floating-cta-inner">
-          <div class="floating-cta-badge font-mono">
-            <span class="status-dot"></span> Accepting New Projects
-          </div>
-          <a href="#contact" class="floating-cta-btn font-mono">
-            <span class="btn-icon">⚡</span> Start a Project <span class="arrow">→</span>
-          </a>
-        </div>
-      </div>
-
-      <!-- ── AGENCY FOOTER & CONTACT FORM ─────────────────────────────────── -->
-      <footer class="trionn-footer" id="contact">
-        <div class="trionn-footer-container">
-          <!-- Top Row: Inspires + Timezone -->
-          <div class="trionn-footer-top-row">
-            <span class="trionn-footer-top-left font-mono">MAKE COMPLEX PRODUCTS FEEL OBVIOUS.</span>
-            <span class="trionn-footer-top-right font-mono" id="footerClock">IST → 00:00</span>
-          </div>
-
-          <!-- Divider -->
-          <div class="trionn-footer-divider"></div>
-
-          <!-- ── FAQ SECTION ──────────────────────────────────────────────── -->
-          <div class="footer-faq-section" style="border-top: none; margin-top: 0; padding-top: 0; margin-bottom: clamp(40px, 7vw, 80px);">
-            <div class="footer-faq-header js-reveal-up">
-              <span class="footer-faq-label font-mono">// 07 — BEFORE WE START</span>
-              <h3 class="footer-faq-title font-title">Frequently Asked Questions</h3>
-            </div>
-            <div class="footer-faq-list">
-
-              <!-- Q1 -->
-              <div class="footer-faq-item" id="faq-1">
-                <button class="footer-faq-question" aria-expanded="false" aria-controls="faq-answer-1">
-                  <span>What types of products do you work with?</span>
-                  <span class="footer-faq-icon" aria-hidden="true"></span>
-                </button>
-                <div class="footer-faq-answer" id="faq-answer-1" role="region">
-                  <p>We specialize in complex, high-utility products across B2B SaaS, developer tools, AI infrastructure, fintech, and modern tech startups. If your product has high technical depth and is hard to explain in a single sentence, that's where our narrative process delivers the greatest leverage.</p>
-                </div>
-              </div>
-
-              <!-- Q2 -->
-              <div class="footer-faq-item" id="faq-2">
-                <button class="footer-faq-question" aria-expanded="false" aria-controls="faq-answer-2">
-                  <span>When in our product lifecycle should we reach out?</span>
-                  <span class="footer-faq-icon" aria-hidden="true"></span>
-                </button>
-                <div class="footer-faq-answer" id="faq-answer-2" role="region">
-                  <p>The ideal window is 4 to 6 weeks before your target launch date, major feature release, Product Hunt campaign, or funding announcement. This ensures ample runway for deep product discovery, strategic scripting, bespoke styleframes, and cinema-grade sound design without rushing.</p>
-                </div>
-              </div>
-
-              <!-- Q3 -->
-              <div class="footer-faq-item" id="faq-3">
-                <button class="footer-faq-question" aria-expanded="false" aria-controls="faq-answer-3">
-                  <span>How long does a typical video project take?</span>
-                  <span class="footer-faq-icon" aria-hidden="true"></span>
-                </button>
-                <div class="footer-faq-answer" id="faq-answer-3" role="region">
-                  <p>Our standard production timeline is 3 to 5 weeks from kickoff to final 4K delivery. For urgent launch windows or fixed event deadlines, we can occasionally accommodate expedited sprint schedules depending on availability.</p>
-                </div>
-              </div>
-
-              <!-- Q4 -->
-              <div class="footer-faq-item" id="faq-4">
-                <button class="footer-faq-question" aria-expanded="false" aria-controls="faq-answer-4">
-                  <span>What does the collaboration look like from our end?</span>
-                  <span class="footer-faq-icon" aria-hidden="true"></span>
-                </button>
-                <div class="footer-faq-answer" id="faq-answer-4" role="region">
-                  <p>We keep your time investment minimal and high-leverage. We need a 30-minute kickoff walkthrough of your product, access to your Figma or staging environment, and reviews at three milestone checkpoints: Script & Concept, Styleframes & Storyboard, and Animation Rough Cut.</p>
-                </div>
-              </div>
-
-              <!-- Q5 -->
-              <div class="footer-faq-item" id="faq-5">
-                <button class="footer-faq-question" aria-expanded="false" aria-controls="faq-answer-5">
-                  <span>Do you handle scriptwriting, voiceover, and sound design?</span>
-                  <span class="footer-faq-icon" aria-hidden="true"></span>
-                </button>
-                <div class="footer-faq-answer" id="faq-answer-5" role="region">
-                  <p>Yes, completely turnkey. We handle end-to-end production: product research, narrative scripting, professional voiceover casting and commercial licensing, custom motion graphics, 3D abstraction, sound design, and final mastering.</p>
-                </div>
-              </div>
-
-              <!-- Q6 -->
-              <div class="footer-faq-item" id="faq-6">
-                <button class="footer-faq-question" aria-expanded="false" aria-controls="faq-answer-6">
-                  <span>What do you need from us to get started?</span>
-                  <span class="footer-faq-icon" aria-hidden="true"></span>
-                </button>
-                <div class="footer-faq-answer" id="faq-answer-6" role="region">
-                  <p>A walkthrough of your product, any existing brand guidelines or Figma design files, an overview of your ideal customer profile, and the primary business goal for the video (launch buzz, homepage conversion, or sales demo acceleration).</p>
-                </div>
-              </div>
-
-              <!-- Q7 -->
-              <div class="footer-faq-item" id="faq-7">
-                <button class="footer-faq-question" aria-expanded="false" aria-controls="faq-answer-7">
-                  <span>How many revision rounds are included?</span>
-                  <span class="footer-faq-icon" aria-hidden="true"></span>
-                </button>
-                <div class="footer-faq-answer" id="faq-answer-7" role="region">
-                  <p>Every project includes dedicated, structured revision rounds at each milestone (Script, Visual Styleframes, and Animation Draft) to ensure the final film aligns with your exact vision before final master delivery.</p>
-                </div>
-              </div>
-
-            </div>
-          </div>
-
-          <!-- Divider between FAQ and Form -->
-          <div class="trionn-footer-divider" style="margin-bottom: clamp(40px, 7vw, 80px);"></div>
-
-          <!-- Main Grid -->
-          <div class="trionn-footer-grid">
-            <!-- Left Column: Bold Title + Copyright & Hover instructions -->
-            <div class="trionn-footer-left-col js-reveal-up">
-              <span class="trionn-footer-eyebrow font-mono">// GET IN TOUCH</span>
-              <h2 class="trionn-footer-heading font-title">
-                HAVE SOMETHING<br />WORTH EXPLAINING?<br />
-                <span class="dimmed">LET'S MAKE IT CLICK.</span>
+            <!-- Right: Founder Letter & Book a Call Pill -->
+            <div class="letter">
+              <h2 class="h2 font-title">
+                Most launches are announcements. <span class="dimmed">Announcements get scrolled past.</span>
               </h2>
-              <p class="trionn-footer-lead font-inter">
-                Tell us about what you're building. We'll review your product, discuss your timeline, and outline how we can make your value obvious.
+              <p class="lede font-inter">
+                Every week, a hundred startups post a product video into the same feed. Most look fine. Almost none of them make buyers pause.
               </p>
-              <div class="trionn-footer-left-bottom">
-                <span class="trionn-footer-copy font-mono">©RYUK® 2026. <a href="how-motion-design-boosts-startup-conversions.html" class="insights-seo-link" style="color: rgba(255, 255, 255, 0.35); text-decoration: none; transition: color 0.3s; margin-left: 8px;">INSIGHTS</a></span>
-                <span class="trionn-footer-hover-note font-mono">PRODUCT VIDEO STUDIO.</span>
-              </div>
-            </div>
+              <p class="font-inter">
+                The code isn't the problem. The narrative is. Modern software has reached incredible technical depth, but if a buyer doesn't immediately grasp the breakthrough in the first 5 seconds, they move on.
+              </p>
+              <p class="font-inter">
+                Ryuk exists to close that gap. We turn dense architectures into sharp, cinematic product films that make what you built feel obvious and impossible to ignore. You work directly with one dedicated director who owns the outcome end to end—from narrative script to 4K delivery—and you get your launch week back.
+              </p>
+              <p class="font-inter">
+                If you're building something worth explaining properly, I'd like to hear about it.
+              </p>
 
-            <!-- Right Column: Form + Contact Info + Socials -->
-            <div class="trionn-footer-right-col js-reveal-up">
-              <!-- Contact Form (7 Fields) -->
-              <form class="trionn-contact-form" id="whatsappForm">
-                <div class="trionn-form-grid">
-
-                  <!-- 01: Name -->
-                  <div class="trionn-form-group">
-                    <label for="form-name" class="trionn-form-label">
-                      <span class="trionn-label-num">01</span>
-                      <span class="trionn-label-text">Name</span>
-                    </label>
-                    <input type="text" id="form-name" placeholder=" " required class="trionn-form-input" autocomplete="name" />
-                  </div>
-
-                  <!-- 02: Company -->
-                  <div class="trionn-form-group">
-                    <label for="form-company" class="trionn-form-label">
-                      <span class="trionn-label-num">02</span>
-                      <span class="trionn-label-text">Company / Product</span>
-                    </label>
-                    <input type="text" id="form-company" placeholder=" " required class="trionn-form-input" autocomplete="organization" />
-                  </div>
-
-                  <!-- 03: Work Email -->
-                  <div class="trionn-form-group trionn-form-group-full">
-                    <label for="form-email" class="trionn-form-label">
-                      <span class="trionn-label-num">03</span>
-                      <span class="trionn-label-text">Work Email</span>
-                    </label>
-                    <input type="email" id="form-email" placeholder=" " required class="trionn-form-input" autocomplete="email" />
-                  </div>
-
-                  <!-- 04: What are you building? -->
-                  <div class="trionn-form-group trionn-form-group-full">
-                    <label for="form-product" class="trionn-form-label">
-                      <span class="trionn-label-num">04</span>
-                      <span class="trionn-label-text">What are you building?</span>
-                    </label>
-                    <input type="text" id="form-product" placeholder=" " required class="trionn-form-input" />
-                    <span class="trionn-field-hint">e.g. AI dev tool, B2B SaaS platform, cloud infrastructure</span>
-                  </div>
-
-                  <!-- 05: What do you need the video to do? -->
-                  <div class="trionn-form-group">
-                    <label for="form-objective" class="trionn-form-label">
-                      <span class="trionn-label-num">05</span>
-                      <span class="trionn-label-text">Video Objective</span>
-                    </label>
-                    <div class="trionn-select-wrapper">
-                      <select id="form-objective" required class="trionn-form-select">
-                        <option value="" disabled selected>Select objective</option>
-                        <option value="Product Launch / Major Announcement">Product Launch / Major Announcement</option>
-                        <option value="Product Walkthrough / Demo">Product Walkthrough / Demo</option>
-                        <option value="SaaS Explainer Video">SaaS Explainer Video</option>
-                        <option value="Video Sales Letter (VSL)">Video Sales Letter (VSL)</option>
-                        <option value="Multi-Format Campaign">Multi-Format Campaign</option>
-                      </select>
-                    </div>
-                  </div>
-
-                  <!-- 06: Target timeline -->
-                  <div class="trionn-form-group">
-                    <label for="form-timeline" class="trionn-form-label">
-                      <span class="trionn-label-num">06</span>
-                      <span class="trionn-label-text">Target Timeline</span>
-                    </label>
-                    <div class="trionn-select-wrapper">
-                      <select id="form-timeline" required class="trionn-form-select">
-                        <option value="" disabled selected>Select timeline</option>
-                        <option value="Within 2-3 weeks (Expedited sprint)">Within 2–3 weeks (Expedited sprint)</option>
-                        <option value="3-5 weeks (Standard production)">3–5 weeks (Standard production)</option>
-                        <option value="6+ weeks (Upcoming launch)">6+ weeks (Upcoming launch)</option>
-                        <option value="Flexible / Planning stage">Flexible / Planning stage</option>
-                      </select>
-                    </div>
-                  </div>
-
-                  <!-- 07: Budget range -->
-                  <div class="trionn-form-group trionn-form-group-full">
-                    <label for="form-budget" class="trionn-form-label">
-                      <span class="trionn-label-num">07</span>
-                      <span class="trionn-label-text">Project Budget</span>
-                    </label>
-                    <div class="trionn-select-wrapper">
-                      <select id="form-budget" required class="trionn-form-select">
-                        <option value="" disabled selected>Select budget range</option>
-                        <option value="$1,500 – $2,500">$1,500 – $2,500</option>
-                        <option value="$2,500 – $5,000">$2,500 – $5,000</option>
-                        <option value="$5,000 – $10,000">$5,000 – $10,000</option>
-                        <option value="$10,000+">$10,000+</option>
-                      </select>
-                    </div>
-                  </div>
-
+              <!-- Founder Signature & Vermillion CTA Pill -->
+              <div class="seccta">
+                <div class="sig">
+                  <b>Roshan Kumar</b>
+                  <span>Founder &amp; Creative Director</span>
                 </div>
 
-                <!-- Submit -->
-                <div class="trionn-submit-wrap">
-                  <button type="submit" class="trionn-submit-btn">
-                    START A PROJECT <span class="trionn-submit-arrow">→</span>
-                  </button>
-                </div>
-              </form>
-
-              <!-- Directory Info (Business Enquiry + Socials) -->
-              <div class="trionn-directory-grid">
-                <!-- Business Enquiry Column -->
-                <div class="trionn-dir-col">
-                  <span class="trionn-dir-title font-mono">BUSINESS ENQUIRY</span>
-                  <a href="mailto:roshan@ryukdesignstudio.com" class="trionn-dir-link">EMAIL: roshan@ryukdesignstudio.com</a>
-                  <a href="https://wa.me/916289059806" target="_blank" rel="noopener" class="trionn-dir-link">WHATSAPP: +91 62890 59806</a>
-                </div>
-
-                <!-- Socials Column -->
-                <div class="trionn-dir-col">
-                  <span class="trionn-dir-title font-mono">SOCIAL</span>
-                  <div class="trionn-social-links-grid">
-                    <div class="trionn-social-subcol">
-                      <a href="https://contra.com/roshan_kumar4?referralExperimentNid=DEFAULT_REFERRAL_PROGRAM&referrerUsername=roshan_kumar4" target="_blank" rel="noopener" class="trionn-dir-link">Contra</a>
-                      <a href="https://www.linkedin.com/in/ryuk-design-studio-643504419/?skipRedirect=true" target="_blank" rel="noopener" class="trionn-dir-link">LinkedIn</a>
-                    </div>
-                    <div class="trionn-social-subcol">
-                      <a href="https://x.com/ryuk__editzz" target="_blank" rel="noopener" class="trionn-dir-link">X</a>
-                      <a href="https://www.instagram.com/ryukdesign.studio/?__pwa=1" target="_blank" rel="noopener" class="trionn-dir-link">Instagram</a>
-                    </div>
-                  </div>
-                </div>
+                <a class="btn cta-pill" href="https://calendly.com/roshan-ryukdesignstudio/30min" target="_blank" rel="noopener" aria-label="Book a 20-min call with Roshan Kumar">
+                  <span class="cp-av">
+                    <img src="images/ryuk_profile.png" alt="Roshan Kumar" />
+                  </span>
+                  <span class="cp-tx">
+                    <b>
+                      <span class="btn-roll-text">
+                        <span class="btn-roll-track">
+                          <span class="btn-roll-item">Book a call
+                            <svg class="chev" viewBox="0 0 8 12" width="8" height="12" fill="none" aria-hidden="true">
+                              <path d="M1.5 1l5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                          </span>
+                          <span class="btn-roll-item clone" aria-hidden="true">Book a call
+                            <svg class="chev" viewBox="0 0 8 12" width="8" height="12" fill="none" aria-hidden="true">
+                              <path d="M1.5 1l5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                          </span>
+                        </span>
+                      </span>
+                    </b>
+                    <span class="font-mono">20 MIN · DISCOVERY</span>
+                  </span>
+                </a>
               </div>
             </div>
           </div>
+        </div>
+      </section>
 
-          <!-- Huge Lined Wordmark at Bottom -->
-          <div class="trionn-wordmark-container">
-            <h2 class="trionn-lined-wordmark font-title" id="footerWordmark">RYUK</h2>
-            <div class="footer-tagline-sub font-mono">MAKE COMPLEX PRODUCTS FEEL OBVIOUS.</div>
+      <!-- ── FAQ SECTION (VERMILLION SPEC) ──────────────────────────────── -->
+      <section class="sec faq" id="faq" aria-label="Frequently Asked Questions">
+        <div class="faq-container js-reveal-up">
+          <div class="sechead" aria-hidden="true">
+            <span class="tag">// QUESTIONS</span>
+            <span class="tagname font-mono">FAQ</span>
           </div>
+          <div class="titlerow">
+            <h2 class="h2 font-title">Frequently asked <span class="dimmed">questions.</span></h2>
+          </div>
+          <div class="footer-faq-list">
+
+            <!-- Q1 -->
+            <div class="footer-faq-item" id="faq-1">
+              <button class="footer-faq-question" aria-expanded="false" aria-controls="faq-answer-1">
+                <span>What types of products do you work with?</span>
+                <span class="footer-faq-icon" aria-hidden="true"></span>
+              </button>
+              <div class="footer-faq-answer" id="faq-answer-1" role="region">
+                <p>We specialize in complex, high-utility products across B2B SaaS, developer tools, AI infrastructure, fintech, and modern tech startups. If your product has high technical depth and is hard to explain in a single sentence, that's where our narrative process delivers the greatest leverage.</p>
+              </div>
+            </div>
+
+            <!-- Q2 -->
+            <div class="footer-faq-item" id="faq-2">
+              <button class="footer-faq-question" aria-expanded="false" aria-controls="faq-answer-2">
+                <span>When in our product lifecycle should we reach out?</span>
+                <span class="footer-faq-icon" aria-hidden="true"></span>
+              </button>
+              <div class="footer-faq-answer" id="faq-answer-2" role="region">
+                <p>The ideal window is 4 to 6 weeks before your target launch date, major feature release, Product Hunt campaign, or funding announcement. This ensures ample runway for deep product discovery, strategic scripting, bespoke styleframes, and cinema-grade sound design without rushing.</p>
+              </div>
+            </div>
+
+            <!-- Q3 -->
+            <div class="footer-faq-item" id="faq-3">
+              <button class="footer-faq-question" aria-expanded="false" aria-controls="faq-answer-3">
+                <span>How long does a typical video project take?</span>
+                <span class="footer-faq-icon" aria-hidden="true"></span>
+              </button>
+              <div class="footer-faq-answer" id="faq-answer-3" role="region">
+                <p>Our standard production timeline is 3 to 5 weeks from kickoff to final 4K delivery. For urgent launch windows or fixed event deadlines, we can occasionally accommodate expedited sprint schedules depending on availability.</p>
+              </div>
+            </div>
+
+            <!-- Q4 -->
+            <div class="footer-faq-item" id="faq-4">
+              <button class="footer-faq-question" aria-expanded="false" aria-controls="faq-answer-4">
+                <span>What does the collaboration look like from our end?</span>
+                <span class="footer-faq-icon" aria-hidden="true"></span>
+              </button>
+              <div class="footer-faq-answer" id="faq-answer-4" role="region">
+                <p>We keep your time investment minimal and high-leverage. We need a 30-minute kickoff walkthrough of your product, access to your Figma or staging environment, and reviews at three milestone checkpoints: Script & Concept, Styleframes & Storyboard, and Animation Rough Cut.</p>
+              </div>
+            </div>
+
+            <!-- Q5 -->
+            <div class="footer-faq-item" id="faq-5">
+              <button class="footer-faq-question" aria-expanded="false" aria-controls="faq-answer-5">
+                <span>Do you handle scriptwriting, voiceover, and sound design?</span>
+                <span class="footer-faq-icon" aria-hidden="true"></span>
+              </button>
+              <div class="footer-faq-answer" id="faq-answer-5" role="region">
+                <p>Yes, completely turnkey. We handle end-to-end production: product research, narrative scripting, professional voiceover casting and commercial licensing, custom motion graphics, 3D abstraction, sound design, and final mastering.</p>
+              </div>
+            </div>
+
+            <!-- Q6 -->
+            <div class="footer-faq-item" id="faq-6">
+              <button class="footer-faq-question" aria-expanded="false" aria-controls="faq-answer-6">
+                <span>What do you need from us to get started?</span>
+                <span class="footer-faq-icon" aria-hidden="true"></span>
+              </button>
+              <div class="footer-faq-answer" id="faq-answer-6" role="region">
+                <p>A walkthrough of your product, any existing brand guidelines or Figma design files, an overview of your ideal customer profile, and the primary business goal for the video (launch buzz, homepage conversion, or sales demo acceleration).</p>
+              </div>
+            </div>
+
+            <!-- Q7 -->
+            <div class="footer-faq-item" id="faq-7">
+              <button class="footer-faq-question" aria-expanded="false" aria-controls="faq-answer-7">
+                <span>How many revision rounds are included?</span>
+                <span class="footer-faq-icon" aria-hidden="true"></span>
+              </button>
+              <div class="footer-faq-answer" id="faq-answer-7" role="region">
+                <p>Every project includes dedicated, structured revision rounds at each milestone (Script, Visual Styleframes, and Animation Draft) to ensure the final film aligns with your exact vision before final master delivery.</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- ── BRAND FOOTER (MITRA HORIZON SPEC IN RYUK BRAND SPECTRUM) ─────────────── -->
+      <footer class="mitra-footer" id="footer">
+        <!-- Interactive Cursor-Tracking Aurora Glow (Mitra Spec) -->
+        <div class="mitra-hover-aurora" aria-hidden="true"></div>
+        <div class="mitra-wave-glow-mesh" aria-hidden="true"></div>
+
+        <!-- Undulating Velvet Aurora Wave Horizon -->
+        <div class="mitra-wave-wrapper" aria-hidden="true">
+          <svg class="mitra-wave-svg" viewBox="0 0 1880 320" fill="none" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="ryukWaveGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#060608" stop-opacity="0" />
+                <stop offset="12%" stop-color="#7928ca" stop-opacity="0.6" />
+                <stop offset="32%" stop-color="#ff1493" stop-opacity="0.95" />
+                <stop offset="52%" stop-color="#ff7a45" stop-opacity="0.9" />
+                <stop offset="72%" stop-color="#fb7185" stop-opacity="0.85" />
+                <stop offset="88%" stop-color="#7928ca" stop-opacity="0.55" />
+                <stop offset="100%" stop-color="#060608" stop-opacity="0" />
+              </linearGradient>
+              <filter id="waveBloom" x="-20%" y="-20%" width="140%" height="140%">
+                <feGaussianBlur stdDeviation="7" result="blur" />
+                <feMerge>
+                  <feMergeNode in="blur" />
+                  <feMergeNode in="SourceGraphic" />
+                </feMerge>
+              </filter>
+            </defs>
+            <!-- Atmospheric under-glow fill -->
+            <path d="M0,165 C280,95 560,230 940,150 C1320,70 1600,215 1880,145 L1880,320 L0,320 Z" 
+                  fill="rgba(6, 6, 8, 0.98)" />
+            <!-- Luminous undulating wave horizon stroke -->
+            <path d="M0,165 C280,95 560,230 940,150 C1320,70 1600,215 1880,145" 
+                  stroke="url(#ryukWaveGrad)" 
+                  stroke-width="3" 
+                  fill="none" 
+                  filter="url(#waveBloom)" />
+          </svg>
+        </div>
+
+        <!-- Vermillion Disciplined 3-Column HUD Grid -->
+        <div class="mitra-footer-container">
+          <!-- Col 1: Studio Left / About -->
+          <div class="mitra-col-about js-reveal-up">
+            <div class="mitra-brand-lockup">
+              <a href="#hero" class="mitra-studio-logo">
+                <span class="mitra-logo-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <path d="M12 2L14.4 9.6H22L15.8 14.1L18.2 21.7L12 17.2L5.8 21.7L8.2 14.1L2 9.6H9.6L12 2Z" fill="url(#ryukWaveGrad)"/>
+                  </svg>
+                </span>
+                <span class="mitra-logo-name">RYUK<span class="logo-reg">®</span></span>
+              </a>
+              <p class="mitra-footer-signoff">
+                Ryuk is a launch film studio for physical AI, robotics and high-growth technology. Making complex products feel immediately obvious.
+              </p>
+            </div>
+
+            <!-- HUD Meta Details from Vermillion -->
+            <div class="mitra-hud-meta font-mono">
+              <div class="hud-item">
+                <span class="hud-label">STATUS</span>
+                <span class="hud-val">
+                  <span class="status-pulse"></span>
+                  Taking projects for Q2 2026
+                </span>
+              </div>
+              <div class="hud-item">
+                <span class="hud-label">TIME</span>
+                <span class="hud-val footer-live-clock" id="footerClock">--:--:-- UTC</span>
+              </div>
+              <div class="hud-item">
+                <span class="hud-label">BASE</span>
+                <span class="hud-val">Global · SF · BLR</span>
+              </div>
+            </div>
+
+            <div class="mitra-copyright">
+              <span>© 2026 Ryuk Design Studio, Inc. All rights reserved.</span>
+            </div>
+          </div>
+
+          <!-- Col 2: FOLLOW (from Vermillion) -->
+          <div class="mitra-col-nav js-reveal-up">
+            <span class="mitra-nav-label font-mono">FOLLOW</span>
+            <ul class="mitra-nav-list font-mono">
+              <li><a href="https://x.com/ryuk__editzz" target="_blank" rel="noopener">X (Twitter) ↗</a></li>
+              <li><a href="https://www.linkedin.com/in/ryuk-design-studio-643504419/" target="_blank" rel="noopener">LinkedIn ↗</a></li>
+              <li><a href="https://www.instagram.com/ryukdesign.studio/" target="_blank" rel="noopener">Instagram ↗</a></li>
+              <li><a href="https://wa.me/916289059806" target="_blank" rel="noopener">WhatsApp ↗</a></li>
+            </ul>
+          </div>
+
+          <!-- Col 3: START (from Vermillion) -->
+          <div class="mitra-col-nav js-reveal-up">
+            <span class="mitra-nav-label font-mono">START</span>
+            <div class="mitra-call-invite">
+              <a href="https://calendly.com/roshan-ryukdesignstudio/30min" target="_blank" rel="noopener" class="mitra-start-btn" aria-label="Book a 30-min discovery call">
+                <span class="btn-roll-text">
+                  <span class="btn-roll-track">
+                    <span class="btn-roll-item">Book a call →</span>
+                    <span class="btn-roll-item clone" aria-hidden="true">Book a call →</span>
+                  </span>
+                </span>
+              </a>
+            </div>
+            <ul class="mitra-nav-list font-mono" style="margin-top: 8px;">
+              <li><a href="mailto:roshan@ryukdesignstudio.com">roshan@ryukdesignstudio.com ↗</a></li>
+              <li><a href="https://wa.me/916289059806" target="_blank" rel="noopener">+91 6289 059 806 ↗</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Monumental Cropped Wordmark: Exactly like Mitra -->
+        <div class="mitra-monumental-wordmark" aria-hidden="true">
+          <span class="mitra-wordmark-text">Ryuk</span>
         </div>
       </footer>
     </main>
@@ -1325,6 +1412,6 @@
       </div>
     </div>
 
-    <script src="app.js?v=57"></script>
+    <script src="app.js?v=74"></script>
   </body>
 </html>

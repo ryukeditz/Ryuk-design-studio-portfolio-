@@ -1267,30 +1267,21 @@ class Animations {
     const revealTl = parentTl || gsap.timeline();
 
     const nav = q(".nav-floating");
-    const shaderWrapper = q(".hero-shader-wrapper");
-
-    const leftAddress = q(".hero-left-address");
-    const rightEstablished = q(".hero-right-established");
-    const heroEyebrow = q(".hero-eyebrow");
-    const heroTitle = q(".hero-title");
+    const pillarStage = q(".hero-pillar-stage");
+    const ambientLights = q(".hero-ambient-lights");
+    const eyebrow = q(".hero .eyebrow");
+    const heroTitle = q("#hero-title");
     const heroSubtitle = q(".hero-subtitle");
-    const heroCtaGroup = q(".hero-cta-group");
-    const bottomDesc = q(".hero-bottom-desc");
+    const heroActions = q(".hero-actions");
+    const heroProofStrip = q(".hero-proof-strip");
+    const scrollCue = q(".hero-scroll-cue");
 
-    // Wrap words of hero headline in spans for word-by-word clip reveal
-    if (heroTitle && !heroTitle.querySelector(".hero-title-word")) {
-      const words = heroTitle.textContent.trim().split(/\s+/);
-      heroTitle.innerHTML = words
-        .map(
-          (w) =>
-            `<span class="hero-title-word" style="display:inline-block;overflow:hidden;vertical-align:bottom;margin-right:0.24em;"><span class="hero-title-word-inner" style="display:inline-block;transform:translateY(110%);">${w}</span></span>`
-        )
-        .join("");
+    // 1. Pillar stage and ambient lights fade-in
+    if (pillarStage) {
+      revealTl.fromTo(pillarStage, { opacity: 0, y: 25 }, { opacity: 1, y: 0, duration: 1.6, ease: "power3.out" }, "0.0");
     }
-
-    // 1. Canvas shader wrapper fade-in
-    if (shaderWrapper) {
-      revealTl.fromTo(shaderWrapper, { opacity: 0 }, { opacity: 1, duration: 2.0, ease: "power2.out" }, "0.0");
+    if (ambientLights) {
+      revealTl.fromTo(ambientLights, { opacity: 0 }, { opacity: 1, duration: 1.5, ease: "power2.out" }, "0.0");
     }
 
     // 2. Nav slides down
@@ -1314,27 +1305,22 @@ class Animations {
     }
 
     // 3. Eyebrow reveal
-    if (heroEyebrow) {
+    if (eyebrow) {
       revealTl.fromTo(
-        heroEyebrow,
+        eyebrow,
         { y: 15, opacity: 0 },
         { y: 0, opacity: 1, duration: 0.8, ease: "power3.out" },
-        parentTl ? "-=0.9" : "0.35"
+        parentTl ? "-=0.9" : "0.25"
       );
     }
 
-    // 4. Staggered word reveal of MAKE COMPLEX PRODUCTS FEEL OBVIOUS.
-    const titleWords = qq(".hero-title-word-inner");
-    if (titleWords.length > 0) {
-      revealTl.to(
-        titleWords,
-        {
-          y: "0%",
-          duration: 1.2,
-          stagger: 0.08,
-          ease: "power4.out",
-        },
-        parentTl ? "-=0.7" : "0.45"
+    // 4. Headline reveal
+    if (heroTitle) {
+      revealTl.fromTo(
+        heroTitle,
+        { y: 25, opacity: 0 },
+        { y: 0, opacity: 1, duration: 1.1, ease: "power4.out" },
+        parentTl ? "-=0.7" : "0.35"
       );
     }
 
@@ -1344,45 +1330,37 @@ class Animations {
         heroSubtitle,
         { y: 15, opacity: 0 },
         { y: 0, opacity: 1, duration: 1.0, ease: "power3.out" },
-        parentTl ? "-=0.6" : "0.7"
+        parentTl ? "-=0.6" : "0.55"
       );
     }
 
-    // 6. Dual CTA group reveal
-    if (heroCtaGroup) {
+    // 6. Action buttons reveal
+    if (heroActions) {
       revealTl.fromTo(
-        heroCtaGroup,
+        heroActions,
         { y: 15, opacity: 0 },
         { y: 0, opacity: 1, duration: 0.9, ease: "power3.out" },
+        parentTl ? "-=0.5" : "0.7"
+      );
+    }
+
+    // 7. Hero proof strip reveal
+    if (heroProofStrip) {
+      revealTl.fromTo(
+        heroProofStrip,
+        { y: 15, opacity: 0 },
+        { y: 0, opacity: 1, duration: 1.0, ease: "power3.out" },
         parentTl ? "-=0.5" : "0.85"
       );
     }
 
-    // 7. Left side address and right side established reveals
-    if (leftAddress) {
+    // 8. Scroll cue reveal
+    if (scrollCue) {
       revealTl.fromTo(
-        leftAddress,
-        { x: -20, opacity: 0 },
-        { x: 0, opacity: 1, duration: 1.2, ease: "power3.out" },
-        parentTl ? "-=0.5" : "0.75"
-      );
-    }
-    if (rightEstablished) {
-      revealTl.fromTo(
-        rightEstablished,
-        { x: 20, opacity: 0 },
-        { x: 0, opacity: 1, duration: 1.2, ease: "power3.out" },
-        parentTl ? "-=1.2" : "0.75"
-      );
-    }
-
-    // 8. Bottom left description paragraph reveal
-    if (bottomDesc) {
-      revealTl.fromTo(
-        bottomDesc,
-        { y: 20, opacity: 0 },
-        { y: 0, opacity: 1, duration: 1.2, ease: "power3.out" },
-        parentTl ? "-=0.4" : "0.9"
+        scrollCue,
+        { opacity: 0 },
+        { opacity: 1, duration: 1.0, ease: "power2.out" },
+        parentTl ? "-=0.4" : "1.0"
       );
     }
   }
@@ -1608,10 +1586,8 @@ function initButtonFill() {
 // ── HERO 3D MOUSE PARALLAX ──────────────────────────────────────────────
 function initHero3DParallax() {
   const hero = q(".hero");
-  const centerGroup = q(".hero-center-group");
-  const leftAddress = q(".hero-left-address");
-  const rightEstablished = q(".hero-right-established");
-  const bottomDesc = q(".hero-bottom-desc");
+  const heroCopy = q(".hero-copy");
+  const pillarStage = q(".hero-pillar-stage");
 
   if (!hero) return;
 
@@ -1623,17 +1599,10 @@ function initHero3DParallax() {
     rect = hero.getBoundingClientRect();
   }, { passive: true });
 
-  const centerToX = centerGroup ? gsap.quickTo(centerGroup, "x", { duration: 0.8, ease: "power2.out" }) : null;
-  const centerToY = centerGroup ? gsap.quickTo(centerGroup, "y", { duration: 0.8, ease: "power2.out" }) : null;
-
-  const leftToX = leftAddress ? gsap.quickTo(leftAddress, "x", { duration: 0.8, ease: "power2.out" }) : null;
-  const leftToY = leftAddress ? gsap.quickTo(leftAddress, "y", { duration: 0.8, ease: "power2.out" }) : null;
-
-  const rightToX = rightEstablished ? gsap.quickTo(rightEstablished, "x", { duration: 0.8, ease: "power2.out" }) : null;
-  const rightToY = rightEstablished ? gsap.quickTo(rightEstablished, "y", { duration: 0.8, ease: "power2.out" }) : null;
-
-  const bottomToX = bottomDesc ? gsap.quickTo(bottomDesc, "x", { duration: 0.8, ease: "power2.out" }) : null;
-  const bottomToY = bottomDesc ? gsap.quickTo(bottomDesc, "y", { duration: 0.8, ease: "power2.out" }) : null;
+  const copyToX = heroCopy ? gsap.quickTo(heroCopy, "x", { duration: 0.8, ease: "power2.out" }) : null;
+  const copyToY = heroCopy ? gsap.quickTo(heroCopy, "y", { duration: 0.8, ease: "power2.out" }) : null;
+  const pillarToX = pillarStage ? gsap.quickTo(pillarStage, "x", { duration: 1.4, ease: "power2.out" }) : null;
+  const pillarToY = pillarStage ? gsap.quickTo(pillarStage, "y", { duration: 1.4, ease: "power2.out" }) : null;
 
   let ticking = false;
   hero.addEventListener("mousemove", (e) => {
@@ -1648,22 +1617,18 @@ function initHero3DParallax() {
       const normX = mouseX / curRect.width - 0.5;
       const normY = mouseY / curRect.height - 0.5;
 
-      if (centerToX) { centerToX(normX * 16); centerToY(normY * 16); }
-      if (leftToX) { leftToX(normX * -10); leftToY(normY * -10); }
-      if (rightToX) { rightToX(normX * -10); rightToY(normY * -10); }
-      if (bottomToX) { bottomToX(normX * 24); bottomToY(normY * 24); }
+      if (copyToX) { copyToX(normX * 12); copyToY(normY * 12); }
+      if (pillarToX) { pillarToX(normX * -10); pillarToY(normY * -6); }
     });
   }, { passive: true });
 
   hero.addEventListener("mouseleave", () => {
-    if (centerToX) { centerToX(0); centerToY(0); }
-    if (leftToX) { leftToX(0); leftToY(0); }
-    if (rightToX) { rightToX(0); rightToY(0); }
-    if (bottomToX) { bottomToX(0); bottomToY(0); }
+    if (copyToX) { copyToX(0); copyToY(0); }
+    if (pillarToX) { pillarToX(0); pillarToY(0); }
   });
 }
 
-// ── PAGE TRANSITIONS ────────────────────────────────────────────────────
+// ── PAGE TRANSITIONS & BACK NAVIGATION ──────────────────────────────────
 class PageTransition {
   constructor(skipReveal) {
     this.init(skipReveal);
@@ -1672,177 +1637,147 @@ class PageTransition {
   init(skipReveal) {
     const pageContent = q("#pageContent");
     if (pageContent && !skipReveal) {
-      // Entrance animation: fade in and slide up
       gsap.fromTo(
         pageContent,
-        { opacity: 0, y: 30 },
+        { opacity: 0, y: 24 },
         {
           opacity: 1,
           y: 0,
-          duration: 0.65,
+          duration: 0.5,
           ease: "power3.out",
           clearProps: "transform,opacity",
         }
       );
     }
 
-    // Intercept internal links using event delegation
+    // Intercept internal links with event delegation
     if (!window.__pjaxClickBound) {
       document.addEventListener("click", (e) => {
         const a = e.target.closest("a");
         if (!a) return;
         const href = a.getAttribute("href");
+        if (!href) return;
 
-        if (href && !href.startsWith("mailto:") && !href.startsWith("tel:") && a.getAttribute("target") !== "_blank") {
-          // Check if it's an internal link
-          try {
-            const url = new URL(href, window.location.href);
-            const isSamePage = url.pathname === window.location.pathname && url.search === window.location.search;
-            const isInternal = url.origin === window.location.origin;
+        // Skip protocol links and new tabs
+        if (
+          href.startsWith("mailto:") ||
+          href.startsWith("tel:") ||
+          href.startsWith("javascript:") ||
+          a.getAttribute("target") === "_blank"
+        ) {
+          return;
+        }
 
-            if (isInternal) {
-              if (!isSamePage) {
-                // Different page -> Load page via PJAX transition
+        try {
+          const url = new URL(href, window.location.href);
+          const isSamePage = url.pathname === window.location.pathname && url.search === window.location.search;
+          const isInternal = url.origin === window.location.origin;
+
+          if (isInternal) {
+            // Case 1: Same-page anchor link -> Smooth scroll using Lenis
+            if (isSamePage && url.hash) {
+              const target = document.querySelector(url.hash);
+              if (target) {
                 e.preventDefault();
-                this.loadPage(href, true);
-              } else if (url.hash) {
-                // Same page with hash -> Smooth scroll using Lenis if possible
-                const target = document.querySelector(url.hash);
-                if (target) {
-                  e.preventDefault();
-                  if (window.__lenis) {
-                    window.__lenis.scrollTo(target, { duration: 1.2, offset: -72 });
-                  } else {
-                    target.scrollIntoView({ behavior: "smooth" });
-                  }
+                if (window.__lenis) {
+                  window.__lenis.scrollTo(target, { duration: 1.2, offset: -72 });
+                } else {
+                  target.scrollIntoView({ behavior: "smooth" });
                 }
               }
+              return;
             }
-          } catch (err) {
-            // Invalid URL -> Let native browser action take place
+
+            // Case 2: Navigating to works.html from index.html -> Trigger cinematic curtain transition
+            if ((url.pathname.includes("works.html") || href.includes("works")) && !window.location.pathname.includes("works")) {
+              const curtain = document.getElementById("curtain");
+              if (curtain) {
+                e.preventDefault();
+                curtain.classList.add("active");
+                gsap.set(curtain, { opacity: 1, visibility: "visible", pointerEvents: "auto" });
+
+                const curtainLetters = curtain.querySelectorAll(".works-letters");
+                if (curtainLetters.length) {
+                  gsap.killTweensOf(curtainLetters);
+                  gsap.set(curtainLetters, {
+                    y: "115%",
+                    opacity: 0,
+                    clipPath: "polygon(0 0, 100% 0, 100% 0, 0 0)",
+                  });
+                  gsap.to(curtainLetters, {
+                    y: "0%",
+                    opacity: 1,
+                    clipPath: "polygon(0 0, 100% 0, 100% 105%, 0 105%)",
+                    duration: 0.55,
+                    stagger: 0.02,
+                    ease: "power4.out",
+                    onComplete: () => {
+                      window.location.href = href;
+                    },
+                  });
+                } else {
+                  setTimeout(() => {
+                    window.location.href = href;
+                  }, 400);
+                }
+                return;
+              }
+            }
+
+            // Case 3: Navigating to index.html or any other internal link -> Let browser navigate naturally
+            // Native navigation guarantees WebGL, GSAP timelines, and canvas simulations start 100% clean and fresh
           }
+        } catch (err) {
+          // Fall back to native browser action
         }
       });
       window.__pjaxClickBound = true;
     }
 
-    // Handle back/forward buttons
+    // Handle browser back and forward buttons cleanly
     if (!window.__popstateBound) {
       window.addEventListener("popstate", () => {
-        this.loadPage(window.location.href, false);
+        // Native clean reload ensures all WebGL shaders, ScrollTriggers, and canvases restore perfectly
+        window.location.reload();
       });
       window.__popstateBound = true;
     }
   }
+}
 
-  async loadPage(href, push = true) {
-    const pageContent = q("#pageContent");
-    if (!pageContent) {
-      window.location.href = href;
-      return;
+// ── FULLSCREEN OVERSIZED WORKS HERO REVEAL ──────────────────────────────
+function initWorksHeroAnimation() {
+  const worksHero = q("#worksHero");
+  if (!worksHero) return;
+  const letters = worksHero.querySelectorAll(".works-letters");
+  if (!letters.length) return;
+
+  gsap.killTweensOf(letters);
+  gsap.fromTo(
+    letters,
+    {
+      y: "115%",
+      opacity: 0,
+      clipPath: "polygon(0 0, 100% 0, 100% 0, 0 0)",
+    },
+    {
+      y: "0%",
+      opacity: 1,
+      clipPath: "polygon(0 0, 100% 0, 100% 105%, 0 105%)",
+      duration: 0.85,
+      stagger: 0.025,
+      ease: "power4.out",
+      delay: 0.1,
     }
+  );
 
-    // Hide hover reveal card instantly
-    const reveal = q(".hover-reveal");
-    if (reveal) reveal.style.opacity = "0";
-
-    try {
-      // 1. Parallel fetch and exit animation for extreme responsiveness
-      const fetchPromise = fetch(href).then((res) => res.text());
-
-      const exitAnimPromise = gsap.to(pageContent, {
-        opacity: 0,
-        y: -30,
-        duration: 0.35,
-        ease: "power2.inOut",
-      });
-
-      // Wait for both the fetch and the animation to finish
-      const [htmlText] = await Promise.all([fetchPromise, exitAnimPromise]);
-
-      // 2. Parse HTML
-      const parser = new DOMParser();
-      const doc = parser.parseFromString(htmlText, "text/html");
-      const newContent = doc.querySelector("#pageContent");
-
-      if (!newContent) {
-        window.location.href = href;
-        return;
-      }
-
-      // 3. Swap content and update path
-      pageContent.innerHTML = newContent.innerHTML;
-      document.title = doc.title;
-      document.body.className = doc.body.className;
-
-      if (push) {
-        history.pushState(null, "", href);
-      }
-
-      // 4. Kill previous ScrollTrigger instances and Lenis instance
-      if (window.ScrollTrigger) {
-        ScrollTrigger.getAll().forEach((t) => t.kill());
-      }
-      if (window.__lenis) {
-        window.__lenis.destroy();
-      }
-
-      // 5. Extract and execute inline scripts on the new page
-      const scriptTags = doc.querySelectorAll("script:not([src])");
-      scriptTags.forEach((s) => {
-        const newScript = document.createElement("script");
-        newScript.textContent = s.textContent;
-        document.body.appendChild(newScript);
-        newScript.remove();
-      });
-
-      // Determine page type
-      const isProjectPage = href.includes("project") || href.includes("nestora") || href.includes("theroom");
-
-      // 6. Re-initialize all global modules (Lenis, ScrollTrigger, Nav, cursor, magnetic, tilt, etc.)
-      AppController.afterLoad(isProjectPage);
-
-      // Execute project-specific animations
-      setTimeout(() => {
-        if (typeof window.__projectInit === "function") {
-          window.__projectInit();
-        } else if (typeof initProjectAnimations === "function") {
-          initProjectAnimations();
-        }
-      }, 50);
-
-      // 7. Extract the hash from URL to scroll if present
-      const url = new URL(href, window.location.href);
-      const hash = url.hash;
-      if (hash) {
-        setTimeout(() => {
-          const target = document.querySelector(hash);
-          if (target && window.__lenis) {
-            window.__lenis.scrollTo(target, { duration: 1.2, offset: -72 });
-          } else if (target) {
-            target.scrollIntoView({ behavior: "smooth" });
-          }
-        }, 150);
-      } else {
-        window.scrollTo(0, 0);
-      }
-
-      // 8. Entrance animation: fade in and slide up
-      gsap.fromTo(
-        pageContent,
-        { opacity: 0, y: 30 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.6,
-          ease: "power3.out",
-          clearProps: "transform,opacity",
-        }
-      );
-    } catch (err) {
-      console.error("PJAX navigation failed, falling back to reload:", err);
-      window.location.href = href;
-    }
+  const cue = worksHero.querySelector(".works-hero-scroll-cue");
+  if (cue) {
+    gsap.fromTo(
+      cue,
+      { opacity: 0, y: 20 },
+      { opacity: 1, y: 0, duration: 0.75, delay: 0.65, ease: "power3.out" }
+    );
   }
 }
 
@@ -2259,65 +2194,7 @@ function initVideoGallery() {
   const btnPrev = document.getElementById("lightboxPrev");
   const btnNext = document.getElementById("lightboxNext");
 
-  if (!cards.length || !modal || !videoContainer) return;
-
-  let activeIndex = 0;
-  let visibleCards = Array.from(cards);
-
-  // 1. FILTER FUNCTIONALITY
-  filterBtns.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      filterBtns.forEach((b) => b.classList.remove("active"));
-      btn.classList.add("active");
-
-      const filterValue = btn.getAttribute("data-filter");
-      visibleCards = [];
-
-      cards.forEach((card) => {
-        const categoryAttr = (card.getAttribute("data-category") || "").toLowerCase();
-        const categories = categoryAttr.split(/\s+/);
-        if (filterValue === "all" || categories.includes(filterValue.toLowerCase())) {
-          card.style.display = "block";
-          visibleCards.push(card);
-        } else {
-          card.style.display = "none";
-        }
-      });
-
-      // Update data-index dynamically on filtered list for navigation purposes
-      visibleCards.forEach((card, idx) => {
-        card.setAttribute("data-filtered-index", idx);
-      });
-    });
-  });
-
-  // Initialize filtered index on boot
-  cards.forEach((card, idx) => {
-    card.setAttribute("data-filtered-index", idx);
-  });
-
-  // 2. LIGHTBOX LAUNCH
-  const openVideo = (card) => {
-    const vimeoId = card.getAttribute("data-vimeo-id");
-    const title = card.getAttribute("data-title");
-    activeIndex = parseInt(card.getAttribute("data-filtered-index"), 10);
-
-    if (vimeoId) {
-      videoContainer.innerHTML = `<iframe src="https://player.vimeo.com/video/${vimeoId}?autoplay=1&badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="${title}"></iframe>`;
-      if (modalTitle) modalTitle.textContent = title;
-      modal.classList.add("active");
-
-      // Pause Lenis smooth scroll
-      if (window.__lenis) {
-        window.__lenis.stop();
-      }
-    }
-  };
-
-  // Bind click on each card to open in lightbox
-  cards.forEach((card) => {
-    card.addEventListener("click", () => openVideo(card));
-  });
+  if (!modal || !videoContainer) return;
 
   const closeModal = () => {
     modal.classList.remove("active");
@@ -2329,8 +2206,72 @@ function initVideoGallery() {
     }
   };
 
-  if (modalClose) modalClose.addEventListener("click", closeModal);
-  if (modalOverlay) modalOverlay.addEventListener("click", closeModal);
+  // 1. LIGHTBOX LAUNCH (Available globally)
+  window.openVideoLightboxById = (vimeoId, title) => {
+    if (vimeoId) {
+      videoContainer.innerHTML = `<iframe src="https://player.vimeo.com/video/${vimeoId}?autoplay=1&badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="${title || 'Video'}"></iframe>`;
+      if (modalTitle) modalTitle.textContent = title || "Video";
+      modal.classList.add("active");
+
+      // Pause Lenis smooth scroll
+      if (window.__lenis) {
+        window.__lenis.stop();
+      }
+    }
+  };
+
+  if (modalClose) modalClose.onclick = closeModal;
+  if (modalOverlay) modalOverlay.onclick = closeModal;
+
+  let activeIndex = 0;
+  let visibleCards = Array.from(cards);
+
+  // If there are gallery cards on this page, wire up filter, cards click, and next/prev
+  if (cards.length) {
+    // FILTER FUNCTIONALITY
+    filterBtns.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        filterBtns.forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+
+        const filterValue = btn.getAttribute("data-filter");
+        visibleCards = [];
+
+        cards.forEach((card) => {
+          const categoryAttr = (card.getAttribute("data-category") || "").toLowerCase();
+          const categories = categoryAttr.split(/\s+/);
+          if (filterValue === "all" || categories.includes(filterValue.toLowerCase())) {
+            card.style.display = "block";
+            visibleCards.push(card);
+          } else {
+            card.style.display = "none";
+          }
+        });
+
+        // Update data-index dynamically on filtered list for navigation purposes
+        visibleCards.forEach((card, idx) => {
+          card.setAttribute("data-filtered-index", idx);
+        });
+      });
+    });
+
+    // Initialize filtered index on boot
+    cards.forEach((card, idx) => {
+      card.setAttribute("data-filtered-index", idx);
+    });
+
+    const openVideo = (card) => {
+      const vimeoId = card.getAttribute("data-vimeo-id");
+      const title = card.getAttribute("data-title");
+      activeIndex = parseInt(card.getAttribute("data-filtered-index"), 10);
+      window.openVideoLightboxById(vimeoId, title);
+    };
+
+    // Bind click on each card to open in lightbox
+    cards.forEach((card) => {
+      card.addEventListener("click", () => openVideo(card));
+    });
+  }
 
   // 3. NAVIGATION (PREV/NEXT)
   const navigate = (direction) => {
@@ -2391,13 +2332,312 @@ function initPreviewVideosObserver() {
   videos.forEach((video) => observer.observe(video));
 }
 
-// ── REMOVE BACKGROUND FROM CLIENT LOGOS ──────────────────────────────────
-// Logo background removal is now handled by CSS mix-blend-mode: screen
-// No JS canvas processing needed
+// ── CURVED 3D VIDEO RING (LAUNCHANYTHING CYLINDER SHOWCASE) ─────────────
+function initCurvedVideoRing() {
+  const ring = document.getElementById("ring");
+  const cyl = document.getElementById("ringCyl");
+  if (!ring || !cyl) return;
 
+  const items = Array.from(cyl.querySelectorAll(".ring-item"));
+  const N = items.length;
+  if (!N) return;
 
+  const RM = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const KP = 2.6;       // Eye distance in radii
+  const TMAX = 1.25;    // Max arc angle in radians (~71.6 degrees)
+  const BLUR = 6.5;     // Maximum edge Gaussian blur in px
+  const VEIL = 0.92;    // Deep dark dissolve veil at viewport edges
 
+  let IW = 420;
+  let GAP = 20;
+  let SLOT = 440;
+  let L = N * SLOT;
+  let W = window.innerWidth;
+  let mobile = W <= 768;
+  let R = Math.max(0.52 * W, 1.9 * IW);
+  let P = KP * R;
+  let D = IW / 2 / R;
+  let reach = W / 2 + IW * (mobile ? 0.7 : 0.2);
 
+  let pos = 0;
+  let goal = 0;
+  let vel = 0;
+  let mix = 1;
+  let last = 0;
+  let raf = null;
+  let inView = true;
+  let drag = null;
+  let moved = 0;
+
+  function measure() {
+    const cs = getComputedStyle(ring);
+    IW = items[0].offsetWidth || 400;
+    GAP = parseFloat(cs.getPropertyValue("--igap")) || 20;
+    SLOT = IW + GAP;
+    L = N * SLOT;
+    W = window.innerWidth;
+    mobile = W <= 768;
+    R = Math.max(0.52 * W, 1.9 * IW);
+    P = KP * R;
+    D = IW / 2 / R;
+    reach = W / 2 + IW * (mobile ? 0.7 : 0.2);
+    ring.style.perspective = Math.round(P) + "px";
+  }
+
+  function sm(t) {
+    return t <= 0 ? 0 : t >= 1 ? 1 : t * t * (3 - 2 * t);
+  }
+
+  function px(t) {
+    const z = R * (1 - Math.cos(t));
+    return (R * Math.sin(t) * P) / (P - z);
+  }
+
+  function atm(t) {
+    return sm((Math.abs(px(t)) / reach - 0.58) / 0.58);
+  }
+
+  function reserve() {
+    const H = (IW * 9) / 16;
+    const pb = parseFloat(getComputedStyle(ring).paddingBottom) || (mobile ? 40 : 64);
+    let t = 0;
+    let te = 0;
+    while (t < TMAX && 1 - Math.pow(atm(t), 3) >= 0.35) t += 0.01;
+    while (te < TMAX && Math.abs(px(te)) < (W / 2) * 1.02) te += 0.01;
+    te = Math.min(te, t + D, TMAX);
+    const S = P / (P - R * (1 - Math.cos(te)));
+    const pt = Math.max(Math.round(H * 0.16), Math.ceil((H * (S - 1)) / 2) + 6);
+    ring.style.paddingTop = pt + "px";
+    cyl.style.top = pt + "px";
+    ring.style.perspectiveOrigin = "50% " + Math.round(pt + H / 2) + "px";
+    ring.style.height = Math.ceil(pt + H / 2 + (H * S) / 2 + pb) + "px";
+  }
+
+  function layout() {
+    for (let i = 0; i < N; i++) {
+      const el = items[i];
+      // Arc position wrapped so sequence never ends
+      const u = ((((i * SLOT - pos) + L / 2) % L) + L) % L - L / 2;
+      const t = u / R;
+      const at = Math.abs(t);
+      const vis = at < TMAX;
+
+      if (!vis) {
+        el.style.visibility = "hidden";
+        continue;
+      }
+      el.style.visibility = "visible";
+
+      // 3D concave cylinder coordinates
+      const x = R * Math.sin(t);
+      const z = R * (1 - Math.cos(t));
+      const rot = (-t * 180) / Math.PI;
+
+      // Atmospheric edge dissolve via CSS variable --veil (GPU-safe, zero raster overhead)
+      const f = atm(t);
+      const veil = VEIL * Math.pow(f, 2.2);
+      const op = Math.max(0, 1 - f * f * f);
+
+      el.style.transform = `translate3d(${x.toFixed(2)}px, 0, ${z.toFixed(2)}px) rotateY(${rot.toFixed(3)}deg)`;
+      el.style.opacity = op.toFixed(3);
+      el.style.setProperty("--veil", veil.toFixed(3));
+    }
+  }
+
+  function frame(ts) {
+    raf = null;
+    if (last && ts - last < 1000 / 60 - 0.5) {
+      raf = requestAnimationFrame(frame);
+      return;
+    }
+    if (!last) last = ts;
+    const dt = Math.min(ts - last, 64) / 1000;
+    last = ts;
+
+    if (drag) {
+      pos += (goal - pos) * (1 - Math.exp(-dt / 0.04));
+    } else {
+      const chase = goal - pos;
+      if (Math.abs(chase) > 0.5) {
+        pos += chase * (1 - Math.exp(-dt / 0.07));
+      } else {
+        vel *= Math.exp(-dt * 2.4);
+        if (Math.abs(vel) < 2) vel = 0;
+        mix = Math.min(1, mix + dt / 1.6);
+        // Continuous right-to-left drift
+        pos += vel * dt + (SLOT / 7.2) * dt * sm(mix);
+        goal = pos;
+      }
+    }
+
+    const w = Math.floor(pos / L) * L;
+    pos -= w;
+    goal -= w;
+
+    layout();
+    if (inView && !document.hidden && !RM) {
+      raf = requestAnimationFrame(frame);
+    }
+  }
+
+  function kick() {
+    if (!raf && !RM && inView && !document.hidden) {
+      last = 0;
+      raf = requestAnimationFrame(frame);
+    }
+  }
+
+  // Pointer drag and touch interactions
+  ring.addEventListener("pointerdown", (e) => {
+    if (RM || e.button !== 0) return;
+    drag = { id: e.pointerId, x: e.clientX, t: e.timeStamp, vx: 0, cap: false };
+    moved = 0;
+    vel = 0;
+    goal = pos;
+    ring.classList.add("dragging");
+    kick();
+  });
+
+  ring.addEventListener("pointermove", (e) => {
+    if (!drag || e.pointerId !== drag.id) return;
+    const dx = e.clientX - drag.x;
+    const dt = Math.max(e.timeStamp - drag.t, 1);
+    moved += Math.abs(dx);
+    goal -= dx;
+    drag.vx = drag.vx * 0.6 + (-dx / (dt / 1000)) * 0.4;
+    drag.x = e.clientX;
+    drag.t = e.timeStamp;
+
+    if (moved > 6 && !drag.cap) {
+      drag.cap = true;
+      try { ring.setPointerCapture(e.pointerId); } catch (_) {}
+    }
+  });
+
+  function release(e) {
+    if (!drag || (e && e.pointerId !== drag.id)) return;
+    const v = e && e.timeStamp - drag.t > 80 ? 0 : drag.vx;
+    drag = null;
+    goal = pos;
+    vel = Math.max(-2800, Math.min(2800, v));
+    mix = 0;
+    ring.classList.remove("dragging");
+    kick();
+  }
+
+  ring.addEventListener("pointerup", release);
+  ring.addEventListener("pointercancel", release);
+  ring.addEventListener("lostpointercapture", () => { if (drag) release(); });
+
+  // Horizontal wheel support
+  ring.addEventListener("wheel", (e) => {
+    if (RM) return;
+    if (Math.abs(e.deltaX) <= Math.abs(e.deltaY)) return;
+    e.preventDefault();
+    goal += e.deltaX;
+    vel = 0;
+    mix = 0;
+    kick();
+  }, { passive: false });
+
+  // Click on ring item opens video in cinema lightbox
+  items.forEach((item) => {
+    item.addEventListener("click", (e) => {
+      if (moved > 6) {
+        e.preventDefault();
+        e.stopPropagation();
+        return;
+      }
+      const vimeoId = item.getAttribute("data-vimeo-id");
+      const title = item.getAttribute("data-title");
+      if (vimeoId && window.openVideoLightboxById) {
+        window.openVideoLightboxById(vimeoId, title);
+      }
+    });
+  });
+
+  // Pause videos when ring is scrolled offscreen
+  if ("IntersectionObserver" in window) {
+    const io = new IntersectionObserver((entries) => {
+      inView = entries[0].isIntersecting;
+      const vids = ring.querySelectorAll("video");
+      if (inView) {
+        vids.forEach((v) => {
+          try {
+            const p = v.play();
+            if (p && typeof p.catch === "function") p.catch(() => {});
+          } catch (_) {}
+        });
+        kick();
+      } else {
+        vids.forEach((v) => { try { v.pause(); } catch (_) {} });
+      }
+    }, { threshold: 0.05 });
+    io.observe(ring);
+  }
+
+  function settle() {
+    measure();
+    reserve();
+    layout();
+  }
+
+  settle();
+  window.addEventListener("resize", settle, { passive: true });
+  window.addEventListener("load", () => { settle(); setTimeout(settle, 300); });
+  document.addEventListener("visibilitychange", () => {
+    if (!document.hidden) kick();
+  });
+  kick();
+}
+
+// ── CREATIVE WORKS FOLDER (LAUNCHANYTHING INTERACTIVE ARCHIVE) ───────────
+function initWorksFolder() {
+  const folder = document.getElementById("worksFolder");
+  if (!folder) return;
+
+  const tabs = folder.querySelectorAll(".folder-tab");
+  const cards = folder.querySelectorAll(".folder-card");
+  if (!cards.length) return;
+
+  // 1. TAB FILTERING
+  tabs.forEach((tab) => {
+    tab.addEventListener("click", () => {
+      tabs.forEach((t) => t.classList.remove("is-active"));
+      tab.classList.add("is-active");
+
+      const filter = (tab.getAttribute("data-folder-filter") || "all").toLowerCase();
+
+      cards.forEach((card) => {
+        const cat = (card.getAttribute("data-category") || "").toLowerCase();
+        if (filter === "all" || cat.includes(filter)) {
+          card.classList.remove("is-dimmed");
+        } else {
+          card.classList.add("is-dimmed");
+        }
+      });
+    });
+  });
+
+  // 2. CARD CLICK & KEYBOARD ACCESSIBILITY TO OPEN LIGHTBOX
+  cards.forEach((card) => {
+    const handleOpen = () => {
+      const vimeoId = card.getAttribute("data-vimeo-id");
+      const title = card.getAttribute("data-title");
+      if (vimeoId && window.openVideoLightboxById) {
+        window.openVideoLightboxById(vimeoId, title);
+      }
+    };
+
+    card.addEventListener("click", handleOpen);
+    card.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        handleOpen();
+      }
+    });
+  });
+}
 
 // ── CONTACT FORM TO WHATSAPP ────────────────────────────────────────────
 function initContactForm() {
@@ -2435,27 +2675,90 @@ I would like to start a project:
   });
 }
 
-// ── FOOTER DYNAMIC CLOCK ────────────────────────────────────────────────
+// ── MITRA FOOTER INTERACTIVE AURORA HOVER EFFECT & LIVE CLOCK ─────────
+function initMitraFooter() {
+  const footers = document.querySelectorAll(".mitra-footer");
+  footers.forEach((footer) => {
+    let ticking = false;
+    let targetX = 50;
+    let targetY = 30;
+    let currentX = 50;
+    let currentY = 30;
+    let isHovering = false;
+
+    footer.addEventListener("mouseenter", () => {
+      isHovering = true;
+    });
+
+    footer.addEventListener("mouseleave", () => {
+      isHovering = false;
+      targetX = 50;
+      targetY = 30;
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(update);
+      }
+    });
+
+    footer.addEventListener("mousemove", (e) => {
+      const rect = footer.getBoundingClientRect();
+      if (!rect.width || !rect.height) return;
+      const x = ((e.clientX - rect.left) / rect.width) * 100;
+      const y = ((e.clientY - rect.top) / rect.height) * 100;
+      targetX = Math.max(0, Math.min(100, x));
+      targetY = Math.max(0, Math.min(100, y));
+
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(update);
+      }
+    });
+
+    function update() {
+      // Luxurious silky lerp
+      currentX += (targetX - currentX) * 0.12;
+      currentY += (targetY - currentY) * 0.12;
+
+      footer.style.setProperty("--fx", `${currentX.toFixed(2)}%`);
+      footer.style.setProperty("--fy", `${currentY.toFixed(2)}%`);
+
+      if (Math.abs(targetX - currentX) > 0.05 || Math.abs(targetY - currentY) > 0.05) {
+        requestAnimationFrame(update);
+      } else {
+        ticking = false;
+      }
+    }
+  });
+
+  initFooterClock();
+}
+
 function initFooterClock() {
-  const clockEl = document.getElementById("footerClock");
-  if (!clockEl) return;
+  const clockEls = document.querySelectorAll("#footerClock, .footer-live-clock");
+  if (!clockEls.length) return;
 
   function updateClock() {
     const options = {
       timeZone: "Asia/Kolkata",
       hour: "2-digit",
       minute: "2-digit",
+      second: "2-digit",
       hour12: false
     };
     try {
       const formatter = new Intl.DateTimeFormat("en-US", options);
       const timeStr = formatter.format(new Date());
-      clockEl.textContent = `IST → ${timeStr}`;
+      clockEls.forEach((el) => {
+        el.textContent = `${timeStr} IST`;
+      });
     } catch (e) {
       const now = new Date();
       const hh = String(now.getHours()).padStart(2, "0");
       const mm = String(now.getMinutes()).padStart(2, "0");
-      clockEl.textContent = `IST → ${hh}:${mm}`;
+      const ss = String(now.getSeconds()).padStart(2, "0");
+      clockEls.forEach((el) => {
+        el.textContent = `${hh}:${mm}:${ss} IST`;
+      });
     }
   }
 
@@ -2527,25 +2830,29 @@ const AppController = {
 
     // Page transitions
     new PageTransition(!isProjectPage);
-    // Initialize works components
+    // Initialize works components & oversized hero
+    initWorksHeroAnimation();
+    // Initialize video gallery & interactive components
+    initVideoGallery();
+    initPreviewVideosObserver();
+    initCurvedVideoRing();
+    initWorksFolder();
+
+    // Initialize contact form
+    initContactForm();
+
+    // Initialize footer & clock & Sui buttons
+    initMitraFooter();
+    initSuiButtonRoll();
+
+    // Initialize footer FAQ accordion
+    initFooterFAQ();
+
+    // Initialize Vermillion background field canvas
+    initVermillionFieldCanvas();
+
+    // Initialize legacy works components if present
     if (!isProjectPage) {
-      // Initialize video gallery
-      initVideoGallery();
-      initPreviewVideosObserver();
-
-
-      // Initialize contact form
-      initContactForm();
-
-      // Initialize footer clock
-      initFooterClock();
-
-      // Initialize footer FAQ accordion
-      initFooterFAQ();
-
-      // Initialize liquid gradient shader (if not already warmed up)
-      initLiquidShader();
-
       const worksEl = document.getElementById("works");
       const projectsTopEl = document.querySelector(".projects-top");
       const projectsMiddleEl = document.querySelector(".projects-middle");
@@ -2564,6 +2871,105 @@ const AppController = {
     }
   },
 };
+
+// ── VERMILLION SPEC: FIELD CANVAS (ASCII / INTERFERENCE WAVE FIELD) ─────
+function initVermillionFieldCanvas() {
+  const canvas = document.getElementById("field");
+  if (!canvas) return;
+  const ctx = canvas.getContext("2d");
+  if (!ctx) return;
+  const offscreen = document.createElement("canvas");
+  const offCtx = offscreen.getContext("2d");
+  if (!offCtx) return;
+
+  let animId = 0;
+  const chars = " .·:+x=X80%#@";
+  const numChars = chars.length;
+  // Ryuk brand tint: steel-white (#e9eef5) infused with Ryuk hot-pink (#ff5cb1)
+  const pinkRgb = [255, 92, 177];
+  const colorStr = [233, 238, 245].map((v, i) => Math.round(v + (pinkRgb[i] - v) * 0.45)).join(",");
+
+  const renderField = () => {
+    cancelAnimationFrame(animId);
+    const isMobile = window.innerWidth < 760;
+    const cellW = isMobile ? 12 : 10;
+    const cellH = isMobile ? 16 : 14;
+    const dpr = Math.min(2, window.devicePixelRatio || 1);
+    const winW = window.innerWidth;
+    const winH = window.innerHeight;
+
+    offscreen.width = winW * dpr;
+    offscreen.height = winH * dpr;
+    offCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+    const monoFont = getComputedStyle(document.body).getPropertyValue("--font-mono") || "ui-monospace, monospace";
+    offCtx.font = `500 ${isMobile ? 8.5 : 8}px ${monoFont}`;
+    offCtx.textAlign = "center";
+    offCtx.textBaseline = "middle";
+
+    const cols = Math.ceil(winW / cellW) + 1;
+    const rows = Math.ceil(winH / cellH) + 2;
+    let currentRow = 0;
+
+    const step = () => {
+      const targetRow = Math.min(currentRow + 8, rows);
+      for (let r = currentRow; r < targetRow; r++) {
+        for (let c = 0; c < cols; c++) {
+          // Double sinusoidal wave interferometry (exact Vermillion formula)
+          const wave =
+            Math.sin(0.051 * c + 2.08 + 2.1 * Math.sin(0.043 * r - 1.36)) *
+              Math.cos(0.067 * r - 1.6 + 1.8 * Math.cos(0.031 * c + 0.88)) +
+            0.35 * Math.sin((0.9 * c + 1.3 * r) * 0.045 - 3.2);
+
+          let norm = Math.max(0, Math.min(1, 0.42 * wave + 0.5));
+          norm = norm * norm * norm * norm;
+          const amp = 0.72 * norm;
+          if (amp < 0.18) continue;
+
+          const charIdx = Math.max(1, Math.min(numChars - 1, Math.round(amp * (numChars - 1))));
+          const intensity = (Math.max(0, Math.min(9, Math.round(0.7 * amp * 9))) + 1) / 10;
+          const alpha = (0.02 + 0.18 * intensity).toFixed(3);
+
+          offCtx.fillStyle = `rgba(${colorStr}, ${alpha})`;
+          offCtx.fillText(chars[charIdx], c * cellW + cellW / 2, r * cellH + cellH / 2);
+        }
+      }
+      currentRow = targetRow;
+      if (currentRow < rows) {
+        animId = requestAnimationFrame(step);
+      } else {
+        canvas.width = offscreen.width;
+        canvas.height = offscreen.height;
+        ctx.drawImage(offscreen, 0, 0);
+        offscreen.width = 0;
+        offscreen.height = 0;
+        animId = 0;
+      }
+    };
+    animId = requestAnimationFrame(step);
+  };
+
+  window.__renderFieldCanvas = renderField;
+
+  if (document.fonts && document.fonts.status !== "loaded") {
+    document.fonts.ready.then(renderField);
+  } else {
+    renderField();
+  }
+
+  if (!window.__fieldCanvasResizeBound) {
+    window.__fieldCanvasResizeBound = true;
+    let resizeTimer = 0;
+    window.addEventListener(
+      "resize",
+      () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = window.setTimeout(renderField, 150);
+      },
+      { passive: true }
+    );
+  }
+}
 
 // ── LIQUID GRADIENT SHADER INITIALIZATION ────────────────────────────────
 function initLiquidShader() {
@@ -2607,8 +3013,88 @@ function initLiquidShader() {
   }
 }
 
+// ── SUI-STYLE KINETIC BUTTON TEXT ROLL INITIALIZER ───────────────────────
+function initSuiButtonRoll() {
+  const targetSelectors = [
+    ".nav-cta-btn",
+    ".hero .button-link",
+    ".footer-primary-btn",
+    ".mob-cta-btn",
+    ".founder-cta-box .button-link",
+    ".sui-roll-btn",
+    ".btn-roll",
+    ".btn-show-more-works",
+    ".mitra-start-btn"
+  ];
+  
+  const buttons = document.querySelectorAll(targetSelectors.join(", "));
+  buttons.forEach((btn) => {
+    // If it already has .btn-roll-track, ensure clone exists
+    const existingTrack = btn.querySelector(".btn-roll-track");
+    if (existingTrack) {
+      if (existingTrack.children.length === 1) {
+        const clone = existingTrack.children[0].cloneNode(true);
+        clone.classList.add("clone");
+        clone.setAttribute("aria-hidden", "true");
+        existingTrack.appendChild(clone);
+      }
+      return;
+    }
+
+    const dot = btn.querySelector(".btn-dot-live");
+    const cpAv = btn.querySelector(".cp-av");
+    if (cpAv) return;
+
+    let text = "";
+    if (dot) {
+      const cloneBtn = btn.cloneNode(true);
+      const cloneDot = cloneBtn.querySelector(".btn-dot-live");
+      if (cloneDot) cloneDot.remove();
+      text = cloneBtn.textContent.trim();
+    } else {
+      text = btn.textContent.trim();
+    }
+
+    if (!text) return;
+
+    btn.innerHTML = "";
+    if (dot) {
+      btn.appendChild(dot);
+    }
+
+    const wrap = document.createElement("span");
+    wrap.className = "btn-roll-text";
+    
+    const track = document.createElement("span");
+    track.className = "btn-roll-track";
+
+    const item1 = document.createElement("span");
+    item1.className = "btn-roll-item";
+    item1.textContent = text;
+
+    const item2 = document.createElement("span");
+    item2.className = "btn-roll-item clone";
+    item2.setAttribute("aria-hidden", "true");
+    item2.textContent = text;
+
+    track.appendChild(item1);
+    track.appendChild(item2);
+    wrap.appendChild(track);
+    btn.appendChild(wrap);
+  });
+}
+
 // ── BOOT ─────────────────────────────────────────────────────────────────
 window.addEventListener("DOMContentLoaded", () => {
+  // Init Sui-style rolling buttons
+  initSuiButtonRoll();
+
+  // Init Mitra footer hover aurora spotlight
+  initMitraFooter();
+
+  // Init Vermillion background field canvas
+  initVermillionFieldCanvas();
+
   // Chroma-key cutout
   generateModelCutout();
 
@@ -2619,12 +3105,8 @@ window.addEventListener("DOMContentLoaded", () => {
     window.location.pathname.includes("project") ||
     window.location.search.includes("project=") ||
     window.location.pathname.includes("nestora") ||
-    window.location.pathname.includes("theroom");
-
-  // Pre-warm WebGL liquid shader in background during preloader
-  if (!isProjectPage) {
-    initLiquidShader();
-  }
+    window.location.pathname.includes("theroom") ||
+    window.location.pathname.includes("works");
 
   if (isProjectPage) {
     // On project page: skip preloader, init directly
