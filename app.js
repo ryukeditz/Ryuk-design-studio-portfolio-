@@ -2843,6 +2843,113 @@ function initFooterClock() {
   window.__footerClockInterval = setInterval(updateClock, 1000);
 }
 
+// ── MADE IN EVOLVE FOOTER CANVAS HEAD-TURN SEQUENCE ──────────────────────
+function initEvolveFooterSequence() {
+  const wrap = document.getElementById("evolveSequenceWrap");
+  const canvas = document.getElementById("evolveCanvas");
+  if (!wrap || !canvas) return;
+
+  const ctx = canvas.getContext("2d");
+  if (!ctx) return;
+
+  const TOTAL_FRAMES = 46;
+  const images = [];
+  let loadedCount = 0;
+  let activeFrame = 0;
+  let isTicking = false;
+
+  function pad(num, size) {
+    let s = num + "";
+    while (s.length < size) s = "0" + s;
+    return s;
+  }
+
+  function resizeCanvas() {
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const w = canvas.clientWidth || window.innerWidth;
+    const h = canvas.clientHeight || window.innerHeight;
+    const targetW = Math.round(w * dpr);
+    const targetH = Math.round(h * dpr);
+
+    if (canvas.width !== targetW || canvas.height !== targetH) {
+      canvas.width = targetW;
+      canvas.height = targetH;
+      renderFrame(activeFrame);
+    }
+  }
+
+  function renderFrame(index) {
+    const img = images[index];
+    if (!img || !img.complete || img.naturalWidth === 0) return;
+
+    const cw = canvas.width;
+    const ch = canvas.height;
+    const iw = img.naturalWidth;
+    const ih = img.naturalHeight;
+
+    // Cover aspect ratio sizing
+    const scale = Math.max(cw / iw, ch / ih);
+    const nw = iw * scale;
+    const nh = ih * scale;
+    const ox = (cw - nw) / 2;
+    const oy = (ch - nh) / 2;
+
+    ctx.clearRect(0, 0, cw, ch);
+    ctx.drawImage(img, ox, oy, nw, nh);
+  }
+
+  function updateOnScroll() {
+    const rect = wrap.getBoundingClientRect();
+    const vh = window.innerHeight;
+    const scrollDist = wrap.offsetHeight - vh;
+    if (scrollDist <= 0) return;
+
+    // Scrub calculation:
+    // When wrap top reaches top of viewport (rect.top <= 0), scrub begins
+    const progress = Math.min(1, Math.max(0, -rect.top / scrollDist));
+    const frameIndex = Math.min(TOTAL_FRAMES - 1, Math.max(0, Math.floor(progress * (TOTAL_FRAMES - 1))));
+
+    if (frameIndex !== activeFrame) {
+      activeFrame = frameIndex;
+      renderFrame(activeFrame);
+    }
+  }
+
+  function onScroll() {
+    if (!isTicking) {
+      isTicking = true;
+      requestAnimationFrame(() => {
+        updateOnScroll();
+        isTicking = false;
+      });
+    }
+  }
+
+  // Preload all 46 frames
+  for (let i = 1; i <= TOTAL_FRAMES; i++) {
+    const img = new Image();
+    const frameNum = pad(i, 3);
+    img.src = `images/footer_sequence/frame-${frameNum}.webp`;
+    img.onload = () => {
+      loadedCount++;
+      if (i === 1) {
+        resizeCanvas();
+        renderFrame(0);
+      }
+    };
+    images.push(img);
+  }
+
+  window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener("resize", () => {
+    resizeCanvas();
+    renderFrame(activeFrame);
+  }, { passive: true });
+
+  resizeCanvas();
+  updateOnScroll();
+}
+
 // ── FOOTER FAQ ACCORDION ────────────────────────────────────────────────
 function initFooterFAQ() {
   const items = document.querySelectorAll(".footer-faq-item");
@@ -2917,6 +3024,7 @@ const AppController = {
 
     // Initialize footer & clock & Sui buttons
     initMitraFooter();
+    initEvolveFooterSequence();
     initSuiButtonRoll();
 
     // Initialize footer FAQ accordion
@@ -3165,6 +3273,9 @@ window.addEventListener("DOMContentLoaded", () => {
 
   // Init Mitra footer hover aurora spotlight
   initMitraFooter();
+
+  // Init Made in Evolve footer canvas head-turn sequence
+  initEvolveFooterSequence();
 
   // Init Vermillion background field canvas
   initVermillionFieldCanvas();

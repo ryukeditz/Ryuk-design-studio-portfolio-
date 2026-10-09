@@ -14,6 +14,7 @@ const MIME_TYPES = {
   '.svg': 'image/svg+xml',
   '.mp4': 'video/mp4',
   '.webm': 'video/webm',
+  '.webp': 'image/webp',
   '.woff': 'font/woff',
   '.woff2': 'font/woff2',
   '.ttf': 'font/ttf',
@@ -23,7 +24,14 @@ const MIME_TYPES = {
 const server = http.createServer((req, res) => {
   let reqPath = decodeURI(req.url.split('?')[0]);
   if (reqPath === '/') reqPath = '/index.html';
-  const filePath = path.join(__dirname, reqPath);
+  if (reqPath === '/works' || reqPath === '/works/') reqPath = '/works.html';
+  
+  let filePath = path.join(__dirname, reqPath);
+  if (!fs.existsSync(filePath) && fs.existsSync(filePath + '.html')) {
+    filePath += '.html';
+  } else if (!fs.existsSync(filePath) && fs.existsSync(path.join(filePath, 'index.html'))) {
+    filePath = path.join(filePath, 'index.html');
+  }
 
   fs.stat(filePath, (err, stats) => {
     if (err || !stats.isFile()) {

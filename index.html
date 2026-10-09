@@ -167,7 +167,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
-    <link rel="stylesheet" href="style.css?v=80" />
+    <link rel="stylesheet" href="style.css?v=82" />
   </head>
   <body class="is-loading">
     <!-- ── PRELOADER ──────────────────────────────────────────────────────── -->
@@ -493,16 +493,14 @@
               aria-label="Watch Presalesforce.ai Platform Film"
             >
               <div class="ring-frame">
-                <video
-                  src="images/works/psf/video.mp4"
-                  poster="images/works/psf/poster.jpg"
-                  autoplay
-                  muted
-                  loop
-                  playsinline
-                  preload="metadata"
+                <iframe
+                  src="https://player.vimeo.com/video/1208464484?background=1&autoplay=1&loop=1&byline=0&title=0&muted=1"
+                  frameborder="0"
+                  allow="autoplay; fullscreen"
+                  style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;"
                   class="ring-media"
-                ></video>
+                  title="Presalesforce.ai"
+                ></iframe>
                 <div class="ring-card-overlay">
                   <div class="ring-card-badge">
                     <span class="ring-card-tag">AI PLATFORM</span>
@@ -724,16 +722,14 @@
               aria-label="Watch Spark AI Launch Film"
             >
               <div class="ring-frame">
-                <video
-                  src="images/works/spark/video.mp4"
-                  poster="images/works/spark/poster.jpg"
-                  autoplay
-                  muted
-                  loop
-                  playsinline
-                  preload="metadata"
+                <iframe
+                  src="https://player.vimeo.com/video/1234502491?background=1&autoplay=1&loop=1&byline=0&title=0&muted=1"
+                  frameborder="0"
+                  allow="autoplay; fullscreen"
+                  style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;"
                   class="ring-media"
-                ></video>
+                  title="Spark AI"
+                ></iframe>
                 <div class="ring-card-overlay">
                   <div class="ring-card-badge">
                     <span class="ring-card-tag">PHYSICAL AI</span>
@@ -779,15 +775,11 @@
           </div>
         </div>
 
-        <!-- Ring Footer CTA: Selected Works transition button -->
+        <!-- Ring Footer CTA: Clean Tactile Selected Works button (Made in Evolve aesthetic) -->
         <div class="ring-footer-cta js-reveal-up">
-          <a href="works.html" class="button-link button-link--primary sui-roll-btn" aria-label="Explore all 10 selected works in full archive">
-            <span class="btn-roll-text">
-              <span class="btn-roll-track">
-                <span class="btn-roll-item">Selected Works (10) →</span>
-                <span class="btn-roll-item clone" aria-hidden="true">Selected Works (10) →</span>
-              </span>
-            </span>
+          <a href="works.html" class="ring-explore-btn" aria-label="Explore all 10 selected works in full archive">
+            <span>SELECTED WORKS (10)</span>
+            <span class="ring-explore-arrow">→</span>
           </a>
         </div>
       </section>
@@ -1289,112 +1281,107 @@
         </div>
       </section>
 
-      <!-- ── BRAND FOOTER (MADE IN EVOLVE SPEC) ─────────────────────── -->
-      <footer class="evolve-footer" id="footer" aria-label="Studio Footer">
-        <!-- Vertical Column Pinstripe Grid Lines (Exact Evolve Signature) -->
-        <div class="evolve-grid-pinstripes" aria-hidden="true">
-          <span></span><span></span><span></span><span></span>
-          <span></span><span></span><span></span><span></span>
-          <span></span><span></span><span></span><span></span>
-        </div>
+      <!-- ── BRAND FOOTER (MADE IN EVOLVE HEAD-TURN SEQUENCE SPEC) ─────── -->
+      <div class="evolve-sequence-wrap" id="evolveSequenceWrap">
+        <footer class="evolve-footer evolve-sequence-sticky" id="footer" aria-label="Studio Footer">
+          <!-- 46-Frame Canvas Sequence of Audience Turning Heads -->
+          <canvas class="evolve-sequence-canvas" id="evolveCanvas"></canvas>
 
-        <!-- Cinema Crowd Background Asset with High-Contrast Vintage Atmosphere -->
-        <div class="evolve-bg-wrap" aria-hidden="true">
-          <img src="images/footer_cinema_crowd.webp" alt="" class="evolve-bg-img" />
-          <div class="evolve-bg-scrim"></div>
-        </div>
+          <!-- Film Texture Overlay & Depth Gradient Scrim -->
+          <div class="evolve-texture-overlay" aria-hidden="true"></div>
+          <div class="evolve-bg-scrim" aria-hidden="true"></div>
 
-        <div class="evolve-footer-inner">
-          <!-- Top Row: Logo / Tagline / Contact / Book a Call -->
-          <div class="evolve-top-row js-reveal-up">
-            <!-- Brand Mark -->
-            <div class="evolve-brand-mark">
-              <span class="evolve-pixel-cluster" aria-hidden="true">
-                <i></i><i></i><i></i><i></i><i></i>
-              </span>
-              <a href="#hero" class="evolve-logo-text">Ryuk®</a>
-            </div>
-
-            <!-- Studio Statement / Philosophy -->
-            <div class="evolve-studio-claim">
-              <p>Launch films &amp; brand systems.<br />Driven by visions. Built with design<br />and technology.</p>
-            </div>
-
-            <!-- Quick Contact / Location -->
-            <div class="evolve-studio-loc">
-              <a href="mailto:roshan@ryukdesignstudio.com" class="evolve-loc-mail">roshan@ryukdesignstudio.com</a>
-              <span class="evolve-loc-est">Bangalore &amp; Remote, EST 2024©</span>
-            </div>
-
-            <!-- Book a Call Button -->
-            <div class="evolve-top-action">
-              <span class="evolve-lang-tag">EN</span>
-              <a href="https://calendly.com/roshan-ryukdesignstudio/30min" target="_blank" rel="noopener" class="evolve-btn-pill">Book a Call</a>
-            </div>
+          <!-- Vertical Column Pinstripe Grid Lines (Made in Evolve Signature) -->
+          <div class="evolve-grid-pinstripes" aria-hidden="true">
+            <span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span>
           </div>
 
-          <!-- Middle Hero Title: Let's make an impact together + Colossal Interactive Email -->
-          <div class="evolve-center-hero js-reveal-up">
-            <h2 class="evolve-impact-title">Let's make an impact together.</h2>
-            <div class="evolve-email-lockup">
-              <a href="mailto:roshan@ryukdesignstudio.com" class="evolve-colossal-email" title="Click to email Roshan directly">roshan@ryukdesignstudio.com</a>
-            </div>
-          </div>
+          <div class="evolve-footer-inner">
+            <!-- Top Row: Logo / Tagline / Book a Call (Clean, no location) -->
+            <div class="evolve-top-row js-reveal-up">
+              <!-- Brand Mark -->
+              <div class="evolve-brand-mark">
+                <span class="evolve-pixel-cluster" aria-hidden="true">
+                  <i></i><i></i><i></i><i></i><i></i>
+                </span>
+                <a href="#hero" class="evolve-logo-text">Ryuk®</a>
+              </div>
 
-          <!-- Bottom 4 Columns: (a.) CONTACT / (b.) LEGAL / (c.) NEWSLETTER / (d.) CONNECT -->
-          <div class="evolve-bottom-grid js-reveal-up">
-            <!-- (a.) CONTACT -->
-            <div class="evolve-col">
-              <div class="evolve-col-eyebrow"><span class="evolve-idx">(a.)</span> CONTACT</div>
-              <div class="evolve-col-body">
-                <p>
-                  <a href="mailto:roshan@ryukdesignstudio.com" class="evolve-link">roshan@ryukdesignstudio.com</a><br />
-                  <a href="https://wa.me/916289059806" target="_blank" rel="noopener" class="evolve-link">+91 62890 59806 (WhatsApp)</a><br />
-                  <span>Bangalore &amp; Global Remote</span>
-                </p>
+              <!-- Studio Statement / Philosophy -->
+              <div class="evolve-studio-claim">
+                <p>Launch films &amp; brand systems.<br />Driven by visions. Built with design<br />and technology.</p>
+              </div>
+
+              <!-- Book a Call Button -->
+              <div class="evolve-top-action">
+                <span class="evolve-lang-tag">EN</span>
+                <a href="https://calendly.com/roshan-ryukdesignstudio/30min" target="_blank" rel="noopener" class="evolve-btn-pill">Book a Call</a>
               </div>
             </div>
 
-            <!-- (b.) LEGAL / STUDIO -->
-            <div class="evolve-col">
-              <div class="evolve-col-eyebrow"><span class="evolve-idx">(b.)</span> STUDIO</div>
-              <div class="evolve-col-body">
-                <p>
-                  <span>© 2024–2026 Ryuk Design Studio</span><br />
-                  <span>Launch Films · Physical AI · 3D Cinema</span><br />
-                  <span>High-Converting Launch Systems</span>
-                </p>
-                <div class="evolve-sublinks">
-                  <a href="brand-identity.html" class="evolve-link">Brand Suite ↗</a>
+            <!-- Middle Hero Title: Let's make an impact together + Colossal Interactive Email -->
+            <div class="evolve-center-hero js-reveal-up">
+              <h2 class="evolve-impact-title">Let's make an impact together.</h2>
+              <div class="evolve-email-lockup">
+                <a href="mailto:roshan@ryukdesignstudio.com" class="evolve-colossal-email" title="Click to email Roshan directly">roshan@ryukdesignstudio.com</a>
+              </div>
+            </div>
+
+            <!-- Bottom 4 Columns: (a.) CONTACT / (b.) STUDIO / (c.) DISCOVERY / (d.) CONNECT -->
+            <div class="evolve-bottom-grid js-reveal-up">
+              <!-- (a.) CONTACT -->
+              <div class="evolve-col">
+                <div class="evolve-col-eyebrow"><span class="evolve-idx">(a.)</span> CONTACT</div>
+                <div class="evolve-col-body">
+                  <p>
+                    <a href="mailto:roshan@ryukdesignstudio.com" class="evolve-link">roshan@ryukdesignstudio.com</a><br />
+                    <a href="https://wa.me/916289059806" target="_blank" rel="noopener" class="evolve-link">+91 62890 59806 (WhatsApp)</a>
+                  </p>
+                </div>
+              </div>
+
+              <!-- (b.) STUDIO -->
+              <div class="evolve-col">
+                <div class="evolve-col-eyebrow"><span class="evolve-idx">(b.)</span> STUDIO</div>
+                <div class="evolve-col-body">
+                  <p>
+                    <span>© 2024–2026 Ryuk Design Studio</span><br />
+                    <span>Launch Films · Physical AI · 3D Cinema</span>
+                  </p>
+                  <div class="evolve-sublinks">
+                    <a href="brand-identity.html" class="evolve-link">Brand Suite ↗</a>
+                  </div>
+                </div>
+              </div>
+
+              <!-- (c.) DISCOVERY -->
+              <div class="evolve-col">
+                <div class="evolve-col-eyebrow"><span class="evolve-idx">(c.)</span> DISCOVERY</div>
+                <div class="evolve-col-body">
+                  <p>Turn your product into a film.<br />Zero fluff, 30-min discovery call.</p>
+                  <form class="evolve-form" onsubmit="event.preventDefault(); window.open('https://calendly.com/roshan-ryukdesignstudio/30min','_blank');">
+                    <input type="email" placeholder="enter your email" class="evolve-input" required />
+                    <button type="submit" class="evolve-submit-btn">BOOK A CALL</button>
+                  </form>
+                </div>
+              </div>
+
+              <!-- (d.) CONNECT -->
+              <div class="evolve-col">
+                <div class="evolve-col-eyebrow"><span class="evolve-idx">(d.)</span> CONNECT</div>
+                <div class="evolve-col-body evolve-links-list">
+                  <a href="https://x.com/ryuk__editzz" target="_blank" rel="noopener" class="evolve-link">X (Twitter) ↗</a>
+                  <a href="https://www.instagram.com/ryukdesign.studio/" target="_blank" rel="noopener" class="evolve-link">Instagram ↗</a>
+                  <a href="https://www.linkedin.com/in/ryuk-design-studio-643504419/" target="_blank" rel="noopener" class="evolve-link">LinkedIn ↗</a>
+                  <a href="https://contra.com/roshan_kumar_q2g50zsp" target="_blank" rel="noopener" class="evolve-link">Contra ↗</a>
                 </div>
               </div>
             </div>
-
-            <!-- (c.) NEWSLETTER / INQUIRY -->
-            <div class="evolve-col">
-              <div class="evolve-col-eyebrow"><span class="evolve-idx">(c.)</span> DISCOVERY</div>
-              <div class="evolve-col-body">
-                <p>Turn your product into a film.<br />Zero fluff, 30-min discovery call.</p>
-                <form class="evolve-form" onsubmit="event.preventDefault(); window.open('https://calendly.com/roshan-ryukdesignstudio/30min','_blank');">
-                  <input type="email" placeholder="enter your email" class="evolve-input" required />
-                  <button type="submit" class="evolve-submit-btn">BOOK A CALL</button>
-                </form>
-              </div>
-            </div>
-
-            <!-- (d.) CONNECT -->
-            <div class="evolve-col">
-              <div class="evolve-col-eyebrow"><span class="evolve-idx">(d.)</span> CONNECT</div>
-              <div class="evolve-col-body evolve-links-list">
-                <a href="https://x.com/ryuk__editzz" target="_blank" rel="noopener" class="evolve-link">X (Twitter) ↗</a>
-                <a href="https://www.instagram.com/ryukdesign.studio/" target="_blank" rel="noopener" class="evolve-link">Instagram ↗</a>
-                <a href="https://www.linkedin.com/in/ryuk-design-studio-643504419/" target="_blank" rel="noopener" class="evolve-link">LinkedIn ↗</a>
-                <a href="https://contra.com/roshan_kumar_q2g50zsp" target="_blank" rel="noopener" class="evolve-link">Contra ↗</a>
-              </div>
-            </div>
           </div>
-        </div>
-      </footer>
+        </footer>
+      </div>
     </main>
 
     <!-- ── LIGHTBOX MODAL ────────────────────────────────────────────────── -->
@@ -1411,6 +1398,6 @@
       </div>
     </div>
 
-    <script src="app.js?v=80"></script>
+    <script src="app.js?v=82"></script>
   </body>
 </html>

@@ -6278,46 +6278,73 @@ button:hover .btn-roll-text > span:not(.btn-roll-track),
 }
 
 /* ═══════════════════════════════════════════════════════════════════════
-   BRAND FOOTER: MADE IN EVOLVE SPEC (madeinevolve.com)
-   Precision Swiss Layout, 1952 3D Cinema Crowd Backdrop,
-   Vertical Pinstripe Columns, Huge Email Centerpiece & Technical Directory
+   BRAND FOOTER: MADE IN EVOLVE SCROLL SEQUENCE SPEC (madeinevolve.com)
+   46-Frame Vintage 3D Audience Canvas (Heads Turn on Scroll),
+   Vertical Column Pinstripes, Colossal Centerpiece & 4-Column Directory
    ═══════════════════════════════════════════════════════════════════════ */
 .evolve-footer {
   position: relative;
   width: 100%;
   background: #030405;
   color: #ffffff;
-  overflow: hidden;
   box-sizing: border-box;
   z-index: 10;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-/* Background image wrap with high-contrast cinema crowd & moody vignette */
-.evolve-bg-wrap {
+/* 220vh outer container that provides smooth scroll-scrub depth */
+.evolve-sequence-wrap {
+  position: relative;
+  width: 100%;
+  height: 220vh;
+}
+
+/* Sticky viewport frame that locks in place while the user scrolls */
+.evolve-sequence-sticky {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 46-frame canvas rendering the audience turning heads */
+.evolve-sequence-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.58;
+  filter: grayscale(100%) contrast(140%) brightness(75%);
+}
+
+.evolve-texture-overlay {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   pointer-events: none;
-  z-index: 1;
-  overflow: hidden;
-}
-
-.evolve-bg-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center 30%;
-  opacity: 0.32;
-  filter: grayscale(100%) contrast(140%) brightness(65%);
-  transform: scale(1.02);
+  z-index: 2;
+  opacity: 0.08;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 160px 160px;
 }
 
 .evolve-bg-scrim {
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 50% 50%, rgba(3, 4, 5, 0.45) 0%, rgba(3, 4, 5, 0.88) 75%, #030405 100%),
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2;
+  background: radial-gradient(circle at 50% 50%, rgba(3, 4, 5, 0.4) 0%, rgba(3, 4, 5, 0.88) 80%, #030405 100%),
               linear-gradient(180deg, rgba(3, 4, 5, 0.95) 0%, transparent 20%, transparent 80%, #030405 100%);
 }
 
@@ -6330,7 +6357,7 @@ button:hover .btn-roll-text > span:not(.btn-roll-track),
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   pointer-events: none;
-  z-index: 2;
+  z-index: 3;
 }
 
 .evolve-grid-pinstripes span {
@@ -6343,48 +6370,41 @@ button:hover .btn-roll-text > span:not(.btn-roll-track),
   width: 100%;
   max-width: 1440px;
   margin: 0 auto;
-  padding: clamp(36px, 5vh, 64px) clamp(20px, 4vw, 56px) clamp(40px, 6vh, 64px);
+  height: 100%;
+  padding: clamp(28px, 4vh, 48px) clamp(20px, 4vw, 56px) clamp(32px, 4vh, 48px);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  min-height: 85vh;
   box-sizing: border-box;
-  z-index: 3;
+  z-index: 4;
 }
 
 /* 1. TOP ROW */
 .evolve-top-row {
   display: grid;
-  grid-template-columns: 1fr 1.6fr 1.6fr auto;
+  grid-template-columns: 1fr 2fr auto;
   gap: clamp(20px, 3vw, 48px);
   align-items: flex-start;
-  padding-bottom: clamp(28px, 4vh, 48px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  padding-bottom: clamp(16px, 2vh, 32px);
 }
 
 .evolve-brand-mark {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
 }
 
 .evolve-pixel-cluster {
   display: inline-grid;
   grid-template-columns: repeat(3, 4px);
-  grid-template-rows: repeat(2, 4px);
-  gap: 3px;
+  gap: 2px;
 }
 
 .evolve-pixel-cluster i {
-  display: block;
   width: 4px;
   height: 4px;
   background: #ffffff;
   border-radius: 1px;
-}
-
-.evolve-pixel-cluster i:nth-child(2) {
-  background: #ff5cb1;
 }
 
 .evolve-logo-text {
@@ -6402,30 +6422,6 @@ button:hover .btn-roll-text > span:not(.btn-roll-track),
   line-height: 1.5;
   color: rgba(255, 255, 255, 0.85);
   margin: 0;
-}
-
-.evolve-studio-loc {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.evolve-loc-mail {
-  font-family: var(--font-sans);
-  font-size: clamp(12.5px, 0.95vw, 14px);
-  color: #ffffff;
-  text-decoration: none;
-  transition: color 0.2s ease;
-}
-
-.evolve-loc-mail:hover {
-  color: #ff5cb1;
-}
-
-.evolve-loc-est {
-  font-family: var(--font-mono);
-  font-size: 11.5px;
-  color: rgba(255, 255, 255, 0.45);
 }
 
 .evolve-top-action {
@@ -6461,10 +6457,9 @@ button:hover .btn-roll-text > span:not(.btn-roll-track),
 }
 
 .evolve-btn-pill:hover {
-  background: #ff5cb1;
-  border-color: #ff5cb1;
+  background: #e6e5e2;
+  border-color: #e6e5e2;
   color: #030405;
-  box-shadow: 0 0 24px rgba(255, 92, 177, 0.4);
   transform: translateY(-1px);
 }
 
@@ -6475,8 +6470,8 @@ button:hover .btn-roll-text > span:not(.btn-roll-track),
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: clamp(60px, 10vh, 120px) 0;
-  gap: clamp(14px, 2vh, 24px);
+  padding: clamp(32px, 6vh, 72px) 0;
+  gap: clamp(12px, 1.8vh, 20px);
 }
 
 .evolve-impact-title {
@@ -6502,14 +6497,13 @@ button:hover .btn-roll-text > span:not(.btn-roll-track),
   text-decoration: none;
   line-height: 1.05;
   display: inline-block;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  text-shadow: 0 0 40px rgba(0, 0, 0, 0.8);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.8);
 }
 
 .evolve-colossal-email:hover {
-  color: #ffffff;
-  text-shadow: 0 0 50px rgba(255, 92, 177, 0.55);
-  transform: scale(1.015);
+  opacity: 0.85;
+  transform: scale(1.01);
 }
 
 /* 3. BOTTOM 4-COLUMN GRID */
@@ -6517,14 +6511,14 @@ button:hover .btn-roll-text > span:not(.btn-roll-track),
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: clamp(24px, 3.5vw, 48px);
-  padding-top: clamp(32px, 4vh, 52px);
+  padding-top: clamp(24px, 3vh, 40px);
   border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .evolve-col {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 14px;
 }
 
 .evolve-col-eyebrow {
@@ -6532,22 +6526,20 @@ button:hover .btn-roll-text > span:not(.btn-roll-track),
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.12em;
-  color: rgba(255, 255, 255, 0.95);
+  color: #ffffff;
   text-transform: uppercase;
-  display: flex;
-  align-items: center;
-  gap: 6px;
 }
 
 .evolve-idx {
-  color: #ff5cb1;
+  color: rgba(255, 255, 255, 0.5);
+  margin-right: 4px;
 }
 
 .evolve-col-body {
   font-family: var(--font-sans);
   font-size: clamp(12.5px, 0.95vw, 13.5px);
-  line-height: 1.65;
-  color: rgba(255, 255, 255, 0.5);
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.7);
 }
 
 .evolve-col-body p {
@@ -6555,14 +6547,14 @@ button:hover .btn-roll-text > span:not(.btn-roll-track),
 }
 
 .evolve-link {
-  color: rgba(255, 255, 255, 0.75);
+  color: #ffffff;
   text-decoration: none;
-  transition: all 0.2s ease;
+  transition: opacity 0.2s ease, transform 0.2s ease;
   display: inline-block;
 }
 
 .evolve-link:hover {
-  color: #ff5cb1;
+  opacity: 0.8;
   transform: translateX(2px);
 }
 
@@ -6573,10 +6565,10 @@ button:hover .btn-roll-text > span:not(.btn-roll-track),
 }
 
 .evolve-sublinks {
-  margin-top: 12px;
+  margin-top: 10px;
 }
 
-/* Newsletter / Inquiry Form */
+/* Discovery Form */
 .evolve-form {
   display: flex;
   flex-direction: column;
@@ -6604,7 +6596,7 @@ button:hover .btn-roll-text > span:not(.btn-roll-track),
 }
 
 .evolve-input:focus {
-  border-color: #ff5cb1;
+  border-color: #ffffff;
   background: rgba(255, 255, 255, 0.08);
 }
 
@@ -6624,9 +6616,125 @@ button:hover .btn-roll-text > span:not(.btn-roll-track),
 }
 
 .evolve-submit-btn:hover {
-  background: #ff5cb1;
-  border-color: #ff5cb1;
-  box-shadow: 0 0 20px rgba(255, 92, 177, 0.4);
+  background: #e6e5e2;
+  border-color: #e6e5e2;
+}
+
+/* ─── RING FOOTER EXPLORE BUTTON (Made In Evolve aesthetic) ───────────── */
+.ring-footer-cta {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 44px var(--pad) 28px;
+  position: relative;
+  z-index: 8;
+}
+
+.ring-explore-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 26px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: #f0efec;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+}
+
+.ring-explore-btn:hover {
+  background: #ffffff;
+  color: #030405;
+  border-color: #ffffff;
+  transform: translateY(-2px);
+}
+
+.ring-explore-btn .ring-explore-arrow {
+  transition: transform 0.25s ease;
+  display: inline-block;
+  font-family: sans-serif;
+  font-size: 14px;
+}
+
+.ring-explore-btn:hover .ring-explore-arrow {
+  transform: translateX(4px);
+}
+
+/* ─── WORKS PAGE EDITORIAL HEADER ─────────────────────────────────────── */
+.works-header-section {
+  position: relative;
+  width: 100%;
+  padding: 120px var(--pad) 28px;
+  max-width: 1360px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.works-header-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  margin-bottom: 32px;
+}
+
+.works-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.85);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  cursor: pointer;
+}
+
+.works-back-btn:hover {
+  background: #ffffff;
+  color: #030405;
+  border-color: #ffffff;
+}
+
+.works-archive-badge {
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  color: rgba(255, 255, 255, 0.45);
+  text-transform: uppercase;
+}
+
+.works-editorial-title {
+  font-family: var(--font-title);
+  font-size: clamp(38px, 6vw, 76px);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 1.05;
+  color: #ffffff;
+  margin: 0 0 14px;
+}
+
+.works-editorial-desc {
+  font-family: var(--font-sans);
+  font-size: clamp(14px, 1.2vw, 16px);
+  color: rgba(255, 255, 255, 0.6);
+  max-width: 600px;
+  line-height: 1.6;
+  margin: 0;
 }
 
 /* Responsive Breakpoints */
@@ -6640,7 +6748,7 @@ button:hover .btn-roll-text > span:not(.btn-roll-track),
     gap: 36px;
   }
   .evolve-footer-inner {
-    min-height: auto;
+    padding: 24px 20px;
   }
 }
 
@@ -6651,17 +6759,17 @@ button:hover .btn-roll-text > span:not(.btn-roll-track),
   }
   .evolve-bottom-grid {
     grid-template-columns: 1fr;
-    gap: 30px;
+    gap: 24px;
   }
   .evolve-col-body {
-    font-size: 13.5px;
+    font-size: 13px;
   }
   .evolve-colossal-email {
     font-size: clamp(24px, 8vw, 36px);
   }
+  .works-header-top {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
 }
-
-
-
-
-
