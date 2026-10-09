@@ -2206,17 +2206,22 @@ function initVideoGallery() {
     }
   };
 
-  // 1. LIGHTBOX LAUNCH (Available globally)
-  window.openVideoLightboxById = (vimeoId, title) => {
-    if (vimeoId) {
-      videoContainer.innerHTML = `<iframe src="https://player.vimeo.com/video/${vimeoId}?autoplay=1&badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="${title || 'Video'}"></iframe>`;
-      if (modalTitle) modalTitle.textContent = title || "Video";
-      modal.classList.add("active");
+  // 1. LIGHTBOX LAUNCH (Available globally for Vimeo IDs, direct MP4, or showreels)
+  window.openVideoLightboxById = (srcOrId, title) => {
+    if (!srcOrId) return;
+    const str = srcOrId.toString();
+    if (str.includes(".mp4") || str.includes(".webm") || str.startsWith("blob:") || (str.includes("/") && !str.includes("vimeo.com"))) {
+      videoContainer.innerHTML = `<video src="${str}" controls autoplay playsinline style="position:absolute;top:0;left:0;width:100%;height:100%;background:#000;border-radius:12px;object-fit:contain;" title="${title || 'Video'}"></video>`;
+    } else {
+      const vimeoId = str.replace(/[^0-9]/g, "");
+      videoContainer.innerHTML = `<iframe src="https://player.vimeo.com/video/${vimeoId || str}?autoplay=1&badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="${title || 'Video'}"></iframe>`;
+    }
+    if (modalTitle) modalTitle.textContent = title || "Video";
+    modal.classList.add("active");
 
-      // Pause Lenis smooth scroll
-      if (window.__lenis) {
-        window.__lenis.stop();
-      }
+    // Pause Lenis smooth scroll
+    if (window.__lenis) {
+      window.__lenis.stop();
     }
   };
 
