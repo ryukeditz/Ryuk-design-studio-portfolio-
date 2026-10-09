@@ -2866,8 +2866,8 @@ function initEvolveFooterSequence() {
 
   function resizeCanvas() {
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
-    const w = canvas.clientWidth || window.innerWidth;
-    const h = canvas.clientHeight || window.innerHeight;
+    const w = window.innerWidth;
+    const h = window.innerHeight;
     const targetW = Math.round(w * dpr);
     const targetH = Math.round(h * dpr);
 
@@ -2887,7 +2887,7 @@ function initEvolveFooterSequence() {
     const iw = img.naturalWidth;
     const ih = img.naturalHeight;
 
-    // Cover aspect ratio sizing
+    // Cover aspect ratio sizing (exact full-bleed 100vw x 100vh)
     const scale = Math.max(cw / iw, ch / ih);
     const nw = iw * scale;
     const nh = ih * scale;
@@ -2902,10 +2902,20 @@ function initEvolveFooterSequence() {
     const rect = wrap.getBoundingClientRect();
     const vh = window.innerHeight;
     const scrollDist = wrap.offsetHeight - vh;
+
+    // Hide floating pill navbar when scrolling into Made In Evolve footer
+    const floatingNav = document.querySelector(".nav-container-floating");
+    if (floatingNav) {
+      if (rect.top <= vh * 0.7) {
+        floatingNav.classList.add("nav-hidden-footer");
+      } else {
+        floatingNav.classList.remove("nav-hidden-footer");
+      }
+    }
+
     if (scrollDist <= 0) return;
 
-    // Scrub calculation:
-    // When wrap top reaches top of viewport (rect.top <= 0), scrub begins
+    // Scrub calculation across 46 frames
     const progress = Math.min(1, Math.max(0, -rect.top / scrollDist));
     const frameIndex = Math.min(TOTAL_FRAMES - 1, Math.max(0, Math.floor(progress * (TOTAL_FRAMES - 1))));
 
