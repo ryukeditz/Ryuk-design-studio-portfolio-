@@ -1728,7 +1728,7 @@ h1, h2, h3, h4, h5, h6 {
   position: relative;
   width: 100%;
   background-color: #030405;
-  overflow: hidden;
+  overflow: visible;
   z-index: 20;
   padding: 0 !important;
   margin: 0 !important;
@@ -6319,7 +6319,7 @@ button:hover .btn-roll-text > span:not(.btn-roll-track),
   position: relative;
   width: 100%;
   background-color: #030405;
-  overflow: hidden;
+  overflow: visible;
   z-index: 20;
   padding: 0 !important;
   margin: 0 !important;
@@ -6516,9 +6516,9 @@ button:hover .btn-roll-text > span:not(.btn-roll-track),
   margin-top: 0;
   margin-bottom: 0;
   font-family: var(--font-title);
-  font-size: clamp(2.3rem, 4.4vw, 5rem);
+  font-size: clamp(1.4rem, 2.1vw, 2.35rem);
   font-weight: 500;
-  line-height: 0.96;
+  line-height: 1.05;
   text-align: center;
   color: #ffffff;
 }
@@ -6750,7 +6750,7 @@ button:hover .btn-roll-text > span:not(.btn-roll-track),
     justify-self: start !important;
   }
   .h-h5 {
-    font-size: clamp(1.8rem, 5vw, 3rem);
+    font-size: clamp(1.3rem, 3.2vw, 1.8rem);
   }
 }
 
@@ -6759,7 +6759,7 @@ button:hover .btn-roll-text > span:not(.btn-roll-track),
     width: 90vw;
   }
   .h-h5 {
-    font-size: clamp(1.5rem, 6vw, 2.2rem);
+    font-size: clamp(1.15rem, 4vw, 1.45rem);
   }
   .footer__info-wrap {
     grid-template-columns: 1fr;
